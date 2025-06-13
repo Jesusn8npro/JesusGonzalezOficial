@@ -16,7 +16,7 @@
       color: 'linear-gradient(135deg, #f8e7b8 60%, #bfa14a 100%)',
       boton: '¡Quiero mi Parranda!',
       animacion: 'pulso',
-      bg: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
+      bg: 'https://images.jpgsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
       textoColor: '#3d2f00',
       subtituloColor: '#bfa14a',
     },
@@ -28,7 +28,7 @@
       color: 'linear-gradient(135deg, #e6f0ff 60%, #bfa14a 100%)',
       boton: 'Descubre el Show Semicompleto',
       animacion: 'rebote',
-      bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
+      bg: 'https://images.jpgsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
       textoColor: '#1e2b3a',
       subtituloColor: '#0052a3',
     },
@@ -40,7 +40,7 @@
       color: 'linear-gradient(135deg, #fffbe5 60%, #bfa14a 100%)',
       boton: '¡Vívelo en Grande!',
       animacion: 'brillo',
-      bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&q=60',
+      bg: 'https://images.jpgsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&q=60',
       textoColor: '#2a2a2a',
       subtituloColor: '#bfa14a',
     },
@@ -64,9 +64,9 @@
   <div class="tarjetas">
     {#each servicios as servicio (servicio.nombre)}
       <div class="tarjeta" style="background: {servicio.color}" on:click={() => abrirModal(servicio)} in:scale={{ duration: 400 }}>
-        <img class="tarjeta-bg" src={servicio.bg} alt="Fondo {servicio.nombre}" />
+        <img loading="lazy" width="400" height="400" class="tarjeta-bg" src={servicio.bg} alt="" aria-hidden="true" />
         <div class="contenido-tarjeta">
-          <img class="img-servicio" src={servicio.imagen} alt={servicio.nombre} />
+          <img loading="lazy" width="400" height="400" class="img-servicio" src={servicio.imagen} alt={servicio.nombre} />
           <div class="nombre-servicio" style="color:{servicio.subtituloColor};font-size:1.45rem;font-weight:800;letter-spacing:0.01em;text-shadow:0 2px 8px #fff8;">
             {servicio.nombre}
           </div>
@@ -89,7 +89,7 @@
     <div class="modal modal-{servicioSeleccionado.nombre.replace(/\s+/g, '-').toLowerCase()}" in:scale={{ duration: 200 }} out:fade={{ duration: 150 }} on:click|stopPropagation>
       <button class="cerrar-modal" on:click={cerrarModal} aria-label="Cerrar">×</button>
       <div class="modal-contenido-luxury">
-        <img class="img-servicio" src={servicioSeleccionado.imagen} alt={servicioSeleccionado.nombre} />
+        <img loading="lazy" width="400" height="400" class="img-servicio" src={servicioSeleccionado.imagen} alt={servicioSeleccionado.nombre} />
         <h3 class="modal-titulo">{servicioSeleccionado.nombre}</h3>
         <div class="modal-beneficios">
           {#if servicioSeleccionado.nombre === 'Parranda Vallenata'}
@@ -150,7 +150,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=cover&w=1200&q=60') center/cover no-repeat;
+    background: url('https://images.jpgsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=cover&w=1200&q=60') center/cover no-repeat;
     opacity: 0.13;
     z-index: 0;
     pointer-events: none;
@@ -166,7 +166,7 @@
   line-height: 1.07;
   position: relative;
   text-shadow: 0 4px 24px #bfa14a44, 0 2px 8px rgba(17, 3, 3, 0.467), 0 1px 0 #fffbe5;
-  -webkit-text-stroke: 1.5px #fffbe5cc;
+  -webkit-text-stroke: 1.5px #110e01cc;
   filter: drop-shadow(0 2px 10px #bfa14a33);
   background: linear-gradient(90deg,#101010 60%,#fffbe5 100%);
   background-clip: text;

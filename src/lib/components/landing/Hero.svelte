@@ -1,9 +1,6 @@
 <script>
-  // Componente Hero.svelte
-  // Hero de lujo, inspirado en diseño moderno tipo startup, enfocado a landing musical de acordeonista profesional.
-  // Todo en español, bien comentado y listo para personalizar.
-  // Puedes cambiar estos datos fácilmente
-  export let nombreArtistico = "Tu Nombre Artístico";
+  import ModalReserva from './ModalReserva.svelte';
+
   export let eventos = "+100 eventos realizados";
   export let titulo = "Haz de tu evento una experiencia inolvidable 🎶";
   export let descripcion = "Shows de acordeón profesional para eventos exclusivos, con la mejor energía y repertorio.";
@@ -12,9 +9,9 @@
     "100% clientes satisfechos",
     "Repertorio personalizado"
   ];
-  export let urlImagen = "/Imagenes/Jesus Fondo Blanco.png"; // Foto real para el Hero
-
+  export let urlImagen = "/Imagenes/Jesus Fondo Blanco.png";
   let mostrarModal = false;
+  
 </script>
 <section class="hero">
   <div class="contenido">
@@ -29,14 +26,41 @@
 
     <div class="descargas-metricas">
       <div class="descargas-btns">
-        <a class="store-btn appstore" href="#" tabindex="-1">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="#fff"/><text x="50%" y="55%" text-anchor="middle" fill="#111" font-size="8" font-family="sans-serif" dy=".3em"></text></svg>
-          <span>Escuchar Spotify</span>
-        </a>
-        <a class="store-btn playstore" href="#" tabindex="-1">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="5" fill="#fff"/><polygon points="6,4 16,10 6,16" fill="#25d366"/></svg>
-          <span>Ver Video</span>
-        </a>
+        <button class="btn-reserva-hero" on:click={() => mostrarModal = true}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="margin-right:0.7rem;"><rect width="24" height="24" rx="6" fill="#25d366"/><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Reserva tu show
+        </button>
+        <style>
+          .btn-reserva-hero {
+            background: linear-gradient(90deg,#bfa14a 60%,#25d366 100%);
+            color: #18151a;
+            font-weight: 900;
+            font-size: 1.23rem;
+            padding: 1.05rem 2.8rem;
+            border: none;
+            border-radius: 2.5rem;
+            box-shadow: 0 4px 32px #25d36655, 0 2px 12px #bfa14a33;
+            cursor: pointer;
+            outline: none;
+            margin-top: 0.4rem;
+            margin-bottom: 0.8rem;
+            transition: box-shadow 0.2s, transform 0.15s, background 0.18s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            animation: brillo-hero 2.5s infinite alternate;
+          }
+          .btn-reserva-hero:hover {
+            box-shadow: 0 8px 40px #25d36699, 0 2px 12px #bfa14a33;
+            transform: scale(1.04);
+            background: linear-gradient(90deg,#25d366 60%,#bfa14a 100%);
+          }
+          @keyframes brillo-hero {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.18) drop-shadow(0 0 8px #bfa14a99); }
+          }
+        </style>
       </div>
       <div class="metricas-hero">
         <div class="metrica">
@@ -55,17 +79,8 @@
     </div>
 
     {#if mostrarModal}
-      <div class="modal-overlay" on:click={() => mostrarModal = false}>
-        <div class="modal-reserva" on:click|stopPropagation>
-          <button class="modal-cerrar" aria-label="Cerrar" on:click={() => mostrarModal = false}>&times;</button>
-          <h2>¡Reserva tu show ahora!</h2>
-          <p>Estás a un paso de vivir la mejor experiencia musical.<br>Haz clic en el botón para reservar directamente por WhatsApp.</p>
-          <a href="https://wa.me/573228176411" target="_blank" rel="noopener" class="modal-whatsapp">
-            Reservar por WhatsApp
-          </a>
-        </div>
-      </div>
-    {/if}
+  <ModalReserva mostrar={mostrarModal} onCerrar={() => mostrarModal = false} />
+{/if}
   </div>
 
   <div class="artista-wrapper">
@@ -91,7 +106,7 @@
         </g>
       </svg>
     </div>
-    <img class="foto-artista-png" src={urlImagen} alt="Foto artista musical" />
+    <img loading="lazy" width="400" height="400" class="foto-artista-png" src={urlImagen} alt="Foto artista musical" />
   </div>
 </section>
 

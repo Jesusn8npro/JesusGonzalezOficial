@@ -1,6 +1,5 @@
 <script>
-  // Galería de videos musicales profesionales con tabs animados y video principal
-  // Adaptado para máxima persuasión y visual impactante
+
   let videos = [
     {
       artista: 'Jorge Celedón',
@@ -22,9 +21,36 @@
     }
   ];
   let videoActivo = 0;
+  let iframeRef;
+  let videoCargado = false;
 
   function seleccionar(idx) {
     videoActivo = idx;
+    videoCargado = false;
+  }
+
+  function cargarVideo() {
+    videoCargado = true;
+    setTimeout(setLowVolume, 800);
+  }
+
+  // Establecer volumen bajo usando postMessage de YouTube API
+  function setLowVolume() {
+    if (!iframeRef) return;
+    // YouTube Player API: https://developers.google.com/youtube/iframe_api_reference
+    iframeRef.contentWindow?.postMessage(
+      JSON.stringify({
+        event: 'command',
+        func: 'setVolume',
+        args: [10] // Volumen al 10%
+      }),
+      '*'
+    );
+  }
+
+  // Ejecutar cada vez que cambia el video o se monta el iframe
+  $: {
+    setTimeout(setLowVolume, 800);
   }
 </script>
 
@@ -42,21 +68,32 @@
           aria-label={`Ver video con ${v.artista}`}
           on:click={() => seleccionar(idx)}
         >
-          <img src={v.thumb} alt={`Miniatura de ${v.artista}`} class="galeria-thumb" />
+          <img loading="lazy" width="400" height="400" src={v.thumb} alt={`Miniatura de ${v.artista}`} class="galeria-thumb" />
           <span class="galeria-artista">{v.artista}</span>
         </button>
       {/each}
     </div>
     <div class="galeria-video-container">
       <div class="galeria-video-embed animate-in">
-        <iframe
-          src={`https://www.youtube.com/embed/${videos[videoActivo].videoId}?rel=0&showinfo=0&autoplay=1&controls=1`}
-          title={`Video con ${videos[videoActivo].artista}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          frameborder="0"
-        ></iframe>
-      </div>
+  {#if !videoCargado}
+    <div class="video-placeholder" on:click={cargarVideo} style="position:relative;cursor:pointer;">
+      <img src={videos[videoActivo].thumb} alt={`Miniatura de ${videos[videoActivo].artista}`} style="width:100%;height:100%;object-fit:cover;border-radius:1rem;" />
+      <button class="play-btn" aria-label="Reproducir video" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#000a;border:none;border-radius:50%;padding:1.2rem;">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="19" fill="#bfa14a"/><polygon points="15,12 28,19 15,26" fill="#fff"/></svg>
+      </button>
+    </div>
+  {:else}
+    <iframe
+      bind:this={iframeRef}
+      src={`https://www.youtube.com/embed/${videos[videoActivo].videoId}?rel=0&showinfo=0&autoplay=1&controls=1`}
+      title={`Video con ${videos[videoActivo].artista}`}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      frameborder="0"
+      style="width:100%;height:100%;border-radius:1rem;"
+    ></iframe>
+  {/if}
+</div>
       <div class="galeria-video-desc">
         <strong>{videos[videoActivo].artista}</strong>: {videos[videoActivo].descripcion}
       </div>
