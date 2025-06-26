@@ -1,30 +1,36 @@
-<script>
+<script lang="ts">
 
   let videos = [
     {
       artista: 'Jorge Celedón',
       videoId: 'dcV5GnsOxII',
-      thumb: '/Imagenes/jesus Gon Jorge Celedon.jpg',
+      thumb: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
       descripcion: 'Show en vivo junto a Jorge Celedón.'
     },
     {
       artista: 'Poncho Zuleta',
       videoId: 'BR8TMNRqFPw',
-      thumb: '/Imagenes/Jesus con Poncho Zuleta.jpg',
+      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Presentación exclusiva con Poncho Zuleta.'
     },
     {
       artista: 'Felipe Peláez',
       videoId: '1IGwgy_HSSQ',
-      thumb: '/Imagenes/Pipe Pelaez y Jesus Gonzalez.jpg',
+      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Concierto en vivo junto a Felipe Peláez.'
+    },
+    {
+      artista: 'Fer Castilla',
+      videoId: 'b4Fg7ijoPAg',
+      thumb: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+      descripcion: 'Interpretación en vivo de Fer Castilla.'
     }
   ];
   let videoActivo = 0;
-  let iframeRef;
+  let iframeRef: HTMLIFrameElement;
   let videoCargado = false;
 
-  function seleccionar(idx) {
+  function seleccionar(idx: number) {
     videoActivo = idx;
     videoCargado = false;
   }
@@ -135,13 +141,18 @@
   flex-direction: column;
   align-items: center;
   gap: 2.5rem;
+  width: 100%;
+  overflow: hidden;
 }
 .galeria-tabs {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.4rem;
+  width: 100%;
+  max-width: 700px;
   justify-content: center;
   margin-bottom: 1.2rem;
-  flex-wrap: wrap;
+  margin-top: 1.2rem;
 }
 .galeria-tab {
   background: #18151a;
@@ -223,16 +234,44 @@
   text-shadow: 0 2px 10px #000a;
 }
 @media (max-width: 800px) {
-  .galeria-video-container { max-width: 98vw; }
+  .galeria-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem 1rem 1rem;
+    scroll-snap-type: x mandatory;
+    margin-top: 50px;
+  }
+  .galeria-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .galeria-tabs {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .galeria-tab {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-width: 120px;
+  }
+  .galeria-video-container { max-width: 95vw; }
   .galeria-main { gap: 1.2rem; }
 }
 @media (max-width: 600px) {
   .galeria-header { margin-bottom: 1.2rem; }
   .galeria-titulo { font-size: 1.4rem; }
   .galeria-desc { font-size: 1rem; }
-  .galeria-tabs { gap: 0.6rem; }
-  .galeria-tab { min-width: 80px; min-height: 80px; padding: 0.3rem 0.5rem; }
-  .galeria-thumb { width: 44px; height: 44px; }
+  .galeria-tab { 
+    min-width: 100px;
+    min-height: 100px;
+    padding: 0.5rem;
+    margin-top: 20px;
+  }
+  .galeria-thumb { width: 50px; height: 50px; }
   .galeria-video-container { padding: 0.7rem 0.2rem; }
 }
 @keyframes fadeIn {

@@ -34,10 +34,8 @@
   }
 
   onMount(() => {
-    // Iniciar el contador
     actualizarContador();
     intervalo = setInterval(actualizarContador, 1000);
-
     return () => clearInterval(intervalo);
   });
 </script>
@@ -98,22 +96,7 @@
   margin-top: 0.05rem;
 }
 
-.banner-urgencia__titulo {
-  font-size: 1.09rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  margin-bottom: 0;
-  text-align: left;
-  color: #bfa14a;
-  flex: 2;
-} 
-.banner-urgencia__detalles {
-  font-size: 0.99rem;
-  text-align: left;
-  color: #18151a;
-  flex: 2.5;
-  margin-bottom: 0;
-} 
+ 
 .banner-urgencia__contador {
   background: #18151a;
   color: #fffbe7;
@@ -191,9 +174,6 @@
 }
 
 @media (max-width: 600px) {
-  .banner-urgencia__titulo {
-    font-size: 0.97rem;
-  }
   .banner-urgencia__contador {
     font-size: 0.97rem;
     padding: 0.09rem 0.5rem;

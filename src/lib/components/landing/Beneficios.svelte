@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
   // Imágenes para el slider (puedes reemplazar las URLs por tus fotos reales)
   export let imagenesSlider = [
-    '/Imagenes/Jesus con Poncho Zuleta.jpg',
-    '/Imagenes/Pipe Pelaez y Jesus Gonzalez.jpg',
-    '/Imagenes/jesus Gon Jorge Celedon.jpg',
-    '/Imagenes/Jesus Gonzalez en concierto.jpg'
+    '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+    '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
+    '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+    '/Imagenes/Jesus Fondo Blanco.png'
   ];
   let current = 0;
-  let interval;
+  let interval: any;
 
   function next() { current = (current + 1) % imagenesSlider.length; }
   function prev() { current = (current - 1 + imagenesSlider.length) % imagenesSlider.length; }
@@ -68,6 +68,7 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0 2rem;
 }
 .beneficios-grid {
   width: 100%;
@@ -78,24 +79,6 @@
   align-items: stretch;
   justify-content: center;
   z-index: 2;
-}
-.beneficios-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  min-width: 280px;
-  max-width: 380px;
-  width: 100%;
-  box-sizing: border-box;
-  align-items: stretch;
-}
-.beneficios-col.left,
-.beneficios-col.right {
-  min-width: 370px;
-  max-width: 470px;
-  width: 100%;
-  align-items: stretch;
 }
 .beneficios-col {
   display: flex;
@@ -115,17 +98,14 @@
 .slider-col.center {
   align-items: center;
   justify-content: center;
-}
-@media (max-width: 1100px) {
-  .beneficios-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "left center"
-      "right center";
-  }
-  .beneficios-col.left { grid-area: left; }
-  .slider-col.center { grid-area: center; }
-  .beneficios-col.right { grid-area: right; }
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  min-width: 330px;
+  max-width: 520px;
+  padding: 1.5rem 1.2rem;
 }
 @media (max-width: 1100px) {
   .beneficios-grid {
@@ -141,7 +121,7 @@
     max-width: 100vw;
     min-width: 0;
     align-items: center;
-    padding: 1.1rem 0.5rem 1.1rem 0.5rem;
+    padding: 1.1rem 0.5rem;
     box-sizing: border-box;
   }
   .beneficios-list {
@@ -185,18 +165,6 @@
   background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=cover&w=1200&q=60') center/cover no-repeat;
   opacity: 0.18;
   z-index: 0;
-}
-.slider-col {
-  flex: 1.1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-  min-width: 330px;
-  max-width: 520px;
-  padding: 1.5rem 1.2rem 1.5rem 1.2rem;
 }
 .slider-container {
   width: 100%;
@@ -243,23 +211,6 @@
   font-size: 0.8rem;
   margin-top: 0.5rem;
 }
-.beneficios-col {
-  flex: 1.2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2.3rem;
-  z-index: 2;
-  padding: 1.5rem 2.5rem 1.5rem 2.5rem;
-}
-.beneficios-title {
-  color: #fff;
-  font-size: 2.6rem;
-  font-weight: 900;
-  margin-bottom: 1.2rem;
-  letter-spacing: 0.01em;
-  text-shadow: 0 2px 14px #0009;
-}
 .beneficios-list {
   display: flex;
   flex-direction: column;
@@ -305,13 +256,6 @@
   filter: drop-shadow(0 4px 16px #bfa14a88) brightness(1.3);
   transform: scale(1.15) rotate(-6deg);
 }
-.beneficio-icon {
-  font-size: 2.2rem;
-  color: #bfa14a;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-  filter: drop-shadow(0 2px 8px #bfa14a55);
-}
 .beneficio-content {
   display: flex;
   flex-direction: column;
@@ -329,7 +273,6 @@
   font-size: 1.05rem;
   font-weight: 500;
 }
-
 </style>
 
 <section class="beneficios-section" id="beneficios">

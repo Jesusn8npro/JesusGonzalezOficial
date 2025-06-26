@@ -2,9 +2,8 @@
   import ModalReserva from './ModalReserva.svelte';
   import { trackConversion } from '$lib/tracking';
 
-  // Props configurables
   export let eventos = "+100 eventos realizados";
-  export let titulo = "🏆 Fer Castilla & Jesús González | Agrupación Revelación 2025";
+  export let titulo = "Fer Castilla & Jesús González | Agrupación Revelación 2025";
   export let descripcion = "La agrupación vallenata más contratada del país. Espectáculos musicales de primer nivel con la mejor puesta en escena para bodas de lujo, eventos corporativos y celebraciones exclusivas.";
   export let beneficios = [
     "🎤 Fer Castilla - Vocalista principal reconocido", 
@@ -13,11 +12,8 @@
     "💎 Shows completos con músicos y puesta en escena VIP"
   ];
   export let urlImagen = "/Imagenes/Jesus Gonzalez y Fer Castilla.png";
-  
-  // Estado del modal
   let mostrarModal = false;
   
-  // Funciones
   function abrirModalConTracking() {
     trackConversion('Hero_Button_Click', 'Modal_Reserva');
     mostrarModal = true;
@@ -28,38 +24,27 @@
   }
 </script>
 
-<!-- SECCIÓN HERO PRINCIPAL -->
+
 <section class="hero">
-  <!-- CONTENIDO IZQUIERDO -->
-  <div class="contenido">
-    <!-- Estrellas y reputación -->
-    <div class="estrellas">⭐⭐⭐⭐⭐ {eventos}</div>
-    
-    <!-- Título principal -->
-    <h1 class="titulo">{titulo}</h1>
-    
-    <!-- Descripción -->
-    <div class="descripcion">{descripcion}</div>
-    
-    <!-- Beneficios -->
+
+      <div class="contenido">
+      <div class="estrellas">⭐⭐⭐⭐⭐ {eventos}</div>
+      <h1 class="titulo">🏆 {titulo}</h1>
+      <div class="descripcion">{descripcion}</div>
     <div class="beneficios">
       {#each beneficios as beneficio}
         <span class="beneficio">{beneficio}</span>
       {/each}
     </div>
 
-    <!-- CTA y métricas -->
-    <div class="cta-metricas">
-      <!-- Botón principal -->
-      <button class="btn-reserva-hero" on:click={abrirModalConTracking}>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <rect width="24" height="24" rx="6" fill="#25d366"/>
-          <path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        ¡Reserva tu show ahora!
-        </button>
-      
-      <!-- Métricas de confianza -->
+          <div class="cta-metricas">
+        <button class="btn-reserva-hero" on:click={abrirModalConTracking}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="6" fill="#25d366"/>
+            <path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ¡Reserva tu show ahora!
+          </button>
       <div class="metricas-hero">
         <div class="metrica">
           <span class="metrica-num">100+</span>
@@ -75,11 +60,9 @@
         </div>
       </div>
     </div>
-  </div>
+      </div>
 
-  <!-- IMAGEN DEL ARTISTA -->
-  <div class="artista-wrapper">
-    <!-- Decoración circular con estrellas -->
+    <div class="artista-wrapper">
     <div class="decoracion-circulo" aria-hidden="true">
       <svg class="circulo-bg" width="370" height="370" viewBox="0 0 370 370" fill="none">
         <circle cx="185" cy="185" r="160" fill="#ffe08222" filter="url(#glow)" />
@@ -92,7 +75,6 @@
             </feMerge>
           </filter>
         </defs>
-        <!-- Estrellas decorativas -->
         <g class="estrellas-circulo">
           <polygon points="185,55 191,75 212,75 195,87 201,107 185,95 169,107 175,87 158,75 179,75" fill="#ffe082"/>
           <polygon points="265,145 268,153 277,153 270,158 273,166 265,161 258,166 261,158 254,153 263,153" fill="#ffe082"/>
@@ -102,20 +84,18 @@
         </g>
       </svg>
     </div>
-    
-    <!-- Foto principal del artista -->
     <img 
       loading="lazy" 
       width="450" 
       height="450" 
       class="foto-artista-png" 
       src={urlImagen} 
-      alt="Fer Castilla & Jesús González - Agrupación Vallenata Revelación 2025" 
+      alt="Fer Castilla & Jesús González - Agrupación Vallenata Revelación 2025"
+      decoding="async"
+      fetchpriority="high"
     />
   </div>
-</section>
-
-<!-- MODAL DE RESERVA -->
+  </section>
 {#if mostrarModal}
   <ModalReserva mostrar={mostrarModal} on:cerrar={cerrarModal} />
 {/if}
@@ -180,10 +160,12 @@
 
   /* ===== BENEFICIOS ===== */
   .beneficios {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
     margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
   }
 
   .beneficio {
@@ -192,11 +174,12 @@
     color: #bfa14a;
     border-radius: 2rem;
     padding: 0.8rem 1rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+    text-align: center;
   }
 
   .beneficio:hover {
@@ -329,22 +312,24 @@
       order: 2;
     }
     
-  .artista-wrapper {
+    .artista-wrapper {
       order: 2;
       max-width: 85vw;
       min-width: 300px;
       margin-top: 7rem;
-  }
+    }
     
     .titulo { font-size: 2.4rem; }
     .descripcion { font-size: 1.1rem; text-align: center; }
     
-  .beneficios {
+    .beneficios {
       justify-content: center;
       gap: 0.8rem;
-  }
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
     
-  .beneficio {
+    .beneficio {
       font-size: 0.85rem;
       padding: 0.6rem 0.8rem;
     }
@@ -364,7 +349,10 @@
     .titulo { font-size: 2rem; }
     .descripcion { font-size: 1rem; }
     .artista-wrapper { min-width: 280px; }
-    .beneficios { flex-direction: column; align-items: center; }
+    .beneficios { 
+      grid-template-columns: 1fr;
+      align-items: center; 
+    }
     .metricas-hero { gap: 1rem; }
   }
 </style>

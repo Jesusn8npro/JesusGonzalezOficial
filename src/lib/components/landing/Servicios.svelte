@@ -41,13 +41,13 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2b2100 100%)',
       bg: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/watch?v=b4Fg7ijoPAg'
+      videoUrl: 'https://www.youtube.com/embed/b4Fg7ijoPAg'
     },
     {
       nombre: 'Show Semicompleto VIP',
       subtituloColor: '#9333ea',
       textoColor: '#e9d5ff',
-      imagen: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+      imagen: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'El balance perfecto entre un show de gran formato y un evento corporativo o boda de lujo. Producción y sonido de primer nivel.',
       duracion: '3-4 horas',
       capacidad: 'Hasta 300p',
@@ -55,13 +55,13 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2a004b 100%)',
       bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/watch?v=BR8TMNRqFPw'
+      videoUrl: 'https://www.youtube.com/embed/d5irPiHkkt4'
     },
     {
       nombre: 'Show Completo de Gala',
       subtituloColor: '#e11d48',
       textoColor: '#ffd5dd',
-      imagen: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+      imagen: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
       descripcion: 'La producción musical definitiva para eventos masivos. Un espectáculo de concierto con despliegue técnico y artístico completo.',
       duracion: '4-5 horas',
       capacidad: 'Masivos',
@@ -69,7 +69,7 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #4b0011 100%)',
       bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/watch?v=BR8TMNRqFPw' // Placeholder, mismo que VIP
+      videoUrl: 'https://www.youtube.com/embed/BR8TMNRqFPw'
     }
   ];
 
@@ -114,21 +114,54 @@
   </div>
   <div class="tarjetas">
     {#each servicios as servicio (servicio.nombre)}
-      <div class="service-card {servicio.color}" on:click={() => abrirModal(servicio)} on:keydown={() => {}} role="button" tabindex="0">
-        <div class="card-content">
-          <div class="card-header">
-            <img class="tarjeta-icono" src={servicio.imagen} alt="Icono de {servicio.nombre}" />
-            <h3 class="tarjeta-titulo" style="color: {servicio.subtituloColor};">{servicio.nombre}</h3>
+      <div class="tarjeta-profesional {servicio.animacionClase}" 
+           style="--accent-color: {servicio.subtituloColor}; background: {servicio.color};"
+           on:click={() => abrirModal(servicio)} 
+           on:keydown={() => {}} 
+           role="button" 
+           tabindex="0">
+        
+        <!-- Efecto de brillo animado -->
+        <div class="tarjeta-glow"></div>
+        
+        <!-- Contenido de la tarjeta -->
+        <div class="tarjeta-contenido">
+          <!-- Header con icono y título -->
+          <div class="tarjeta-header">
+            <div class="icono-container">
+              <img class="tarjeta-icono" src={servicio.imagen} alt="Icono de {servicio.nombre}" />
+              <div class="icono-glow"></div>
+            </div>
+            <h3 class="tarjeta-titulo">{servicio.nombre}</h3>
           </div>
-          <p class="descripcion">{servicio.descripcion}</p>
-        </div>
-        <div class="card-footer">
-          <div class="detalles">
-            <span><i class="fas fa-clock"></i> {servicio.duracion}</span>
-            <span><i class="fas fa-users"></i> {servicio.capacidad}</span>
+          
+          <!-- Descripción -->
+          <p class="tarjeta-descripcion">{servicio.descripcion}</p>
+          
+          <!-- Pills de información -->
+          <div class="info-pills">
+            <div class="pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              <span>{servicio.duracion}</span>
+            </div>
+            <div class="pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span>{servicio.capacidad}</span>
+            </div>
           </div>
-          <button class="cta-button {servicio.color}" on:click|stopPropagation={(e) => abrirModal(servicio)}>
-            {servicio.boton} <span class="arrow">→</span>
+          
+          <!-- Botón CTA -->
+          <button class="tarjeta-boton" on:click|stopPropagation={() => abrirModal(servicio)}>
+            <span class="boton-texto">{servicio.boton}</span>
+            <span class="boton-arrow">→</span>
           </button>
         </div>
       </div>
@@ -166,46 +199,35 @@
               <li><span class="beneficio-icon">👥</span><div class="beneficio-texto"><strong>Staff técnico</strong><span> - Coordinación completa</span></div></li>
               <li><span class="beneficio-icon">🎯</span><div class="beneficio-texto"><strong>Repertorio extendido</strong><span> - Mayor variedad</span></div></li>
             {:else}
-              <li><span class="beneficio-icon">🎺</span><div class="beneficio-texto"><strong>Instrumentos de viento</strong><span> - Trompeta, bombardino</span></div></li>
-              <li><span class="beneficio-icon">💡</span><div class="beneficio-texto"><strong>Ingenieros especializados</strong><span> - Sonido y luces</span></div></li>
-              <li><span class="beneficio-icon">🎤</span><div class="beneficio-texto"><strong>Coristas profesionales</strong><span> - Voces adicionales</span></div></li>
-              <li><span class="beneficio-icon">⭐</span><div class="beneficio-texto"><strong>Producción de gala</strong><span> - Experiencia completa</span></div></li>
+              <li><span class="beneficio-icon">🏟️</span><div class="beneficio-texto"><strong>Producción masiva</strong><span> - Eventos grandes y masivos</span></div></li>
+              <li><span class="beneficio-icon">🎬</span><div class="beneficio-texto"><strong>Show completo</strong><span> - Luces, video y efectos</span></div></li>
+              <li><span class="beneficio-icon">🎭</span><div class="beneficio-texto"><strong>Puesta en escena</strong><span> - Producción de concierto</span></div></li>
+              <li><span class="beneficio-icon">🌟</span><div class="beneficio-texto"><strong>Experiencia de gala</strong><span> - Máximo nivel profesional</span></div></li>
             {/if}
           </ul>
         </div>
         
         <!-- Columna Derecha: Video -->
         <div class="modal-video-col">
-          <div class="video-wrapper">
-            {#if videoActivo}
-              <iframe 
-                class="video-iframe"
-                src="{servicioSeleccionado?.videoUrl}?autoplay=1&modestbranding=1&rel=0" 
-                title="Reproductor de video de YouTube" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
-            {:else}
-              <div 
-                class="video-container" 
-                on:click={activarVideo} 
-                on:keydown={(e) => { if (e.key === 'Enter') activarVideo(); }} 
-                role="button" 
-                tabindex="0"
-              >
-                <img 
-                  src="/Imagenes/Jesus Gonzalez y Fer Castilla.png" 
-                  alt="Ver video de {servicioSeleccionado?.nombre}"
-                  class="video-thumbnail"
-                />
+          <div class="video-container">
+            {#if !videoActivo}
+              <div class="video-thumbnail" on:click={activarVideo}>
+                <img src={servicioSeleccionado.imagen} alt="Video preview de {servicioSeleccionado.nombre}" />
                 <div class="play-button">
-                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" fill="rgba(255,255,255,0.9)"/>
-                    <polygon points="10,8 16,12 10,16" fill="#1c1c1e"/>
+                  <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="40" fill="rgba(191,161,74,0.95)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    <polygon points="32,24 32,56 56,40" fill="white"/>
                   </svg>
                 </div>
               </div>
+            {:else}
+              <iframe
+                src={servicioSeleccionado.videoUrl}
+                title="Video del servicio"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             {/if}
           </div>
         </div>
@@ -224,7 +246,7 @@
       
       <!-- Botones en fila: WhatsApp izquierda + Garantía derecha -->
       <div class="modal-acciones-fila">
-        <a class="modal-whatsapp-btn-mejorado" href="https://wa.me/573144096187" target="_blank" rel="noopener">
+        <a class="modal-whatsapp-btn-mejorado" href="https://wa.me/573144096187?text=Hola,%20me%20interesa%20el%20servicio%20{encodeURIComponent(servicioSeleccionado.nombre)}" target="_blank" rel="noopener">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16.75 13.96c.25.13.41.2.52.34.11.14.16.32.16.54s-.05.4-.16.55-.27.27-.52.34c-.25.08-.58.12-1 .12-.41 0-.77-.04-1.08-.13s-.61-.23-.9-.42-.56-.43-.8-.72-.46-.64-.63-.99-.3-.75-.38-1.15c-.09-.4-.13-.77-.13-1.11 0-.43.06-.83.18-1.21.12-.37.3-.7.54-1s.52-.54.81-.74.6-.35.92-.45c.32-.1.62-.15.91-.15.41 0 .78.05 1.09.16s.59.26.82.46.41.44.53.72.18.57.18.86c0 .21-.04.4-.11.58s-.18.33-.33.45-.34.22-.58.29-.52.11-.83.11c-.39 0-.73-.07-1.02-.21s-.53-.33-.72-.57c.2.2.38.39.52.56.14.17.29.3.46.41.17.11.33.2.48.26.15.06.32.1.48.11zm3.22-7.21c-.43-.43-.9-.8-1.41-1.12s-1.06-.58-1.65-.77-1.22-.3-1.89-.3c-1.29 0-2.5.24-3.63.73s-2.14 1.12-2.97 1.95-1.52 1.83-1.99 2.96-.71 2.33-.71 3.61c0 1.34.24 2.61.71 3.81s1.14 2.29 2 3.25c.85.96 1.84 1.76 2.96 2.4s2.34 1 3.68 1.1h.11c1.31-.05 2.59-.34 3.79-.89s2.26-1.29 3.19-2.22.99-1.95 1.4-3.07.61-2.28.61-3.48c0-.68-.09-1.35-.28-1.99s-.45-1.25-.79-1.84c-.34-.59-.75-1.13-1.22-1.6zm-3.34 13.12c-.56.49-1.19.89-1.88 1.19s-1.42.45-2.19.45c-1.12 0-2.18-.23-3.16-.69s-1.85-1.06-2.6-1.82-1.34-1.62-1.79-2.6-  .68-2.03-.68-3.16c0-1.16.23-2.26.68-3.3s1.05-1.97 1.8-2.82.64-1.54 2.61-2.3 2.03-.67 3.16-.67.23.11.23.34c0 .11-.04.22-.11.33s-.18.2-.33.27c-.15.07-.3.11-.47.11-.52 0-1.01.12-1.47.34s-.88.5-1.26.83c-.38.33-.7.7-.96 1.11s-.47.85-.61 1.31c-.15.46-.22.93-.22 1.41 0 .43.06.83.18 1.22s.3.73.54.99.52.48.81.65.6.28.92.36c.32.08.62.12.91.12.45 0 .85-.06 1.2-.18s.66-.29.91-.51.46-.46.6-.72.22-.5.22-.73c0-.17-.03-.33-.09-.47s-.14-.27-.26-.39-.25-.22-.41-.29-.34-.12-.53-.12c-.2 0-.38.02-.53.06s-.29.1-.41.16c-.12.06-.23.13-.33.21-.1.08-.19.16-.25.23-.05.06-.11.1-.19.13-.08.03-.15.05-.22.05-.12 0-.23-.04-.33-.11s-.16-.17-.18-.29c0-.06.01-.12.04-.18s.06-.12.11-.18.1-.11.16-.16.12-.1.19-.13.14-.05.22-.05.17.01.25.04.16.06.22.1c.07.04.13.08.19.13s.11.11.16.18.09.14.11.22c.03.08.04.17.04.25 0 .29-.07.55-.22.78s-.34.43-.58.59-.52.28-.83.36-.66.12-1.04.12c-.49 0-.93-.07-1.32-.2s-.75-.33-1.07-.58-.6-.56-.83-.92-.41-.75-.51-1.18c-.1-.42-.16-.85-.16-1.28s.05-.85.16-1.28.26-.81.48-1.15.48-.63.78-.88.64-.44 1.02-.58c.38-.14.78-.21 1.19-.21.43 0 .83.06 1.19.18s.68.29.95.51.48.49.64.81.24.66.24 1.01c0 .32-.07.6-.21.83s-.32.43-.54.58-.47.26-.74.33-.56.1-   .85.1c-.21 0-.4-.02-.58-.06s-.34-.09-.48-.16-.26-.14-.37-.23c-.11-.09-.2-.18-.28-.28s-.13-.2-.17-.31c-.04-.11-.06-.23-.06-.34 0-.25.09-.47.28-.64s.44-.26.75-.26.57.08.79.25.4.38.51.63.16.52.16.81c0 .41-.09.78-.26 1.11s-.41.6-.7.82c-.29.22-.62.39-.98.51s-.75.18-1.17.18c-.59 0-1.15-.1-1.66-.31s-.98-.48-1.39-.81c-.41-.33-.77-.72-1.07-1.15s-.54-.92-.71-1.44-.26-1.08-.26-1.68c0-1.22.38-2.35 1.13-3.4s1.77-1.9 3.06-2.56c1.29-.65 2.69-1 4.19-1s2.88.33 4.14.98c1.26.65 2.33 1.51 3.22 2.58.89 1.07 1.54 2.3 1.95 3.68.41 1.38.61 2.83.61 4.34s-.21 2.95-.62 4.32-.99 2.59-1.74 3.65c-.75 1.06-1.64 1.95-2.68 2.68s-2.14 1.28-3.32 1.63z"/></svg>
           Reservar por WhatsApp
         </a>
@@ -237,236 +259,282 @@
 </section>
 
 <style>
+  /* Sección principal */
   .servicios-section {
-    width: 100%;
-    padding: 4.5rem 0 3.5rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
-    overflow: hidden;
+    padding: 4rem 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(191,161,74,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(147,51,234,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(225,29,72,0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f23 100%);
     position: relative;
-    background: linear-gradient(120deg, #fffbe5 60%, #fff 100%);
-  }
-
-  /* Cuando el modal está activo, elevamos toda la sección */
-  .servicios-section.modal-active {
-    z-index: 10000;
+    overflow: hidden;
+    animation: backgroundShift 20s ease-in-out infinite;
   }
 
   .servicios-section::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: url('https://images.jpgsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=cover&w=1200&q=60') center/cover no-repeat;
-    opacity: 0.13;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23bfa14a" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>') repeat;
+    opacity: 0.3;
+    animation: patternMove 25s linear infinite;
     z-index: 0;
-    pointer-events: none;
   }
+
+  .servicios-section::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(191,161,74,0.1) 90deg, transparent 180deg, rgba(147,51,234,0.1) 270deg, transparent 360deg);
+    animation: rotate 30s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes backgroundShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes patternMove {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(60px) translateY(60px); }
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .servicios-section.modal-active {
+    z-index: 9999;
+  }
+
   .titulo {
-  font-size: 3.7rem;
-  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
-  font-weight: 900;
-  color: #1f1802;
-  letter-spacing: 1.5px;
-  text-align: center;
-  margin-bottom: 0.7rem;
-  line-height: 1.07;
-  position: relative;
-  text-shadow: 0 4px 24px #bfa14a44, 0 2px 8px rgba(17, 3, 3, 0.467), 0 1px 0 #fffbe5;
-  -webkit-text-stroke: 1.5px #110e01cc;
-  filter: drop-shadow(0 2px 10px #bfa14a33);
-  background: linear-gradient(90deg,#101010 60%,#fffbe5 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: tituloGlow 2.6s infinite alternate;
-}
-@keyframes tituloGlow {
-  0% { text-shadow: 0 4px 24px #bfa14a44, 0 2px 8px #fff7; filter: drop-shadow(0 2px 10px #bfa14a33); }
-  100% { text-shadow: 0 4px 32px #ffe08a88, 0 2px 16px #fffbe5; filter: drop-shadow(0 4px 20px #bfa14a88); }
-
-}
-.subtitulo {
-  color: #bfa14a;
-  font-size: 2.05rem;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.5px;
-  margin-bottom: 2.7rem;
-  position: relative;
-  opacity: 0;
-  animation: fadeInSubtitulo 1.2s 0.5s forwards;
-}
-.subtitulo::after {
-  content: '';
-  display: block;
-  margin: 0.6rem auto 0 auto;
-  width: 42%;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #fffbe5 10%, #bfa14a 90%);
-  animation: subrayadoGlow 2.5s infinite alternate;
-}
-@keyframes fadeInSubtitulo {
-  to { opacity: 1; }
-}
-@keyframes subrayadoGlow {
-  0% { box-shadow: 0 0 8px #bfa14a44; }
-  100% { box-shadow: 0 0 20px #fffbe5cc; }
-}
-
-  .tarjetas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .service-card {
-    background: #1c1c1e;
-    border-radius: 20px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
     position: relative;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2;
+    background: linear-gradient(145deg, #fff 0%, #bfa14a 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitulo {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #bfa14a;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  /* Grid de tarjetas */
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  
+  /* En pantallas de más de 1024px, usamos 3 columnas */
+  @media (min-width: 1024px) {
+    .tarjetas {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Tarjetas profesionales */
+  .tarjeta-profesional {
+    position: relative;
+    background: var(--accent-color, #1a1a1a);
+    border-radius: 20px;
+    padding: 2rem;
     cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    will-change: transform;
+    z-index: 2;
+    width: 100%;
+    max-width: 380px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+  .tarjeta-profesional:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
   }
 
-  .service-card.gold {
-    background: 
-      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(212, 175, 55, 0.15), transparent),
-      #181818;
+  .tarjeta-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease-in-out;
+    will-change: transform;
   }
 
-  .service-card.purple {
-    background: 
-      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(191, 93, 255, 0.12), transparent),
-      #181818;
+  .tarjeta-profesional:hover .tarjeta-glow {
+    left: 100%;
   }
 
-  .service-card.red {
-    background: 
-      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(255, 59, 95, 0.15), transparent),
-      #181818;
+  /* Contenido de la tarjeta */
+  .tarjeta-contenido {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    gap: 1.5rem;
   }
 
-  .card-content {
-    padding: 20px;
-  }
-
-  .card-header {
+  /* Header */
+  .tarjeta-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
     text-align: center;
+    gap: 1rem;
+  }
+
+  .icono-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
 
   .tarjeta-icono {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    object-position: center top; /* CENTRADO DE IMAGEN */
-    border: 2px solid var(--glow-color);
-    box-shadow: 0 0 20px -5px var(--glow-color);
   }
 
   .tarjeta-titulo {
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-  }
-
-  .descripcion {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #c0c0c0;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
     text-align: center;
-    flex-grow: 1; /* Empuja el botón hacia abajo */
   }
 
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
+  .tarjeta-descripcion {
+    color: rgba(255,255,255,0.8);
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0;
   }
 
-  .detalles {
+  /* Pills de información */
+  .info-pills {
     display: flex;
-    gap: 0.75rem;
     justify-content: center;
+    gap: 1rem;
     flex-wrap: wrap;
   }
 
-  .cta-button {
-    width: 100%;
-    color: white;
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Botón CTA */
+  .tarjeta-boton {
+    background: linear-gradient(135deg, var(--accent-color), rgba(255,255,255,0.1));
+    color: #000;
     border: none;
-    border-radius: 50px;
-    padding: 0.85rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 1rem 1.5rem;
+    border-radius: 25px;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.5s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    background-size: 300% 100%;
-    animation: shimmer 5s linear infinite;
-  }
-  
-  .cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    background-position: 100% 0;
+    margin-top: auto;
   }
 
-  .cta-button.gold {
-    background-image: linear-gradient(to right, #b48b33, #d4af37, #f8e472, #d4af37, #b48b33);
-    color: #0c0c0c;
-  }
-  
-  .cta-button.purple {
-    background-image: linear-gradient(to right, #8A2BE2, #BF5DFF, #DDA0DD, #BF5DFF, #8A2BE2);
-    color: #ffffff;
-  }
-  
-  .cta-button.red {
-    background-image: linear-gradient(to right, #c81d3e, #ff3b5f, #ff7c94, #ff3b5f, #c81d3e);
-    color: #ffffff;
+  .tarjeta-boton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   }
 
-  .arrow {
-    display: inline-block;
+  .boton-arrow {
     transition: transform 0.3s ease;
   }
 
-  .cta-button:hover .arrow {
-    transform: translateX(4px);
+  .tarjeta-boton:hover .boton-arrow {
+    transform: translateX(5px);
   }
 
-  @keyframes shimmer {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
+  /* Animaciones específicas por tipo */
+  .premium-animation {
+    --accent-color: #d4af37;
   }
 
-  @media (max-width: 800px) {
+  .vip-animation {
+    --accent-color: #9333ea;
+  }
+
+  .gala-animation {
+    --accent-color: #e11d48;
+  }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
     .tarjetas {
+      grid-template-columns: 1fr;
       gap: 1.5rem;
-      padding: 1rem;
+      padding: 0 1rem;
     }
-    .service-card {
-      width: 100%;
+
+    .tarjeta-profesional {
+      min-height: 400px;
+      padding: 1.5rem;
+    }
+
+    .titulo {
+      font-size: 2.5rem;
+    }
+
+    .subtitulo {
+      font-size: 1.1rem;
     }
   }
 
@@ -480,15 +548,15 @@
     display: flex;
     align-items: center; /* Centrado vertical */
     justify-content: center; /* Centrado horizontal */
-    padding: 20px;
+    padding: 10px; /* Reducido para móviles */
     overflow-y: auto;
     animation: fadeIn 0.4s ease-out;
   }
 
   .modal-content {
     background: linear-gradient(145deg, #ffffff 0%, #f7f7f9 100%); /* Fondo del modal claro */
-    border-radius: 24px;
-    padding: 20px;
+    border-radius: 20px; /* Reducido */
+    padding: 15px; /* Reducido significativamente para móviles */
     max-width: 95vw;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -501,6 +569,10 @@
     .modal-content {
       max-width: 900px;
       padding: 30px;
+      border-radius: 24px;
+    }
+    .modal-overlay {
+      padding: 20px;
     }
   }
 
@@ -509,12 +581,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
+    margin-bottom: 12px; /* Reducido */
+    padding-bottom: 10px; /* Reducido */
+  }
+
+  @media (min-width: 768px) {
+    .modal-header {
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+    }
   }
 
   .modal-title {
-    font-size: 24px;
+    font-size: 20px; /* Reducido para móviles */
     font-weight: 800;
     color: #d4af37;
     margin: 0;
@@ -533,16 +612,24 @@
     color: #555;
     border: none;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 30px; /* Reducido */
+    height: 30px; /* Reducido */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 20px;
+    font-size: 18px; /* Reducido */
     font-weight: bold;
     flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .modal-close {
+      width: 35px;
+      height: 35px;
+      font-size: 20px;
+    }
   }
 
   .modal-close:hover {
@@ -551,24 +638,33 @@
   }
 
   .modal-descripcion-completa {
-    margin-bottom: 20px;
-    padding: 20px;
+    margin-bottom: 12px; /* Reducido */
+    padding: 12px; /* Reducido */
     background: rgba(0, 0, 0, 0.03);
-    border-radius: 15px;
+    border-radius: 12px; /* Reducido */
     border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .modal-descripcion-completa {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 15px;
+    }
   }
 
   .modal-descripcion-completa p {
     color: #3c3c43; /* Texto oscuro */
     margin: 0;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 14px; /* Reducido */
+    line-height: 1.5; /* Reducido */
     text-align: center;
   }
 
   @media (min-width: 768px) {
     .modal-descripcion-completa p {
       font-size: 16px;
+      line-height: 1.6;
     }
   }
 
@@ -576,14 +672,15 @@
   .modal-body-dos-columnas {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 12px; /* Reducido */
+    margin-bottom: 12px; /* Reducido */
   }
 
   @media (min-width: 768px) {
     .modal-body-dos-columnas {
       grid-template-columns: 1fr 1fr;
       gap: 30px;
+      margin-bottom: 20px;
     }
   }
 
@@ -600,10 +697,17 @@
 
   .beneficios-titulo {
     color: #1c1c1e; /* Título oscuro */
-    font-size: 18px;
+    font-size: 16px; /* Reducido */
     font-weight: 700;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0; /* Reducido */
     text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    .beneficios-titulo {
+      font-size: 18px;
+      margin: 0 0 15px 0;
+    }
   }
 
   .beneficios-lista-simple {
@@ -612,19 +716,19 @@
     margin: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
-    gap: 10px;
+    gap: 8px; /* Reducido */
   }
 
   .beneficios-lista-simple li {
     background: rgba(0, 0, 0, 0.04);
-    padding: 10px 12px;
-    border-radius: 10px;
-    border-left: 4px solid var(--glow-color);
+    padding: 8px 10px; /* Reducido */
+    border-radius: 8px; /* Reducido */
+    border-left: 3px solid var(--glow-color); /* Reducido */
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px; /* Reducido */
     transition: all 0.3s ease;
-    min-height: 65px;
+    min-height: 55px; /* Reducido */
   }
 
   .beneficios-lista-simple li:hover {
@@ -634,13 +738,13 @@
 
   .beneficio-icon {
     color: var(--glow-color); /* Usamos el color de acento */
-    font-size: 1.2rem; /* Icono ligeramente más pequeño */
+    font-size: 1rem; /* Reducido */
     flex-shrink: 0;
   }
 
   .beneficio-texto {
-    font-size: 13px; /* Fuente más compacta para móvil */
-    line-height: 1.4;
+    font-size: 12px; /* Reducido */
+    line-height: 1.3; /* Reducido */
     font-weight: 500;
   }
   
@@ -662,6 +766,8 @@
       gap: 12px;
       align-items: flex-start;
       min-height: auto;
+      border-radius: 10px;
+      border-left: 4px solid var(--glow-color);
     }
     .beneficio-icon {
       font-size: 1.3rem;
@@ -687,40 +793,30 @@
     }
   }
 
-  .video-wrapper {
+  .video-container {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Mantiene la proporción del video */
-    background: #000;
+    aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
-  }
-
-  .video-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  .video-container {
     position: relative;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
+    background: #000;
   }
 
   .video-thumbnail {
+    position: relative;
     width: 100%;
-    height: 250px;
-    object-fit: cover;
-    object-position: center top; /* CENTRADO DE IMAGEN */
-    display: block;
-    border-radius: 12px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  @media (max-width: 767px) {
-    .video-thumbnail {
-      height: 200px;
-    }
+  .video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   .play-button {
@@ -728,24 +824,31 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
-  .video-container:hover .play-button {
+  .play-button:hover {
     transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .play-button svg {
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
   }
 
   .video-text {
     text-align: center;
     color: #d4af37;
     font-weight: 600;
-    margin: 15px 0 0 0;
-    font-size: 14px;
+    margin: 10px 0 0 0; /* Reducido */
+    font-size: 13px; /* Reducido */
   }
 
   @media (min-width: 768px) {
     .video-text {
-      font-size: 16px;
+      margin: 15px 0 0 0;
+      font-size: 14px;
     }
   }
 
@@ -1044,5 +1147,52 @@
   .video-container-link {
     display: block;
     text-decoration: none;
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 768px) {
+    .tarjetas {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+    
+    .tarjeta-profesional {
+      max-width: 100%;
+      min-height: 400px;
+    }
+    
+    .titulo {
+      font-size: 2rem;
+    }
+    
+    .subtitulo {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .servicios-section {
+      padding: 2rem 0;
+    }
+    
+    .tarjeta-profesional {
+      padding: 1.5rem;
+      min-height: 350px;
+    }
+    
+    .tarjeta-titulo {
+      font-size: 1.25rem;
+    }
+    
+    .info-pills {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .pill {
+      width: fit-content;
+    }
   }
 </style>
