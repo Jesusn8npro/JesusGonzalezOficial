@@ -1,40 +1,43 @@
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
-  let tiempoRestante = 60 * 60 * 2;
-  let horas = 0, minutos = 0, segundos = 0;
-  let intervalo;
+  import { isServiceModalOpen } from '$lib/stores';
 
-  export let onReservar = () => {};
+  let tiempoRestante = 60 * 60 * 2; // 2 horas en segundos
+  let horas: number | string = 0, minutos: number | string = 0, segundos: number | string = 0;
+  let intervalo: any;
 
-  function formateaTiempo(seg) {
-    const h = Math.floor(seg / 3600);
-    const m = Math.floor((seg % 3600) / 60);
-    const s = seg % 60;
-    return {
-      h: String(h).padStart(2, '0'),
-      m: String(m).padStart(2, '0'),
-      s: String(s).padStart(2, '0')
-    };
-  }
+  const numeroWhatsapp = '573144096187';
+  const mensajeWhatsapp = encodeURIComponent('¡Hola! Estoy interesado en los servicios musicales vallenatos de Fer Castilla y Jesus Gonzalez');
+  const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensajeWhatsapp}`;
 
   function actualizarContador() {
     if (tiempoRestante > 0) {
       tiempoRestante--;
-      const t = formateaTiempo(tiempoRestante);
-      horas = t.h;
-      minutos = t.m;
-      segundos = t.s;
+      const t = convertirSegundos(tiempoRestante);
+      horas = formatearNumero(t.h);
+      minutos = formatearNumero(t.m);
+      segundos = formatearNumero(t.s);
     } else {
       clearInterval(intervalo);
     }
   }
 
+  function convertirSegundos(seg: number) {
+    const h = Math.floor(seg / 3600);
+    const m = Math.floor((seg % 3600) / 60);
+    const s = seg % 60;
+    return { h, m, s };
+  }
+
+  function formatearNumero(num: number) {
+    return num < 10 ? '0' + num : num.toString();
+  }
+
   onMount(() => {
-    const t = formateaTiempo(tiempoRestante);
-    horas = t.h;
-    minutos = t.m;
-    segundos = t.s;
+    // Iniciar el contador
+    actualizarContador();
     intervalo = setInterval(actualizarContador, 1000);
+
     return () => clearInterval(intervalo);
   });
 </script>
@@ -213,9 +216,12 @@
   }
 }
 
+.banner-urgencia.hidden {
+  display: none;
+}
 </style>
 
-<section class="banner-urgencia">
+<section class="banner-urgencia" class:hidden={$isServiceModalOpen}>
   <div class="banner-urgencia__contenido">
     <div class="banner-urgencia__info">
       <span class="banner-urgencia__icon" aria-label="Agenda casi llena">⏰</span>
@@ -224,9 +230,9 @@
       </span>
       <span class="banner-urgencia__sub">No te quedes sin tu show, ¡mereces lo mejor en tu evento!</span>
     </div>
-    <button class="banner-urgencia__boton animacion-pulso" on:click={onReservar}>
+    <a href={urlWhatsapp} target="_blank" rel="noopener noreferrer" class="banner-urgencia__boton animacion-pulso">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="margin-right:0.7rem;"><rect width="24" height="24" rx="6" fill="#25d366"></rect><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       ¡Cotiza tu evento ahora!
-    </button>
+    </a>
   </div>
 </section>

@@ -1,9 +1,100 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- SEO Metatags -->
+		<title>Jesús González - Acordeonista Profesional | Shows Vallenatos | Reservas</title>
+		<meta name="description" content="Contrata a Jesús González, acordeonista profesional con +10 años de experiencia. Shows vallenatos, parrandas y conciertos para eventos exclusivos. ¡Reserva ya!">
+		<meta name="keywords" content="acordeonista, vallenato, shows musicales, parranda vallenata, conciertos, eventos, música en vivo, Jesús González">
+		<meta name="author" content="Jesús González">
+		<meta name="robots" content="index, follow">
+		
+		<!-- Open Graph para redes sociales -->
+		<meta property="og:title" content="Jesús González - Acordeonista Profesional | Shows Vallenatos">
+		<meta property="og:description" content="Contrata shows profesionales de acordeón con +10 años de experiencia. Parrandas, shows y conciertos para eventos exclusivos.">
+		<meta property="og:image" content="/Imagenes/Jesus%20Fondo%20Blanco.png">
+		<meta property="og:url" content="https://jesusgonzalez.com.co">
+		<meta property="og:type" content="website">
+		<meta property="og:locale" content="es_CO">
+		
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Jesús González - Acordeonista Profesional">
+		<meta name="twitter:description" content="Shows vallenatos profesionales para eventos exclusivos. +10 años de experiencia.">
+		<meta name="twitter:image" content="/Imagenes/Jesus%20Fondo%20Blanco.png">
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Jesús González",
+			"jobTitle": "Acordeonista Profesional",
+			"description": "Músico profesional especializado en vallenato y música folclórica colombiana",
+			"url": "https://jesusgonzalez.com.co",
+			"image": "/Imagenes/Jesus%20Fondo%20Blanco.png",
+			"sameAs": [
+				"https://wa.me/573228176411"
+			],
+			"address": {
+				"@type": "PostalAddress",
+				"addressCountry": "CO"
+			},
+			"offers": [
+				{
+					"@type": "Offer",
+					"name": "Parranda Vallenata",
+					"description": "Show íntimo con acordeón, caja y guacharaca para eventos familiares"
+				},
+				{
+					"@type": "Offer", 
+					"name": "Show Semicompleto",
+					"description": "Show profesional con más músicos para eventos medianos"
+				},
+				{
+					"@type": "Offer",
+					"name": "Show Completo",
+					"description": "Concierto profesional con puesta en escena completa"
+				}
+			]
+		}
+		</script>
+		
+		<!-- Google Analytics (reemplaza GA_TRACKING_ID con tu ID real) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'GA_TRACKING_ID');
+		</script>
+		
+		<!-- Google Ads Conversion Tracking (reemplaza AW-CONVERSION_ID) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-CONVERSION_ID"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'AW-CONVERSION_ID');
+		</script>
+		
+		<!-- Facebook Pixel (opcional, reemplaza PIXEL_ID) -->
+		<script>
+			!function(f,b,e,v,n,t,s)
+			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', 'PIXEL_ID');
+			fbq('track', 'PageView');
+		</script>
+		
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

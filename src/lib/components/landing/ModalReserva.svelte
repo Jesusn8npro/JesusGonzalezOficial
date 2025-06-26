@@ -1,5 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { trackConversion } from '$lib/tracking';
+  
   export let mostrar = false;
   let nombre = '';
   let servicio = '';
@@ -8,6 +10,10 @@
 
   function abrirWhatsapp() {
     if (!nombre || !servicio) return;
+    
+    // Tracking de conversión centralizado
+    trackConversion('WhatsApp_Contact', servicio);
+    
     const numero = '573228176411';
     const mensaje = encodeURIComponent(`Hola, mi nombre es ${nombre}. Estoy interesado en el servicio de ${servicio}.`);
     const url = `https://wa.me/${numero}?text=${mensaje}`;
@@ -52,17 +58,16 @@
 <style>
   .modal-overlay {
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(24, 21, 26, 0.75);
-    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 5000;
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: modalFadeIn 0.33s;
-    backdrop-filter: blur(2px);
-    overflow-y: auto;
+    padding: 20px;
   }
   .modal-reserva {
     background: linear-gradient(135deg, #18151a 70%, #bfa14a22 100%);
