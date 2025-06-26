@@ -14,7 +14,7 @@
     // Tracking de conversión centralizado
     trackConversion('WhatsApp_Contact', servicio);
     
-    const numero = '573228176411';
+    const numero = '573144096187';
     const mensaje = encodeURIComponent(`Hola, mi nombre es ${nombre}. Estoy interesado en el servicio de ${servicio}.`);
     const url = `https://wa.me/${numero}?text=${mensaje}`;
     window.open(url, '_blank');

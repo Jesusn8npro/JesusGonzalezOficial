@@ -107,8 +107,8 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
-    background: linear-gradient(120deg, #18151a 60%, #bfa14a22 100%), 
-                url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=cover&w=1400&q=80');
+    background: linear-gradient(120deg, #18151a 50%, rgba(24, 21, 26, 0.7) 100%), 
+                url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=1400&q=80');
     background-size: cover;
     background-position: center;
     position: relative;
