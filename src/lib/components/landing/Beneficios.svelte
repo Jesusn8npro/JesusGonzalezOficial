@@ -1,9 +1,9 @@
 <script lang="ts">
-  // Imágenes para el slider (puedes reemplazar las URLs por tus fotos reales)
+  // Imágenes para el slider de Jesús González en conciertos y eventos
   export let imagenesSlider = [
-    '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
-    '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
     '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+    '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
+    '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
     '/Imagenes/Jesus Fondo Blanco.png'
   ];
   let current = 0;

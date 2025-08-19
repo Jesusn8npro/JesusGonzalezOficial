@@ -7,7 +7,7 @@
   let intervalo: any;
 
   const numeroWhatsapp = '573144096187';
-  const mensajeWhatsapp = encodeURIComponent('¡Hola! Estoy interesado en los servicios musicales vallenatos de Fer Castilla y Jesus Gonzalez');
+  const mensajeWhatsapp = encodeURIComponent('¡Hola! Estoy interesado en los servicios musicales vallenatos de Jesús González');
   const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensajeWhatsapp}`;
 
   function actualizarContador() {

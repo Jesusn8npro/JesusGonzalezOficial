@@ -4,6 +4,8 @@
   import Beneficios from '$lib/components/landing/Beneficios.svelte';
   import ProcesoContratacion from '$lib/components/landing/ProcesoContratacion.svelte';
   import GaleriaVideos from '$lib/components/landing/GaleriaVideos.svelte';
+  import Testimonios from '$lib/components/landing/Testimonios.svelte';
+  import CTAOptimizado from '$lib/components/landing/CTAOptimizado.svelte';
   import BannerUrgencia from '$lib/components/landing/BannerUrgencia.svelte';
   import BotonWhatsappFlotante from '$lib/components/landing/BotonWhatsappFlotante.svelte';
 </script>
@@ -14,4 +16,6 @@
 <Beneficios />
 <ProcesoContratacion />
 <GaleriaVideos />
+<Testimonios />
+<CTAOptimizado />
 <BotonWhatsappFlotante />

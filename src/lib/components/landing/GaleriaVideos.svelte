@@ -4,7 +4,7 @@
     {
       artista: 'Jorge Celedón',
       videoId: 'dcV5GnsOxII',
-      thumb: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Show en vivo junto a Jorge Celedón.'
     },
     {
@@ -20,10 +20,10 @@
       descripcion: 'Concierto en vivo junto a Felipe Peláez.'
     },
     {
-      artista: 'Fer Castilla',
-      videoId: 'b4Fg7ijoPAg',
-      thumb: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
-      descripcion: 'Interpretación en vivo de Fer Castilla.'
+      artista: 'Orlando Acosta',
+      videoId: 'BR8TMNRqFPw',
+      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      descripcion: 'Presentación exclusiva con Orlando Acosta.'
     }
   ];
   let videoActivo = 0;

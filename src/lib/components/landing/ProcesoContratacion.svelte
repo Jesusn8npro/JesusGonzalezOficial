@@ -6,7 +6,7 @@
       icono: '🎶',
       explicacion: 'Selecciona el tipo de show musical ideal para tu evento. Te asesoramos para que tu experiencia sea inolvidable.',
       color: 'from-blue-500 to-blue-600',
-      fondo: '/Imagenes/Jesus Gonzalez y Fer Castilla.png'
+      fondo: '/Imagenes/Jesus Gonzalez en Concierto.jpg'
     },
     {
       titulo: '2. Completa el formulario',

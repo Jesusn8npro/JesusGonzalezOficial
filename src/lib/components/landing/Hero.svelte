@@ -2,16 +2,16 @@
   import ModalReserva from './ModalReserva.svelte';
   import { trackConversion } from '$lib/tracking';
 
-  export let eventos = "+100 eventos realizados";
-  export let titulo = "Fer Castilla & Jesús González | Agrupación Revelación 2025";
-  export let descripcion = "La agrupación vallenata más contratada del país. Espectáculos musicales de primer nivel con la mejor puesta en escena para bodas de lujo, eventos corporativos y celebraciones exclusivas.";
+  export let eventos = "+200 eventos realizados";
+  export let titulo = "Jesús González | Maestro del Acordeón Vallenato";
+  export let descripcion = "Acordeonista profesional con +15 años de experiencia internacional. Ha compartido escenario con los más grandes del vallenato: Poncho Zuleta, Jorge Celedón, Felipe Peláez y Orlando Acosta. Shows de primer nivel para eventos exclusivos.";
   export let beneficios = [
-    "🎤 Fer Castilla - Vocalista principal reconocido", 
-    "🪗 Jesús González - Maestro del acordeón profesional",
-    "🏆 Agrupación premiada con artistas de renombre",
-    "💎 Shows completos con músicos y puesta en escena VIP"
+    "🪗 Jesús González - Maestro del acordeón con +15 años", 
+    "🌍 Giras mundiales con artistas de renombre",
+    "🏆 Grabaciones con Felipe Peláez y grandes estrellas",
+    "💎 Shows profesionales con puesta en escena VIP"
   ];
-  export let urlImagen = "/Imagenes/Jesus Gonzalez y Fer Castilla.png";
+  export let urlImagen = "/Imagenes/Jesus Gonzalez en Concierto.jpg";
   let mostrarModal = false;
   
   function abrirModalConTracking() {
@@ -90,7 +90,7 @@
       height="450" 
       class="foto-artista-png" 
       src={urlImagen} 
-      alt="Fer Castilla & Jesús González - Agrupación Vallenata Revelación 2025"
+      alt="Jesús González - Maestro del Acordeón Vallenato Profesional"
       decoding="async"
       fetchpriority="high"
     />

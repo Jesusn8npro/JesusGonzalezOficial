@@ -2,11 +2,49 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* ===== VARIABLES CSS GLOBALES ===== */
+:root {
+  --color-dorado-50: #fffbe7;
+  --color-dorado-100: #ffe082;
+  --color-dorado-200: #bfa14a;
+  --color-dorado-300: #d4af37;
+  --color-dorado-400: #ffe082;
+  --color-dorado-500: #bfa14a;
+  --color-dorado-600: #d4af37;
+  --color-dorado-700: #b8941f;
+  --color-dorado-800: #8b6914;
+  --color-dorado-900: #5d470e;
+  
+  --color-vallenato-50: #f0f9ff;
+  --color-vallenato-100: #e0f2fe;
+  --color-vallenato-200: #bae6fd;
+  --color-vallenato-300: #7dd3fc;
+  --color-vallenato-400: #38bdf8;
+  --color-vallenato-500: #0ea5e9;
+  --color-vallenato-600: #0284c7;
+  --color-vallenato-700: #0369a1;
+  --color-vallenato-800: #075985;
+  --color-vallenato-900: #0c4a6e;
+  
+  --color-fondo: #0a0a0a;
+  --color-fondo-secundario: #1a1a1a;
+  --color-texto: #ffffff;
+  --color-texto-secundario: #e5e5e5;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hover: #1ea952;
+  
+  --sombra-dorada: 0 4px 16px rgba(191,161,74,0.3);
+  --sombra-whatsapp: 0 6px 24px rgba(37,211,102,0.3);
+  --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== RESET Y BASE ===== */
 html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 *, *::before, *::after {
@@ -14,10 +52,91 @@ html, body {
 }
 
 body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  background: #0a0a0a;
-  color: #ffffff;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-fondo);
+  color: var(--color-texto);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ===== TIPOGRAFÍA OPTIMIZADA ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* ===== UTILIDADES DE ANIMACIÓN ===== */
+.animacion-aparecer {
+  animation: aparecer 0.6s ease-out;
+}
+
+.animacion-deslizar {
+  animation: deslizar 0.8s ease-out;
+}
+
+.animacion-pulso {
+  animation: pulso 2s infinite;
+}
+
+@keyframes aparecer {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes deslizar {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulso {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+}
+
+/* ===== OPTIMIZACIONES DE RENDIMIENTO ===== */
+.contenedor-imagen {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.btn-interactivo {
+  will-change: transform;
+  transition: var(--transicion-suave);
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
 }

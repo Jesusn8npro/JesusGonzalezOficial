@@ -1,5 +1,5 @@
 <script lang="ts">
-  // Componente Servicios.svelte - Agrupación Profesional Fer Castilla & Jesús González
+  // Componente Servicios.svelte - Jesús González - Maestro del Acordeón Vallenato
   // Sección premium para mostrar los niveles de espectáculos musicales profesionales
   // Todo en español, bien organizado y con animaciones
   import { fly, fade, scale } from 'svelte/transition';
@@ -33,7 +33,7 @@
       nombre: 'Parranda Vallenata Premium',
       subtituloColor: '#d4af37',
       textoColor: '#3d2f00',
-      imagen: '/Imagenes/Jesus Gonzalez y Fer Castilla.png',
+      imagen: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Una experiencia vallenata íntima y auténtica, perfecta para eventos exclusivos y celebraciones personales inolvidables.',
       duracion: '2-3 horas',
       capacidad: 'Hasta 150p',
@@ -87,10 +87,19 @@
     isServiceModalOpen.set(false);
   }
 
-  // Bloquea el scroll del body cuando el modal está activo
+  // NO aplicar blur al body completo, solo a la sección de servicios
   const unsubscribe = isServiceModalOpen.subscribe(open => {
     if (typeof document !== 'undefined') {
-      document.body.style.overflow = open ? 'hidden' : 'auto';
+      // NO aplicar blur al body completo para evitar que esté encima del modal
+      // document.body.style.filter = open ? 'blur(3px)' : 'none';
+      
+      // Solo compensar la barra de scroll si es necesario
+      if (open) {
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.paddingRight = scrollbarWidth + 'px';
+      } else {
+        document.body.style.paddingRight = '0px';
+      }
     }
   });
 
@@ -167,74 +176,136 @@
       </div>
     {/each}
   </div>
+</section>
 
-  {#if $isServiceModalOpen && servicioSeleccionado}
-  <div class="modal-overlay" on:click={cerrarModal}>
-    <div class="modal-content" in:scale={{ duration: 200 }} out:fade={{ duration: 150 }} on:click|stopPropagation>
-      <!-- Título completo -->
-      <div class="modal-header">
-        <h3 class="modal-title">{servicioSeleccionado.nombre}</h3>
+<!-- MODAL FUERA DE LA SECCIÓN - A NIVEL DE DOCUMENTO -->
+{#if $isServiceModalOpen && servicioSeleccionado}
+  <div class="modal-overlay" on:click={cerrarModal} style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 9999999 !important; display: flex !important; align-items: center !important; justify-content: center !important; background: rgba(0, 0, 0, 0.7) !important; width: 100vw !important; height: 100vh !important;">
+    <div class="modal-content" in:scale={{ duration: 200 }} out:fade={{ duration: 150 }} on:click|stopPropagation style="background: white !important; filter: none !important; backdrop-filter: none !important; z-index: 9999999 !important; position: relative !important; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3) !important; border: 1px solid rgba(0, 0, 0, 0.08) !important;">
+      <!-- HEADER COMPACTO -->
+      <div class="modal-header-compacto">
+        <h3 class="modal-title-compacto">{servicioSeleccionado.nombre}</h3>
         <button class="modal-close" on:click={cerrarModal} aria-label="Cerrar">×</button>
       </div>
       
-      <!-- Descripción completa ancho completo -->
-      <div class="modal-descripcion-completa">
+      <!-- DESCRIPCIÓN COMPACTA -->
+      <div class="modal-descripcion-compacta">
         <p>{servicioSeleccionado.descripcion}</p>
       </div>
       
-      <!-- Dos columnas: Beneficios izquierda + Video derecha -->
-      <div class="modal-body-dos-columnas">
-        <!-- Columna Izquierda: Lo que incluye -->
-        <div class="modal-beneficios-col">
-          <h4 class="beneficios-titulo">✨ Lo que incluye:</h4>
-          <ul class="beneficios-lista-simple">
+      <!-- LAYOUT COMPACTO: BENEFICIOS + VIDEO -->
+      <div class="modal-layout-compacto">
+        <!-- BENEFICIOS COMPACTOS -->
+        <div class="beneficios-compactos">
+          <h4 class="beneficios-titulo-compacto">✨ Lo que incluye:</h4>
+          <div class="beneficios-grid-compacto">
             {#if servicioSeleccionado.nombre === 'Parranda Vallenata Premium'}
-              <li><span class="beneficio-icon">🎤</span><div class="beneficio-texto"><strong>Fer Castilla</strong><span> - Vocalista principal reconocido</span></div></li>
-              <li><span class="beneficio-icon">🪗</span><div class="beneficio-texto"><strong>Jesús González</strong><span> - Maestro del acordeón</span></div></li>
-              <li><span class="beneficio-icon">🎵</span><div class="beneficio-texto"><strong>Formación completa</strong><span> - Bajo, guitarra, percusión</span></div></li>
-              <li><span class="beneficio-icon">⭐</span><div class="beneficio-texto"><strong>Repertorio personalizado</strong><span> - Música para tu evento</span></div></li>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🪗</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Jesús González</strong>
+                  <span>Maestro del acordeón</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎤</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Vocalista profesional</strong>
+                  <span>Experiencia internacional</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎵</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Formación completa</strong>
+                  <span>Bajo, guitarra, percusión</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">⭐</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Repertorio personalizado</strong>
+                  <span>Música para tu evento</span>
+                </div>
+              </div>
             {:else if servicioSeleccionado.nombre === 'Show Semicompleto VIP'}
-              <li><span class="beneficio-icon">🎹</span><div class="beneficio-texto"><strong>Producción VIP</strong><span> - Piano, congas y coordinación</span></div></li>
-              <li><span class="beneficio-icon">🔊</span><div class="beneficio-texto"><strong>Sonido superior</strong><span> - Para eventos hasta 300 personas</span></div></li>
-              <li><span class="beneficio-icon">👥</span><div class="beneficio-texto"><strong>Staff técnico</strong><span> - Coordinación completa</span></div></li>
-              <li><span class="beneficio-icon">🎯</span><div class="beneficio-texto"><strong>Repertorio extendido</strong><span> - Mayor variedad</span></div></li>
-            {:else}
-              <li><span class="beneficio-icon">🏟️</span><div class="beneficio-texto"><strong>Producción masiva</strong><span> - Eventos grandes y masivos</span></div></li>
-              <li><span class="beneficio-icon">🎬</span><div class="beneficio-texto"><strong>Show completo</strong><span> - Luces, video y efectos</span></div></li>
-              <li><span class="beneficio-icon">🎭</span><div class="beneficio-texto"><strong>Puesta en escena</strong><span> - Producción de concierto</span></div></li>
-              <li><span class="beneficio-icon">🌟</span><div class="beneficio-texto"><strong>Experiencia de gala</strong><span> - Máximo nivel profesional</span></div></li>
-            {/if}
-          </ul>
-        </div>
-        
-        <!-- Columna Derecha: Video -->
-        <div class="modal-video-col">
-          <div class="video-container">
-            {#if !videoActivo}
-              <div class="video-thumbnail" on:click={activarVideo}>
-                <img src={servicioSeleccionado.imagen} alt="Video preview de {servicioSeleccionado.nombre}" />
-                <div class="play-button">
-                  <svg width="80" height="80" viewBox="0 0 80 80">
-                    <circle cx="40" cy="40" r="40" fill="rgba(191,161,74,0.95)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                    <polygon points="32,24 32,56 56,40" fill="white"/>
-                  </svg>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎹</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Producción VIP</strong>
+                  <span>Piano, congas y coordinación</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🔊</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Sonido superior</strong>
+                  <span>Hasta 300 personas</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">👥</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Staff técnico</strong>
+                  <span>Coordinación completa</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎯</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Repertorio extendido</strong>
+                  <span>Mayor variedad</span>
                 </div>
               </div>
             {:else}
-              <iframe
-                src={servicioSeleccionado.videoUrl}
-                title="Video del servicio"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🏟️</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Producción masiva</strong>
+                  <span>Eventos grandes y masivos</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎬</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Show completo</strong>
+                  <span>Luces, video y efectos</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🎭</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Puesta en escena</strong>
+                  <span>Producción de concierto</span>
+                </div>
+              </div>
+              <div class="beneficio-compacto">
+                <span class="beneficio-icon-compacto">🌟</span>
+                <div class="beneficio-texto-compacto">
+                  <strong>Experiencia de gala</strong>
+                  <span>Máximo nivel profesional</span>
+                </div>
+              </div>
             {/if}
+          </div>
+        </div>
+        
+        <!-- VIDEO COMPACTO -->
+        <div class="video-compacto">
+          <div class="video-container-compacto" on:click={activarVideo}>
+            <img src={servicioSeleccionado.imagen} alt="Video preview de {servicioSeleccionado.nombre}" />
+            <div class="play-button-compacto">
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="25" fill="rgba(191,161,74,0.95)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                <polygon points="20,15 20,35 35,25" fill="white"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
       
-      <!-- CTA -->
-      <div class="modal-cta-simple">
+      <!-- CTA COMPACTO -->
+      <div class="modal-cta-compacto">
         {#if servicioSeleccionado.nombre === 'Parranda Vallenata Premium'}
           ¡Convierte tu celebración en una experiencia musical inolvidable!
         {:else if servicioSeleccionado.nombre === 'Show Semicompleto VIP'}
@@ -244,19 +315,17 @@
         {/if}
       </div>
       
-      <!-- Botones en fila: WhatsApp izquierda + Garantía derecha -->
-      <div class="modal-acciones-fila">
-        <a class="modal-whatsapp-btn-mejorado" href="https://wa.me/573144096187?text=Hola,%20me%20interesa%20el%20servicio%20{encodeURIComponent(servicioSeleccionado.nombre)}" target="_blank" rel="noopener">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16.75 13.96c.25.13.41.2.52.34.11.14.16.32.16.54s-.05.4-.16.55-.27.27-.52.34c-.25.08-.58.12-1 .12-.41 0-.77-.04-1.08-.13s-.61-.23-.9-.42-.56-.43-.8-.72-.46-.64-.63-.99-.3-.75-.38-1.15c-.09-.4-.13-.77-.13-1.11 0-.43.06-.83.18-1.21.12-.37.3-.7.54-1s.52-.54.81-.74.6-.35.92-.45c.32-.1.62-.15.91-.15.41 0 .78.05 1.09.16s.59.26.82.46.41.44.53.72.18.57.18.86c0 .21-.04.4-.11.58s-.18.33-.33.45-.34.22-.58.29-.52.11-.83.11c-.39 0-.73-.07-1.02-.21s-.53-.33-.72-.57c.2.2.38.39.52.56.14.17.29.3.46.41.17.11.33.2.48.26.15.06.32.1.48.11zm3.22-7.21c-.43-.43-.9-.8-1.41-1.12s-1.06-.58-1.65-.77-1.22-.3-1.89-.3c-1.29 0-2.5.24-3.63.73s-2.14 1.12-2.97 1.95-1.52 1.83-1.99 2.96-.71 2.33-.71 3.61c0 1.34.24 2.61.71 3.81s1.14 2.29 2 3.25c.85.96 1.84 1.76 2.96 2.4s2.34 1 3.68 1.1h.11c1.31-.05 2.59-.34 3.79-.89s2.26-1.29 3.19-2.22.99-1.95 1.4-3.07.61-2.28.61-3.48c0-.68-.09-1.35-.28-1.99s-.45-1.25-.79-1.84c-.34-.59-.75-1.13-1.22-1.6zm-3.34 13.12c-.56.49-1.19.89-1.88 1.19s-1.42.45-2.19.45c-1.12 0-2.18-.23-3.16-.69s-1.85-1.06-2.6-1.82-1.34-1.62-1.79-2.6-  .68-2.03-.68-3.16c0-1.16.23-2.26.68-3.3s1.05-1.97 1.8-2.82.64-1.54 2.61-2.3 2.03-.67 3.16-.67.23.11.23.34c0 .11-.04.22-.11.33s-.18.2-.33.27c-.15.07-.3.11-.47.11-.52 0-1.01.12-1.47.34s-.88.5-1.26.83c-.38.33-.7.7-.96 1.11s-.47.85-.61 1.31c-.15.46-.22.93-.22 1.41 0 .43.06.83.18 1.22s.3.73.54.99.52.48.81.65.6.28.92.36c.32.08.62.12.91.12.45 0 .85-.06 1.2-.18s.66-.29.91-.51.46-.46.6-.72.22-.5.22-.73c0-.17-.03-.33-.09-.47s-.14-.27-.26-.39-.25-.22-.41-.29-.34-.12-.53-.12c-.2 0-.38.02-.53.06s-.29.1-.41.16c-.12.06-.23.13-.33.21-.1.08-.19.16-.25.23-.05.06-.11.1-.19.13-.08.03-.15.05-.22.05-.12 0-.23-.04-.33-.11s-.16-.17-.18-.29c0-.06.01-.12.04-.18s.06-.12.11-.18.1-.11.16-.16.12-.1.19-.13.14-.05.22-.05.17.01.25.04.16.06.22.1c.07.04.13.08.19.13s.11.11.16.18.09.14.11.22c.03.08.04.17.04.25 0 .29-.07.55-.22.78s-.34.43-.58.59-.52.28-.83.36-.66.12-1.04.12c-.49 0-.93-.07-1.32-.2s-.75-.33-1.07-.58-.6-.56-.83-.92-.41-.75-.51-1.18c-.1-.42-.16-.85-.16-1.28s.05-.85.16-1.28.26-.81.48-1.15.48-.63.78-.88.64-.44 1.02-.58c.38-.14.78-.21 1.19-.21.43 0 .83.06 1.19.18s.68.29.95.51.48.49.64.81.24.66.24 1.01c0 .32-.07.6-.21.83s-.32.43-.54.58-.47.26-.74.33-.56.1-   .85.1c-.21 0-.4-.02-.58-.06s-.34-.09-.48-.16-.26-.14-.37-.23c-.11-.09-.2-.18-.28-.28s-.13-.2-.17-.31c-.04-.11-.06-.23-.06-.34 0-.25.09-.47.28-.64s.44-.26.75-.26.57.08.79.25.4.38.51.63.16.52.16.81c0 .41-.09.78-.26 1.11s-.41.6-.7.82c-.29.22-.62.39-.98.51s-.75.18-1.17.18c-.59 0-1.15-.1-1.66-.31s-.98-.48-1.39-.81c-.41-.33-.77-.72-1.07-1.15s-.54-.92-.71-1.44-.26-1.08-.26-1.68c0-1.22.38-2.35 1.13-3.4s1.77-1.9 3.06-2.56c1.29-.65 2.69-1 4.19-1s2.88.33 4.14.98c1.26.65 2.33 1.51 3.22 2.58.89 1.07 1.54 2.3 1.95 3.68.41 1.38.61 2.83.61 4.34s-.21 2.95-.62 4.32-.99 2.59-1.74 3.65c-.75 1.06-1.64 1.95-2.68 2.68s-2.14 1.28-3.32 1.63z"/></svg>
+      <!-- ACCIONES COMPACTAS -->
+      <div class="modal-acciones-compactas">
+        <a class="modal-whatsapp-btn-compacto" href="https://wa.me/573144096187?text=Hola,%20me%20interesa%20el%20servicio%20{encodeURIComponent(servicioSeleccionado.nombre)}" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.75 13.96c.25.13.41.2.52.34.11.14.16.32.16.54s-.05.4-.16.55-.27.27-.52.34c-.25.08-.58.12-1 .12-.41 0-.77-.04-1.08-.13s-.61-.23-.9-.42-.56-.43-.8-.72-.46-.64-.63-.99-.3-.75-.38-1.15c-.09-.4-.13-.77-.13-1.11 0-.43.06-.83.18-1.21.12-.37.3-.7.54-1s.52-.54.81-.74.6-.35.92-.45c.32-.1.62-.15.91-.15.41 0 .78.05 1.09.16s.59.26.82.46.41.44.53.72.18.57.18.86c0 .21-.04.4-.11.58s-.18.33-.33.45-.34.22-.58.29-.52.11-.83.11c-.39 0-.73-.07-1.02-.21s-.53-.33-.72-.57c.2.2.38.39.52.56.14.17.29.3.46.41.17.11.33.2.48.26.15.06.32.1.48.11zm3.22-7.21c-.43-.43-.9-.8-1.41-1.12s-1.06-.58-1.65-.77-1.22-.3-1.89-.3c-1.29 0-2.5.24-3.63.73s-2.14 1.12-2.97 1.95-1.52 1.83-1.99 2.96-.71 2.33-.71 3.61c0 1.34.24 2.61.71 3.81s1.14 2.29 2 3.25c.85.96 1.84 1.76 2.96 2.4s2.34 1 3.68 1.1h.11c1.31-.05 2.59-.34 3.79-.89s2.26-1.29 3.19-2.22.99-1.95 1.4-3.07.61-2.28.61-3.48c0-.68-.09-1.35-.28-1.99s-.45-1.25-.79-1.84c-.34-.59-.75-1.13-1.22-1.6zm-3.34 13.12c-.56.49-1.19.89-1.88 1.19s-1.42.45-2.19.45c-1.12 0-2.18-.23-3.16-.69s-1.85-1.06-2.6-1.82-1.34-1.62-1.79-2.6-  .68-2.03-.68-3.16c0-1.16.23-2.26.68-3.3s1.05-1.97 1.8-2.82.64-1.54 2.61-2.3 2.03-.67 3.16-.67.23.11.23.34c0 .11-.04.22-.11.33s-.18.2-.33.27c-.15.07-.3.11-.47.11-.52 0-1.01.12-1.47.34s-.88.5-1.26.83c-.38.33-.7.7-.96 1.11s-.47.85-.61 1.31c-.15.46-.22.93-.22 1.41 0 .43.06.83.18 1.22s.3.73.54.99.52.48.81.65.6.28.92.36c.32.08.62.12.91.12.45 0 .85-.06 1.2-.18s.66-.29.91-.51.46-.46.6-.72.22-.5.22-.73c0-.17-.03-.33-.09-.47s-.14-.27-.26-.39-.25-.22-.41-.29-.34-.12-.53-.12c-.2 0-.38.02-.53.06s-.29.1-.41.16c-.12.06-.23.13-.33.21-.1.08-.19.16-.25.23-.05.06-.11.1-.19.13-.08.03-.15.05-.22.05-.12 0-.23-.04-.33-.11s-.16-.17-.18-.29c0-.06.01-.12.04-.18s.06-.12.11-.18.1-.11.16-.16.12-.1.19-.13.14-.05.22-.05.17.01.25.04.16.06.22.1c.07.04.13.08.19.13s.11.11.16.18.09.14.11.22c.03.08.04.17.04.25 0 .29-.07.55-.22.78s-.34.43-.58.59-.52.28-.83.36-.66.12-1.04.12c-.49 0-.93-.07-1.32-.2s-.75-.33-1.07-.58-.6-.56-.83-.92-.41-.75-.51-1.18c-.1-.42-.16-.85-.16-1.28s.05-.85.16-1.28.26-.81.48-1.15.48-.63.78-.88.64-.44 1.02-.58c.38-.14.78-.21 1.19-.21.43 0 .83.06 1.19.18s.68.29.95.51.48.49.64.81.24.66.24 1.01c0 .32-.07.6-.21.83s-.32.43-.54.58-.47.26-.74.33-.56.1-   .85.1c-.21 0-.4-.02-.58-.06s-.34-.09-.48-.16-.26-.14-.37-.23c-.11-.09-.2-.18-.28-.28s-.13-.2-.17-.31c-.04-.11-.06-.23-.06-.34 0-.25.09-.47.28-.64s.44-.26.75-.26.57.08.79.25.4.38.51.63.16.52.16.81c0 .41-.09.78-.26 1.11s-.41.6-.7.82c-.29.22-.62.39-.98.51s-.75.18-1.17.18c-.59 0-1.15-.1-1.66-.31s-.98-.48-1.39-.81c-.41-.33-.77-.72-1.07-1.15s-.54-.92-.71-1.44-.26-1.08-.26-1.68c0-1.22.38-2.35 1.13-3.4s1.77-1.9 3.06-2.56c1.29-.65 2.69-1 4.19-1s2.88.33 4.14.98c1.26.65 2.33 1.51 3.22 2.58.89 1.07 1.54 2.3 1.95 3.68.41 1.38.61 2.83.61 4.34s-.21 2.95-.62 4.32-.99 2.59-1.74 3.65c-.75 1.06-1.64 1.95-2.68 2.68s-2.14 1.28-3.32 1.63z"/></svg>
           Reservar por WhatsApp
         </a>
-        <div class="modal-garantia">🛡️ Garantía asegurada • Agrupación revelación 2025</div>
+        <div class="modal-garantia-compacta">🛡️ Garantía asegurada • Agrupación revelación 2025</div>
       </div>
     </div>
   </div>
   {/if}
-
-</section>
 
 <style>
   /* Sección principal */
@@ -271,8 +340,13 @@
   }
 
   .servicios-section.modal-active {
-    filter: blur(8px);
-    z-index: 9999;
+    filter: blur(5px) !important;
+    z-index: 1 !important;
+    transition: filter 0.3s ease !important;
+    /* Asegurar que el blur esté por debajo del modal */
+    position: relative !important;
+    /* Asegurar que NO afecte al modal */
+    pointer-events: none !important;
   }
 
   .titulo {
@@ -503,41 +577,448 @@
     }
   }
 
-  /* Modal Styles - Rediseño Luminoso */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(245, 245, 245, 0.6); /* Fondo blanco desenfocado */
-    backdrop-filter: blur(2px);
-    z-index: 999999;
-    display: flex;
-    align-items: center; /* Centrado vertical */
-    justify-content: center; /* Centrado horizontal */
-    padding: 10px; /* Reducido para móviles */
-    overflow-y: auto;
-    animation: fadeIn 0.4s ease-out;
-  }
-
+  /* ESTILOS BASE DEL MODAL - FONDO BLANCO */
   .modal-content {
-    background: linear-gradient(145deg, #ffffff 0%, #f7f7f9 100%); /* Fondo del modal claro */
-    border-radius: 20px; /* Reducido */
-    padding: 15px; /* Reducido significativamente para móviles */
-    max-width: 95vw;
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    animation: slideIn 0.4s ease-out;
-    width: 100%;
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    position: relative !important;
+    z-index: 9999999 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
   }
 
+  /* Responsive para móviles */
+  @media (max-width: 768px) {
+    .modal-content {
+      max-width: 95vw;
+      width: 95vw;
+      padding: 14px;
+      border-radius: 16px;
+      /* Asegurar que en móviles también esté centrado */
+      margin: 0 auto;
+      /* SIN scroll en móviles */
+      max-height: 90vh;
+      overflow-y: visible;
+    }
+  }
+
+  /* ESCRITORIO - ANCHO MÁXIMO APROPIADO */
   @media (min-width: 768px) {
     .modal-content {
-      max-width: 900px;
-      padding: 30px;
-      border-radius: 24px;
+      max-width: 600px;
+      width: 600px;
+      padding: 20px;
+    }
+  }
+    
+    .modal-overlay {
+      padding: 10px;
+      /* Asegurar que el overlay cubra toda la pantalla en móviles */
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      /* Asegurar que esté centrado en móviles */
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      z-index: 1000000 !important;
+    }
+    
+    /* LAYOUT COMPACTO PARA MÓVILES - SIN SCROLL */
+    .modal-layout-compacto {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    /* BENEFICIOS COMPACTOS */
+    .beneficios-compactos {
+      margin-bottom: 12px;
+    }
+
+    .beneficios-titulo-compacto {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .beneficios-grid-compacto {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .beneficio-compacto {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .beneficio-icon-compacto {
+      font-size: 16px;
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+
+    .beneficio-texto-compacto {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .beneficio-texto-compacto strong {
+      font-size: 11px;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .beneficio-texto-compacto span {
+      font-size: 10px;
+      color: #666;
+    }
+
+    /* VIDEO COMPACTO - RECTANGULAR */
+    .video-compacto {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .video-container-compacto {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      /* FORZAR ASPECTO RECTANGULAR */
+      aspect-ratio: 16/9;
+      max-width: 100%;
+    }
+
+    .video-container-compacto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .play-button-compacto {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* Ajustar tamaño para rectángulo */
+      width: 40px;
+      height: 40px;
+    }
+
+    .play-button-compacto svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* CTA COMPACTO */
+    .modal-cta-compacto {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.3;
+      padding: 0 10px;
+    }
+
+    /* ACCIONES COMPACTAS */
+    .modal-acciones-compactas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .modal-whatsapp-btn-compacto {
+      background: #25D366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .modal-whatsapp-btn-compacto:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .modal-garantia-compacta {
+      font-size: 11px;
+      color: #666;
+      text-align: center;
+      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* HEADER COMPACTO - TÍTULO CENTRADO */
+    .modal-header-compacto {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #BF9F4A;
+      position: relative;
+    }
+
+    .modal-title-compacto {
+      font-size: 18px;
+      font-weight: 700;
+      color: #BF9F4A;
+      margin: 0;
+      /* CENTRAR EL TÍTULO */
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      width: auto;
+      white-space: nowrap;
+    }
+
+    /* DESCRIPCIÓN COMPACTA */
+    .modal-descripcion-compacta {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .modal-descripcion-compacta p {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #555;
+      margin: 0;
+      padding: 0 10px;
+    }
+
+    /* PANTALLAS MUY PEQUEÑAS - AJUSTES FINOS */
+    @media (max-width: 480px) {
+      .modal-content {
+        padding: 12px;
+      }
+      
+      .beneficios-grid-compacto {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      
+      .beneficio-compacto {
+        padding: 6px;
+        font-size: 10px;
+      }
+      
+      .beneficio-texto-compacto strong {
+        font-size: 10px;
+      }
+      
+      .beneficio-texto-compacto span {
+        font-size: 9px;
+      }
+      
+      .modal-cta-compacto {
+        font-size: 13px;
+        margin-bottom: 15px;
+      }
+      
+      .modal-whatsapp-btn-compacto {
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+    }
+
+    /* PANTALLAS DE ESCRITORIO - MANTENER APARIENCIA COMPACTA */
+    @media (min-width: 768px) {
+      .modal-header-compacto {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+      }
+
+      .modal-title-compacto {
+        font-size: 22px;
+      }
+
+      .modal-descripcion-compacta p {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .beneficios-titulo-compacto {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .beneficios-grid-compacto {
+        gap: 12px;
+      }
+
+      .beneficio-compacto {
+        padding: 12px;
+        font-size: 13px;
+      }
+
+      .beneficio-texto-compacto strong {
+        font-size: 13px;
+      }
+
+      .beneficio-texto-compacto span {
+        font-size: 11px;
+      }
+
+      .modal-cta-compacto {
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .modal-whatsapp-btn-compacto {
+        padding: 14px 28px;
+        font-size: 16px;
+      }
+
+      .modal-garantia-compacta {
+        font-size: 12px;
+        padding: 10px 20px;
+      }
+    }
+    
+    .modal-acciones-fila {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .modal-whatsapp-btn-mejorado {
+      width: 100%;
+      max-width: 100%;
+      justify-content: center;
+      /* Botón más prominente en móviles */
+      padding: 16px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .modal-whatsapp-btn-mejorado:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .modal-whatsapp-btn-mejorado svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .modal-garantia {
+      text-align: center;
+      font-size: 11px;
+      padding: 12px;
+      max-width: 100%;
+      /* Garantía más visible */
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+
+    /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
+
+  /* Estilos para móviles muy pequeños */
+  @media (max-width: 480px) {
+    .modal-content {
+      padding: 15px;
+      max-height: 90vh;
+    }
+
+    /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
+  }
+
+  /* Animaciones del modal */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* CSS GLOBAL para forzar el modal */
+  :global(.modal-overlay) {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+
+  :global(.modal-content) {
+    background: white !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    z-index: 9999999 !important;
+    position: relative !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      max-width: 95vw;
+      width: 95vw;
+      padding: 20px;
+      border-radius: 16px;
     }
     .modal-overlay {
-      padding: 20px;
+      padding: 10px;
     }
   }
 
@@ -546,55 +1027,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px; /* Reducido */
-    padding-bottom: 10px; /* Reducido */
+    margin-bottom: 20px;
+    padding-bottom: 15px;
   }
 
-  @media (min-width: 768px) {
-    .modal-header {
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-    }
-  }
-
-  .modal-title {
-    font-size: 20px; /* Reducido para móviles */
-    font-weight: 800;
-    color: #d4af37;
-    margin: 0;
-    text-align: center;
-    flex: 1;
-  }
-
-  @media (min-width: 768px) {
-    .modal-title {
-      font-size: 28px;
-    }
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
   .modal-close {
-    background: #e0e0e0; /* Botón de cierre más sutil */
+    background: #e0e0e0;
     color: #555;
     border: none;
     border-radius: 50%;
-    width: 30px; /* Reducido */
-    height: 30px; /* Reducido */
+    width: 35px;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 18px; /* Reducido */
+    font-size: 20px;
     font-weight: bold;
     flex-shrink: 0;
-  }
-
-  @media (min-width: 768px) {
-    .modal-close {
-      width: 35px;
-      height: 35px;
-      font-size: 20px;
-    }
+    /* Asegurar que esté por encima del título centrado */
+    z-index: 10;
+    position: relative;
   }
 
   .modal-close:hover {
@@ -602,319 +1058,21 @@
     transform: scale(1.1);
   }
 
-  .modal-descripcion-completa {
-    margin-bottom: 12px; /* Reducido */
-    padding: 12px; /* Reducido */
-    background: rgba(0, 0, 0, 0.03);
-    border-radius: 12px; /* Reducido */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  @media (min-width: 768px) {
-    .modal-descripcion-completa {
-      margin-bottom: 20px;
-      padding: 20px;
-      border-radius: 15px;
-    }
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  .modal-descripcion-completa p {
-    color: #3c3c43; /* Texto oscuro */
-    margin: 0;
-    font-size: 14px; /* Reducido */
-    line-height: 1.5; /* Reducido */
-    text-align: center;
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  @media (min-width: 768px) {
-    .modal-descripcion-completa p {
-      font-size: 16px;
-      line-height: 1.6;
-    }
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  /* Layout de dos columnas */
-  .modal-body-dos-columnas {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px; /* Reducido */
-    margin-bottom: 12px; /* Reducido */
-  }
-
-  @media (min-width: 768px) {
-    .modal-body-dos-columnas {
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-bottom: 20px;
-    }
-  }
-
-  /* Columna de beneficios */
-  .modal-beneficios-col {
-    order: 2;
-  }
-
-  @media (min-width: 768px) {
-    .modal-beneficios-col {
-      order: 1;
-    }
-  }
-
-  .beneficios-titulo {
-    color: #1c1c1e; /* Título oscuro */
-    font-size: 16px; /* Reducido */
-    font-weight: 700;
-    margin: 0 0 10px 0; /* Reducido */
-    text-align: left;
-  }
-
-  @media (min-width: 768px) {
-    .beneficios-titulo {
-      font-size: 18px;
-      margin: 0 0 15px 0;
-    }
-  }
-
-  .beneficios-lista-simple {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
-    gap: 8px; /* Reducido */
-  }
-
-  .beneficios-lista-simple li {
-    background: rgba(0, 0, 0, 0.04);
-    padding: 8px 10px; /* Reducido */
-    border-radius: 8px; /* Reducido */
-    border-left: 3px solid var(--glow-color); /* Reducido */
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Reducido */
-    transition: all 0.3s ease;
-    min-height: 55px; /* Reducido */
-  }
-
-  .beneficios-lista-simple li:hover {
-    background: rgba(212, 175, 55, 0.2);
-    transform: translateX(3px);
-  }
-
-  .beneficio-icon {
-    color: var(--glow-color); /* Usamos el color de acento */
-    font-size: 1rem; /* Reducido */
-    flex-shrink: 0;
-  }
-
-  .beneficio-texto {
-    font-size: 12px; /* Reducido */
-    line-height: 1.3; /* Reducido */
-    font-weight: 500;
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
   
-  .beneficio-texto strong {
-    color: #1c1c1e; /* Texto oscuro */
-  }
-  
-  .beneficio-texto span {
-    color: #636366; /* Texto secundario oscuro */
-  }
-  
-  @media (min-width: 768px) {
-    .beneficios-lista-simple {
-      grid-template-columns: 1fr; /* 1 columna en desktop */
-      gap: 15px;
-    }
-    .beneficios-lista-simple li {
-      padding: 15px 20px;
-      gap: 12px;
-      align-items: flex-start;
-      min-height: auto;
-      border-radius: 10px;
-      border-left: 4px solid var(--glow-color);
-    }
-    .beneficio-icon {
-      font-size: 1.3rem;
-      margin-top: 2px;
-    }
-     .beneficio-texto {
-      font-size: 16px;
-      line-height: 1.5;
-    }
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  /* Columna de video */
-  .modal-video-col {
-    order: 1;
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
-  @media (min-width: 768px) {
-    .modal-video-col {
-      order: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* Centrado vertical */
-    }
-  }
-
-  .video-container {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    background: #000;
-  }
-
-  .video-thumbnail {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .video-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .play-button:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-
-  .play-button svg {
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
-  }
-
-  .video-text {
-    text-align: center;
-    color: #d4af37;
-    font-weight: 600;
-    margin: 10px 0 0 0; /* Reducido */
-    font-size: 13px; /* Reducido */
-  }
-
-  @media (min-width: 768px) {
-    .video-text {
-      margin: 15px 0 0 0;
-      font-size: 14px;
-    }
-  }
-
-  .modal-cta-simple {
-    background: linear-gradient(135deg, var(--glow-color), #b8941f);
-    color: #000;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 14px;
-    margin-bottom: 15px;
-    border: 2px solid var(--glow-color);
-  }
-
-  @media (min-width: 768px) {
-    .modal-cta-simple {
-      padding: 18px;
-      font-size: 16px;
-    }
-  }
-
-  /* Botones en fila */
-  .modal-acciones-fila {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-  }
-
-  @media (min-width: 768px) {
-    .modal-acciones-fila {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-  }
-
-  .modal-whatsapp-btn-mejorado {
-    background: #25d366;
-    color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-    border: 2px solid #25d366;
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
-  }
-
-  @media (min-width: 768px) {
-    .modal-whatsapp-btn-mejorado {
-      padding: 18px 35px;
-      font-size: 16px;
-      gap: 12px;
-      width: auto;
-      flex: 1;
-      max-width: none;
-    }
-  }
-
-  .modal-whatsapp-btn-mejorado:hover {
-    background: #1fb855;
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
-  }
-
-  .modal-garantia {
-    color: #636366;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    font-size: 11px;
-    text-align: center;
-    padding: 10px;
-    border-radius: 20px;
-    max-width: 280px;
-  }
-
-  @media (max-width: 767px) {
-    .modal-garantia {
-      display: none;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .modal-garantia {
-      font-size: 13px;
-      padding: 12px 20px;
-      text-align: right;
-      max-width: none;
-      flex: 1;
-    }
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
   @keyframes fadeIn {
     from { opacity: 0; }
@@ -955,24 +1113,7 @@
     50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(191,161,74,0.5); }
   }
 
-  /* Información del servicio */
-  .info-servicio {
-    display: flex;
-    gap: 1rem;
-    margin: 0.8rem 0;
-    justify-content: center;
-  }
-  
-  .info-item {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    background: rgba(255,255,255,0.2);
-    padding: 0.3rem 0.6rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.3);
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
   
   .info-icon {
     font-size: 0.9rem;
@@ -990,9 +1131,7 @@
     transition: transform 0.3s ease;
   }
   
-  .cta-button:hover .btn-arrow {
-    transform: translateX(5px);
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
   /* Nuevas animaciones premium */
   .premium-glow {
@@ -1060,37 +1199,7 @@
     backdrop-filter: blur(10px);
   }
   
-  .instrumentos-incluidos h4 {
-    margin: 0 0 0.8rem 0;
-    color: #bfa14a;
-    font-size: 1.1rem;
-    font-weight: 800;
-  }
-  
-  .instrumentos-lista {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #444;
-    margin: 0;
-    font-weight: 500;
-  }
-  
-  .beneficios-lista {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  
-  .beneficios-lista li {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(191,161,74,0.2);
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-  
-  .beneficios-lista li:last-child {
-    border-bottom: none;
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
   /* Hover effects mejorados */
   .service-card:hover {
@@ -1099,15 +1208,7 @@
     border: 2px solid rgba(191,161,74,0.6);
   }
   
-  .service-card:hover .precio-badge {
-    transform: scale(1.1) rotate(-5deg);
-    box-shadow: 0 8px 24px rgba(191,161,74,0.5);
-  }
-  
-  .service-card:hover .tarjeta-icono {
-    transform: scale(1.1);
-    box-shadow: 0 8px 32px rgba(191,161,74,0.6);
-  }
+  /* ESTILOS COMPACTOS MANTENIDOS - NO MODIFICAR */
 
   .video-container-link {
     display: block;
