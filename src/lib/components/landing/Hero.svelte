@@ -11,7 +11,7 @@
     "🏆 Grabaciones con Felipe Peláez y grandes estrellas",
     "💎 Shows profesionales con puesta en escena VIP"
   ];
-  export let urlImagen = "/Imagenes/Jesus Fondo Blanco.png";
+  export let urlImagen = "https://jesusgonzalez.com.co/Imagenes/Jesus Fondo Blanco.png";
   let mostrarModal = false;
   
   function abrirModalConTracking() {

@@ -4,25 +4,25 @@
     {
       artista: 'Jorge Celedón',
       videoId: 'vgDABDveFn0',
-      thumb: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
       descripcion: 'Show en vivo junto a Jorge Celedón.'
     },
     {
       artista: 'Poncho Zuleta',
       videoId: 'Ll5rSyCDM78',
-      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Presentación exclusiva con Poncho Zuleta.'
     },
     {
       artista: 'Felipe Peláez',
       videoId: 'oPoqVKg30Cg',
-      thumb: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
       descripcion: 'Concierto en vivo junto a Felipe Peláez.'
     },
     {
       artista: 'Orlando Acosta',
       videoId: 'vgDABDveFn0',
-      thumb: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
       descripcion: 'Presentación exclusiva con Orlando Acosta.'
     }
   ];
