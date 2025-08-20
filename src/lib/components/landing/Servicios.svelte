@@ -41,7 +41,7 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2b2100 100%)',
       bg: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/Ll5rSyCDM78'
+      videoUrl: 'Ll5rSyCDM78'
     },
     {
       nombre: 'Show Semicompleto VIP',
@@ -55,7 +55,7 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2a004b 100%)',
       bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/oPoqVKg30Cg'
+      videoUrl: 'oPoqVKg30Cg'
     },
     {
       nombre: 'Show Completo de Gala',
@@ -67,9 +67,9 @@
       capacidad: 'Masivos',
       animacionClase: 'gala-animation',
       color: 'linear-gradient(145deg, #1a1a1a 0%, #4b0011 100%)',
-      bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&q=60',
+      bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&0',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/vgDABDveFn0'
+      videoUrl: 'vgDABDveFn0'
     }
   ];
 
@@ -82,6 +82,8 @@
   function activarVideo() {
     videoActivo = true;
   }
+
+
 
   function cerrarModal() {
     isServiceModalOpen.set(false);
@@ -292,15 +294,34 @@
         
         <!-- VIDEO COMPACTO -->
         <div class="video-compacto">
-          <div class="video-container-compacto" on:click={activarVideo}>
-            <img src={servicioSeleccionado.imagen} alt="Video preview de {servicioSeleccionado.nombre}" />
-            <div class="play-button-compacto">
-              <svg width="50" height="50" viewBox="0 0 50 50">
-                <circle cx="25" cy="25" r="25" fill="rgba(191,161,74,0.95)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                <polygon points="20,15 20,35 35,25" fill="white"/>
-              </svg>
+          {#if !videoActivo}
+            <div class="video-container-compacto" on:click={activarVideo}>
+              <img src={servicioSeleccionado.imagen} alt="Video preview de {servicioSeleccionado.nombre}" />
+              <div class="play-button-compacto">
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                  <circle cx="25" cy="25" r="25" fill="rgba(191,161,74,0.95)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                  <polygon points="20,15 20,35 35,25" fill="white"/>
+                </svg>
+              </div>
             </div>
-          </div>
+          {:else}
+            <div class="video-container-compacto">
+              <iframe
+                src={`https://www.youtube.com/embed/${servicioSeleccionado.videoUrl}?rel=0&showinfo=0&autoplay=1&controls=1`}
+                title={`Video de ${servicioSeleccionado.nombre}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                frameborder="0"
+                style="width:100%;height:100%;border-radius:12px;"
+              ></iframe>
+              <button class="video-back-btn" on:click={() => videoActivo = false}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Volver
+              </button>
+            </div>
+          {/if}
         </div>
       </div>
       
@@ -1269,14 +1290,34 @@
     .tarjeta-titulo {
       font-size: 1.25rem;
     }
-    
-    .info-pills {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .pill {
-      width: fit-content;
-    }
+  }
+
+  /* ===== ESTILOS PARA EL BOTÓN DE VOLVER DEL VIDEO ===== */
+  .video-back-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .video-back-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.05);
+  }
+
+  .video-back-btn svg {
+    width: 16px;
+    height: 16px;
   }
 </style>
