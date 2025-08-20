@@ -11,7 +11,7 @@
       evento: 'Boda de Lujo - Bogotá',
       comentario: 'Jesús González hizo de nuestra boda algo mágico. Su acordeón nos transportó a la Costa Caribe. Los invitados no paraban de bailar. ¡100% recomendado!',
       calificacion: 5,
-      imagen: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      imagen: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
       fecha: 'Diciembre 2024'
     },
     {
@@ -19,7 +19,7 @@
       evento: 'Evento Corporativo - Medellín',
       comentario: 'Contratamos a Jesús para nuestro evento de empresa y fue espectacular. Profesionalismo total, llegó puntual y el show superó nuestras expectativas.',
       calificacion: 5,
-      imagen: '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
+      imagen: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
       fecha: 'Noviembre 2024'
     },
     {
@@ -27,7 +27,7 @@
       evento: 'Cumpleaños 50 - Cali',
       comentario: 'Mi papá es fanático del vallenato y Jesús le hizo el día más especial. Tocó todas sus canciones favoritas. ¡Gracias por hacer inolvidable su cumpleaños!',
       calificacion: 5,
-      imagen: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
+      imagen: 'https://jesusgonzalez.com.co/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
       fecha: 'Octubre 2024'
     },
     {
@@ -35,7 +35,7 @@
       evento: 'Fiesta Empresarial - Barranquilla',
       comentario: 'Excelente servicio y calidad musical. Jesús González es un verdadero maestro del acordeón. Nuestros clientes quedaron encantados con la presentación.',
       calificacion: 5,
-      imagen: '/Imagenes/Jesus Fondo Blanco.png',
+      imagen: 'https://jesusgonzalez.com.co/Imagenes/Jesus Fondo Blanco.png',
       fecha: 'Septiembre 2024'
     }
   ];

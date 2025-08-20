@@ -1,10 +1,10 @@
 <script lang="ts">
   // Imágenes para el slider de Jesús González en conciertos y eventos
   export let imagenesSlider = [
-    '/Imagenes/Jesus Gonzalez en Concierto.jpg',
-    '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
-    '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
-    '/Imagenes/Jesus Fondo Blanco.png'
+    'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
+    'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
+    'https://jesusgonzalez.com.co/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
+    'https://jesusgonzalez.com.co/Imagenes/Jesus Fondo Blanco.png'
   ];
   let current = 0;
   let interval: any;

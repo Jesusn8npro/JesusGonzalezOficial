@@ -6,28 +6,28 @@
       icono: '🎶',
       explicacion: 'Selecciona el tipo de show musical ideal para tu evento. Te asesoramos para que tu experiencia sea inolvidable.',
       color: 'from-blue-500 to-blue-600',
-      fondo: '/Imagenes/Jesus Gonzalez en Concierto.jpg'
+      fondo: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg'
     },
     {
       titulo: '2. Completa el formulario',
       icono: '📝',
       explicacion: 'Llena el formulario rápido y seguro con los datos de tu evento. ¡Solo toma un minuto!',
       color: 'from-purple-500 to-purple-600',
-      fondo: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg'
+      fondo: 'https://jesusgonzalez.com.co/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg'
     },
     {
       titulo: '3. Recibe confirmación',
       icono: '📲',
       explicacion: 'Te notificamos y resolvemos dudas por WhatsApp. Atención inmediata y personalizada.',
       color: 'from-green-500 to-green-600',
-      fondo: '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg'
+      fondo: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg'
     },
     {
       titulo: '4. Aparta tu fecha',
       icono: '💳',
       explicacion: 'Realiza el abono del 50% y tu evento queda reservado. ¡Listo para vivir una experiencia musical de otro nivel!',
       color: 'from-yellow-500 to-yellow-600',
-      fondo: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg'
+      fondo: 'https://jesusgonzalez.com.co/Imagenes/El pollo irra y Jesus Gonzalez.jpg'
     }
   ];
 

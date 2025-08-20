@@ -10,7 +10,7 @@
     {
       artista: 'Poncho Zuleta',
       videoId: 'Ll5rSyCDM78',
-      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
       descripcion: 'Presentación exclusiva con Poncho Zuleta.'
     },
     {
@@ -22,7 +22,7 @@
     {
       artista: 'Orlando Acosta',
       videoId: 'vgDABDveFn0',
-      thumb: 'https://jesusgonzalez.com.co/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      thumb: 'https://jesusgonzalez.com.co/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
       descripcion: 'Presentación exclusiva con Orlando Acosta.'
     }
   ];

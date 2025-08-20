@@ -3,14 +3,14 @@ export const config = {
   // URLs base
   baseUrl: 'https://jesusgonzalez.com.co',
   
-  // Rutas de imágenes
+  // Rutas de imágenes (solo para referencia local)
   images: {
-    hero: '/Imagenes/Jesus Fondo Blanco.png',
-    parranda: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
-    semicompleto: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
-    completo: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
-    ponchoZuleta: '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
-    logo: '/Imagenes/Logo Jesus Gonzalez.png'
+    hero: 'Jesus Fondo Blanco.png',
+    parranda: 'Jesus Gonzalez en Concierto.jpg',
+    semicompleto: 'El pollo irra y Jesus Gonzalez.jpg',
+    completo: 'Jorge Celedon y Jesus Gonzalez.jpg',
+    ponchoZuleta: 'Jesus Gonzalez y Poncho Zuleta.jpg',
+    logo: 'Logo Jesus Gonzalez.png'
   },
   
   // URLs completas de imágenes
