@@ -41,13 +41,13 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2b2100 100%)',
       bg: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/b4Fg7ijoPAg'
+      videoUrl: 'https://www.youtube.com/embed/Ll5rSyCDM78'
     },
     {
       nombre: 'Show Semicompleto VIP',
       subtituloColor: '#9333ea',
       textoColor: '#e9d5ff',
-      imagen: '/Imagenes/Jesus Gonzalez en Concierto.jpg',
+      imagen: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
       descripcion: 'El balance perfecto entre un show de gran formato y un evento corporativo o boda de lujo. Producción y sonido de primer nivel.',
       duracion: '3-4 horas',
       capacidad: 'Hasta 300p',
@@ -55,13 +55,13 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #2a004b 100%)',
       bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/d5irPiHkkt4'
+      videoUrl: 'https://www.youtube.com/embed/oPoqVKg30Cg'
     },
     {
       nombre: 'Show Completo de Gala',
       subtituloColor: '#e11d48',
       textoColor: '#ffd5dd',
-      imagen: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
+      imagen: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
       descripcion: 'La producción musical definitiva para eventos masivos. Un espectáculo de concierto con despliegue técnico y artístico completo.',
       duracion: '4-5 horas',
       capacidad: 'Masivos',
@@ -69,7 +69,7 @@
       color: 'linear-gradient(145deg, #1a1a1a 0%, #4b0011 100%)',
       bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&q=60',
       boton: 'Ver Detalles y Precios',
-      videoUrl: 'https://www.youtube.com/embed/BR8TMNRqFPw'
+      videoUrl: 'https://www.youtube.com/embed/vgDABDveFn0'
     }
   ];
 
@@ -614,7 +614,7 @@
   }
     
     .modal-overlay {
-      padding: 10px;
+      padding: 6px;
       /* Asegurar que el overlay cubra toda la pantalla en móviles */
       position: fixed !important;
       top: 0 !important;
@@ -628,47 +628,47 @@
       z-index: 1000000 !important;
     }
     
-    /* LAYOUT COMPACTO PARA MÓVILES - SIN SCROLL */
+    /* LAYOUT COMPACTO PARA MÓVILES - SIN SCROLL - ESPACIOS REDUCIDOS */
     .modal-layout-compacto {
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin-bottom: 15px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     /* BENEFICIOS COMPACTOS */
     .beneficios-compactos {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .beneficios-titulo-compacto {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       color: #333;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       text-align: center;
     }
 
     .beneficios-grid-compacto {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 6px;
     }
 
     .beneficio-compacto {
       display: flex;
       align-items: center;
-      padding: 8px;
+      padding: 6px;
       background: rgba(0, 0, 0, 0.03);
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.2;
     }
 
     .beneficio-icon-compacto {
-      font-size: 16px;
-      margin-right: 6px;
+      font-size: 14px;
+      margin-right: 4px;
       flex-shrink: 0;
     }
 
@@ -678,27 +678,27 @@
     }
 
     .beneficio-texto-compacto strong {
-      font-size: 11px;
+      font-size: 10px;
       color: #333;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .beneficio-texto-compacto span {
-      font-size: 10px;
+      font-size: 9px;
       color: #666;
     }
 
     /* VIDEO COMPACTO - RECTANGULAR */
     .video-compacto {
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .video-container-compacto {
       position: relative;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       /* FORZAR ASPECTO RECTANGULAR */
       aspect-ratio: 16/9;
@@ -718,8 +718,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       /* Ajustar tamaño para rectángulo */
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
     }
 
     .play-button-compacto svg {
@@ -727,36 +727,36 @@
       height: 100%;
     }
 
-    /* CTA COMPACTO */
+    /* CTA COMPACTO - ESPACIOS REDUCIDOS */
     .modal-cta-compacto {
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: #333;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       line-height: 1.3;
-      padding: 0 10px;
+      padding: 0 8px;
     }
 
     /* ACCIONES COMPACTAS */
     .modal-acciones-compactas {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       align-items: center;
     }
 
     .modal-whatsapp-btn-compacto {
       background: #25D366;
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 25px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
@@ -768,28 +768,28 @@
     }
 
     .modal-garantia-compacta {
-      font-size: 11px;
+      font-size: 10px;
       color: #666;
       text-align: center;
-      padding: 8px 16px;
+      padding: 6px 12px;
       background: rgba(0, 0, 0, 0.03);
       border-radius: 20px;
       border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    /* HEADER COMPACTO - TÍTULO CENTRADO */
+    /* HEADER COMPACTO - TÍTULO CENTRADO - ESPACIOS REDUCIDOS */
     .modal-header-compacto {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 2px solid #BF9F4A;
       position: relative;
     }
 
     .modal-title-compacto {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: #BF9F4A;
       margin: 0;
@@ -802,52 +802,70 @@
       white-space: nowrap;
     }
 
-    /* DESCRIPCIÓN COMPACTA */
+    /* DESCRIPCIÓN COMPACTA - ESPACIOS REDUCIDOS */
     .modal-descripcion-compacta {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
     .modal-descripcion-compacta p {
-      font-size: 13px;
-      line-height: 1.4;
+      font-size: 12px;
+      line-height: 1.3;
       color: #555;
       margin: 0;
-      padding: 0 10px;
+      padding: 0 8px;
     }
 
     /* PANTALLAS MUY PEQUEÑAS - AJUSTES FINOS */
     @media (max-width: 480px) {
       .modal-content {
-        padding: 12px;
+        padding: 8px;
+      }
+      
+      .modal-header-compacto {
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+      }
+      
+      .modal-title-compacto {
+        font-size: 15px;
+      }
+      
+      .modal-descripcion-compacta {
+        margin-bottom: 8px;
+      }
+      
+      .modal-descripcion-compacta p {
+        font-size: 11px;
+        padding: 0 6px;
       }
       
       .beneficios-grid-compacto {
         grid-template-columns: 1fr;
-        gap: 6px;
+        gap: 4px;
       }
       
       .beneficio-compacto {
-        padding: 6px;
-        font-size: 10px;
-      }
-      
-      .beneficio-texto-compacto strong {
-        font-size: 10px;
-      }
-      
-      .beneficio-texto-compacto span {
+        padding: 4px;
         font-size: 9px;
       }
       
+      .beneficio-texto-compacto strong {
+        font-size: 9px;
+      }
+      
+      .beneficio-texto-compacto span {
+        font-size: 8px;
+      }
+      
       .modal-cta-compacto {
-        font-size: 13px;
-        margin-bottom: 15px;
+        font-size: 11px;
+        margin-bottom: 8px;
       }
       
       .modal-whatsapp-btn-compacto {
-        padding: 10px 20px;
-        font-size: 13px;
+        padding: 8px 16px;
+        font-size: 12px;
       }
     }
 
@@ -956,7 +974,7 @@
   /* Estilos para móviles muy pequeños */
   @media (max-width: 480px) {
     .modal-content {
-      padding: 15px;
+      padding: 10px;
       max-height: 90vh;
     }
 
@@ -1014,11 +1032,11 @@
     .modal-content {
       max-width: 95vw;
       width: 95vw;
-      padding: 20px;
+      padding: 15px;
       border-radius: 16px;
     }
     .modal-overlay {
-      padding: 10px;
+      padding: 8px;
     }
   }
 

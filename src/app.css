@@ -47,6 +47,106 @@ html, body {
   font-size: 16px;
 }
 
+/* ===== ELIMINAR CURSOR DE TEXTO EN TODO EL PROYECTO ===== */
+* {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* ===== EXCEPCIONES PARA ELEMENTOS INTERACTIVOS ===== */
+button, 
+a, 
+input, 
+textarea, 
+select,
+[role="button"],
+[tabindex],
+.clickable,
+.interactive {
+  cursor: pointer;
+  user-select: auto;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+}
+
+/* ===== CURSOR ESPECÍFICO PARA ELEMENTOS DE TEXTO ===== */
+input, 
+textarea {
+  cursor: text;
+}
+
+/* ===== CURSORES ESPECÍFICOS PARA COMPONENTES DEL LANDING ===== */
+.modal-overlay,
+.modal-content,
+.video-container,
+.video-container-compacto,
+.play-button,
+.play-button-compacto,
+.service-card,
+.beneficio-compacto,
+.whatsapp-flotante,
+.banner-urgencia,
+.galeria-video-embed,
+.video-placeholder {
+  cursor: pointer;
+}
+
+/* ===== CURSOR GRAB PARA ELEMENTOS ARRASTRABLES ===== */
+.draggable,
+.slider-handle {
+  cursor: grab;
+}
+
+.draggable:active,
+.slider-handle:active {
+  cursor: grabbing;
+}
+
+/* ===== CURSORES ESPECÍFICOS PARA ELEMENTOS DE NAVEGACIÓN ===== */
+nav a,
+.nav-link,
+.menu-item,
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+/* ===== CURSORES PARA ELEMENTOS DE FORMULARIO ===== */
+label,
+.form-group,
+.checkbox-wrapper,
+.radio-wrapper {
+  cursor: pointer;
+}
+
+/* ===== CURSORES PARA ELEMENTOS DE ACCESIBILIDAD ===== */
+[aria-label],
+[aria-describedby],
+[aria-expanded] {
+  cursor: pointer;
+}
+
+/* ===== PREVENIR SELECCIÓN DE TEXTO ACCIDENTAL ===== */
+p, h1, h2, h3, h4, h5, h6, span, div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ===== PERMITIR SELECCIÓN EN ELEMENTOS DE TEXTO REALES ===== */
+input, textarea, pre, code {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 *, *::before, *::after {
   box-sizing: inherit;
 }
