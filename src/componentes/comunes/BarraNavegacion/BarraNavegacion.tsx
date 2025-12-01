@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './BarraNavegacion.css';
+import { Home, Music3, Video, Mail, Link2, X } from 'lucide-react';
 
 const BarraNavegacion: React.FC = () => {
     const [menuAbierto, setMenuAbierto] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
 
-    // Cerrar menú cuando cambia la ruta y desbloquear scroll
+    // Desbloquear scroll cuando cambia la ruta
     useEffect(() => {
-        setMenuAbierto(false);
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
     }, [location]);
@@ -96,53 +96,61 @@ const BarraNavegacion: React.FC = () => {
                 </button>
             </div>
 
-            {/* Menú Móvil */}
+            {/* Menú Móvil - Bottom Sheet */}
             <div className={`menu-movil ${menuAbierto ? 'active' : ''}`}>
-                <div className="menu-movil-contenido">
-                    <div className="menu-movil-header">
-                        <img
-                            src="/Logo Jesus Gonzalez.png"
-                            alt="Jesús González"
-                            className="menu-movil-logo"
-                        />
-                        <h3 className="menu-movil-titulo">Jesús González</h3>
-                        <p className="menu-movil-subtitulo">Maestro del Acordeón Vallenato</p>
+                <div className="menu-sheet">
+                    <button className="menu-close" aria-label="Cerrar menú" onClick={toggleMenu}>
+                        <X size={22} />
+                    </button>
+                    <div className="menu-header">
+                        <img src="/Logo Jesus Gonzalez.png" alt="Jesús González" className="menu-avatar" />
+                        <div className="menu-title">
+                            <h3>Jesús González</h3>
+                            <p>Maestro del Acordeón Vallenato</p>
+                        </div>
                     </div>
-
-                    <nav className="menu-movil-nav">
-                        <Link to="/" className={`menu-movil-link ${isActive('/') ? 'active' : ''}`}>
-                            <span className="menu-icon">🏠</span>
+                    <nav className="menu-list">
+                        <Link to="/" className={`menu-item ${isActive('/') ? 'active' : ''}`} onClick={() => setMenuAbierto(false)}>
+                            <Home size={18} />
                             <span>Inicio</span>
                         </Link>
-                        <Link to="/contrataciones" className={`menu-movil-link destacado ${isActive('/contrataciones') ? 'active' : ''}`}>
-                            <span className="menu-icon">🎵</span>
+                        <Link
+                            to="/contrataciones"
+                            className={`menu-item destacado ${isActive('/contrataciones') ? 'active' : ''}`}
+                            onClick={() => setMenuAbierto(false)}
+                        >
+                            <Music3 size={18} />
                             <span>Contrataciones</span>
                         </Link>
-                        <Link to="/videos" className={`menu-movil-link ${isActive('/videos') ? 'active' : ''}`}>
-                            <span className="menu-icon">📹</span>
+                        <Link to="/videos" className={`menu-item ${isActive('/videos') ? 'active' : ''}`} onClick={() => setMenuAbierto(false)}>
+                            <Video size={18} />
                             <span>Videos</span>
                         </Link>
-                        <Link to="/contacto" className={`menu-movil-link ${isActive('/contacto') ? 'active' : ''}`}>
-                            <span className="menu-icon">✉️</span>
+                        <Link
+                            to="/contacto"
+                            className={`menu-item ${isActive('/contacto') ? 'active' : ''}`}
+                            onClick={() => setMenuAbierto(false)}
+                        >
+                            <Mail size={18} />
                             <span>Contacto</span>
                         </Link>
-                        <Link to="/link-in-bio" className={`menu-movil-link ${isActive('/link-in-bio') ? 'active' : ''}`}>
-                            <span className="menu-icon">🔗</span>
+                        <Link
+                            to="/link-in-bio"
+                            className={`menu-item ${isActive('/link-in-bio') ? 'active' : ''}`}
+                            onClick={() => setMenuAbierto(false)}
+                        >
+                            <Link2 size={18} />
                             <span>Links</span>
                         </Link>
                     </nav>
-
-                    <div className="menu-movil-footer">
-                        <p className="menu-footer-text">+15 años de experiencia</p>
-                        <p className="menu-footer-text">200+ shows realizados</p>
+                    <div className="menu-footer">
+                        <span>+15 años de experiencia • 200+ shows</span>
                     </div>
                 </div>
             </div>
 
             {/* Overlay para cerrar menú */}
-            {menuAbierto && (
-                <div className="menu-overlay" onClick={toggleMenu}></div>
-            )}
+            {menuAbierto && <div className="menu-overlay" onClick={toggleMenu}></div>}
         </nav>
     );
 };
