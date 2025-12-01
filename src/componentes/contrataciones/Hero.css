@@ -1,0 +1,293 @@
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(120deg, #18151a 50%, rgba(24, 21, 26, 0.7) 100%),
+        url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=1400&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 50px 100px 0 100px;
+}
+
+.contenido {
+    flex: 1;
+    color: #fff;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 5vw;
+    gap: 1rem;
+}
+
+.estrellas {
+    color: #bfa14a;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+    background: linear-gradient(135deg, #fff 60%, #bfa14a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.descripcion {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #e5e5e5;
+    line-height: 1.4;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+.beneficio {
+    background: rgba(191, 161, 74, 0.15);
+    border: 1px solid rgba(191, 161, 74, 0.5);
+    color: #bfa14a;
+    border-radius: 2rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.beneficio:hover {
+    background: #bfa14a;
+    color: #111;
+    transform: translateY(-2px);
+}
+
+.cta-metricas {
+    margin: 1rem 0 1.7rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 1rem;
+}
+
+.btn-reserva-hero {
+    background: linear-gradient(90deg, #bfa14a 60%, #25d366 100%);
+    color: #18151a;
+    font-weight: 900;
+    font-size: 1.3rem;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 3rem;
+    box-shadow: 0 6px 32px rgba(37, 211, 102, 0.4), 0 3px 12px rgba(191, 161, 74, 0.3);
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    animation: pulso-cta 3s infinite;
+}
+
+.btn-reserva-hero:hover {
+    box-shadow: 0 10px 40px rgba(37, 211, 102, 0.6), 0 4px 16px rgba(191, 161, 74, 0.4);
+    transform: scale(1.05) translateY(-2px);
+    background: linear-gradient(90deg, #25d366 60%, #bfa14a 100%);
+}
+
+@keyframes pulso-cta {
+
+    0%,
+    100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.15) drop-shadow(0 0 12px rgba(191, 161, 74, 0.8));
+    }
+}
+
+.metricas-hero {
+    display: flex;
+    gap: 2rem;
+}
+
+.metrica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.metrica-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffe082;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(191, 161, 74, 0.3);
+}
+
+.metrica-label {
+    font-size: 0.9rem;
+    color: #e5e5e5;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.artista-wrapper {
+    position: relative;
+    max-width: 30vw;
+    min-width: 400px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.decoracion-circulo {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -35%);
+    z-index: 1;
+    pointer-events: none;
+    width: 100%;
+    max-width: 450px;
+}
+
+.circulo-bg {
+    width: 100%;
+    height: auto;
+}
+
+.foto-artista-png {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 1200px) {
+    .hero {
+        padding: 30px 60px 0;
+    }
+
+    .titulo {
+        font-size: 2.8rem;
+    }
+
+    .artista-wrapper {
+        min-width: 350px;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        padding: 40px 12px 0;
+        align-items: center;
+        text-align: center;
+        min-height: 80vh;
+    }
+
+    .contenido {
+        align-items: center;
+        margin-left: 0;
+        max-width: 100%;
+        order: 2;
+    }
+
+    .artista-wrapper {
+        order: 2;
+        max-width: 85vw;
+        min-width: 300px;
+        margin-top: 1rem;
+    }
+
+    .titulo {
+        font-size: 2.2rem;
+    }
+
+    .descripcion {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .beneficios {
+        justify-content: center;
+        gap: 0.2rem;
+        grid-template-columns: 1fr;
+        max-width: 380px;
+    }
+
+    .beneficio {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.7rem;
+    }
+
+    .cta-metricas {
+        align-items: center;
+    }
+
+    .btn-reserva-hero {
+        font-size: 1rem;
+        padding: 0.85rem 2rem;
+    }
+
+    .metricas-hero {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero {
+        padding: 36px 10px 0;
+    }
+
+    .titulo {
+        font-size: 1.9rem;
+    }
+
+    .descripcion {
+        font-size: 0.95rem;
+    }
+
+    .artista-wrapper {
+        min-width: 280px;
+    }
+
+    .beneficios {
+        grid-template-columns: 1fr;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .metricas-hero {
+        gap: 0.8rem;
+    }
+
+    .beneficio {
+        font-size: 0.9rem;
+        padding: 0.45rem 0.65rem;
+    }
+}

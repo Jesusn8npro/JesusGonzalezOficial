@@ -1,0 +1,137 @@
+.pagina-contacto {
+    min-height: 100vh;
+}
+
+.hero-contacto {
+    background: linear-gradient(135deg, var(--color-fondo-oscuro) 0%, var(--color-fondo-secundario) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.contenedor-hero-contacto {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.titulo-contacto {
+    font-size: 3rem;
+    font-weight: 900;
+    background: var(--gradiente-dorado);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.subtitulo-contacto {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+}
+
+.seccion-formulario {
+    padding: 3rem 2rem;
+    background: var(--color-fondo-claro);
+}
+
+.contenedor-formulario {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-whatsapp-superior {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.boton-whatsapp-rapido {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25d366;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all var(--transicion-normal);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+}
+
+.boton-whatsapp-rapido:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+}
+
+.formulario-contacto {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--sombra-oscura);
+}
+
+.titulo-formulario {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.campo-formulario {
+    margin-bottom: 1.5rem;
+}
+
+.campo-formulario label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 0.5rem;
+}
+
+.campo-formulario input,
+.campo-formulario select,
+.campo-formulario textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all var(--transicion-normal);
+}
+
+.campo-formulario input:focus,
+.campo-formulario select:focus,
+.campo-formulario textarea:focus {
+    outline: none;
+    border-color: var(--color-dorado-principal);
+    box-shadow: 0 0 0 3px rgba(191, 161, 74, 0.1);
+}
+
+.boton-enviar-formulario {
+    width: 100%;
+    background: var(--gradiente-dorado);
+    color: var(--color-fondo-oscuro);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transicion-normal);
+    box-shadow: var(--sombra-dorada);
+}
+
+.boton-enviar-formulario:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-dorada-intensa);
+}
+
+@media (max-width: 768px) {
+    .titulo-contacto {
+        font-size: 2rem;
+    }
+
+    .formulario-contacto {
+        padding: 1.5rem;
+    }
+}

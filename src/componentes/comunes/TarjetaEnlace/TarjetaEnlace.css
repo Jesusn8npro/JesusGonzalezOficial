@@ -1,0 +1,57 @@
+.tarjeta-enlace {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    background-color: var(--color-fondo-secundario);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-texto);
+    transition: var(--transicion-suave);
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.tarjeta-enlace::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    z-index: 1;
+}
+
+.tarjeta-enlace:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-dorado-500);
+    box-shadow: var(--sombra-dorada);
+}
+
+.contenido-tarjeta {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icono-tarjeta {
+    font-size: 1.5rem;
+    color: var(--color-dorado-400);
+}
+
+.texto-tarjeta h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--color-dorado-100);
+}
+
+.texto-tarjeta p {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    margin: 0;
+}

@@ -1,0 +1,38 @@
+/* ========================================
+   VARIABLES CSS - SOLO LO ESENCIAL
+   ======================================== */
+
+:root {
+    /* Colores Dorados */
+    --color-dorado-principal: #bfa14a;
+    --color-dorado-claro: #ffe082;
+    --color-dorado-oscuro: #8b7635;
+
+    /* Fondos */
+    --color-fondo-oscuro: #1a1a1a;
+    --color-fondo-secundario: #2d2d2d;
+    --color-fondo-claro: #f9fafb;
+
+    /* Textos */
+    --color-texto-principal: #ffffff;
+    --color-texto-secundario: #e5e5e5;
+    --color-texto-oscuro: #1f2937;
+    --color-texto-gris: #4b5563;
+
+    /* Efectos */
+    --sombra-dorada: 0 4px 16px rgba(191, 161, 74, 0.3);
+    --sombra-dorada-intensa: 0 8px 32px rgba(191, 161, 74, 0.5);
+
+    /* Gradientes */
+    --gradiente-dorado: linear-gradient(135deg, var(--color-dorado-principal) 0%, var(--color-dorado-claro) 100%);
+
+    /* Transiciones */
+    --transicion-normal: 0.3s ease;
+
+    /* Tipografía */
+    --fuente-principal: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --fuente-titulo: 'Inter', var(--fuente-principal);
+
+    /* Z-index */
+    --z-navegacion: 100;
+}

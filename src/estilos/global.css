@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+/* Solo importar variables - Todo lo demás debe estar en componentes específicos */
+@import './variables.css';
+
+/* Reset básico */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-fondo-claro);
+  color: var(--color-texto-oscuro);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
