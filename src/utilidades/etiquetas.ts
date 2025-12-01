@@ -54,8 +54,38 @@ export const aplicarEtiqueta = (e: Etiqueta) => {
   if (!destino) return
   const yaExiste = destino.querySelector(`[data-etiqueta-id="${e.id}"]`)
   if (yaExiste) return
-  const marcador = insertarMarcador(destino, e.id)
-  marcador.insertAdjacentHTML('afterend', e.contenidoHtml)
+  insertarMarcador(destino, e.id)
+
+  const tmp = document.createElement('div')
+  tmp.innerHTML = e.contenidoHtml.trim()
+
+  const copiarAtributos = (from: Element, to: Element) => {
+    Array.from(from.attributes).forEach(attr => to.setAttribute(attr.name, attr.value))
+  }
+
+  tmp.childNodes.forEach(n => {
+    if (n.nodeType !== Node.ELEMENT_NODE) return
+    const el = n as HTMLElement
+    if (el.tagName.toLowerCase() === 'script') {
+      const script = document.createElement('script')
+      copiarAtributos(el, script)
+      const src = el.getAttribute('src')
+      if (src) {
+        // Solo permitir https
+        if (src.startsWith('http:')) return
+        script.src = src.replace(/`/g, '').trim()
+        script.async = el.hasAttribute('async') || true
+      } else {
+        script.text = (el.textContent || '')
+      }
+      script.setAttribute('data-etiqueta-id', e.id)
+      destino.appendChild(script)
+    } else {
+      const clone = el.cloneNode(true) as Element
+      ;(clone as HTMLElement).setAttribute('data-etiqueta-id', e.id)
+      destino.appendChild(clone)
+    }
+  })
 }
 
 export const aplicarEtiquetasGuardadas = () => {
