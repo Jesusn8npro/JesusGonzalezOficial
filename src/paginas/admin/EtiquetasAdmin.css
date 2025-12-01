@@ -1,0 +1,22 @@
+ .admin-etiquetas {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+ }
+ .admin-titulo { font-size: 1.6rem; font-weight: 800; color: var(--color-dorado-claro); }
+ .admin-desc { color: var(--color-texto-secundario); margin-top: .25rem; }
+ .admin-form { margin-top: 1rem; display: grid; gap: .8rem; }
+ .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+ .admin-input, .admin-select, .admin-textarea { width: 100%; border: 1px solid #d1d7db; border-radius: 10px; padding: .75rem .9rem; font-size: .95rem; background: #fff; }
+ .admin-textarea { min-height: 160px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+ .admin-actions { display: flex; gap: .6rem; justify-content: flex-end; }
+ .btn { border: none; border-radius: 10px; padding: .75rem 1rem; font-weight: 700; cursor: pointer; }
+ .btn-primario { background: var(--gradiente-dorado); color: var(--color-fondo-oscuro); }
+ .btn-secundario { background: #111; color: #eee; }
+ .lista-etiquetas { margin-top: 1.2rem; display: grid; gap: .6rem; }
+ .item { border: 1px solid #222; border-radius: 10px; padding: .75rem; display: grid; grid-template-columns: 1fr auto auto; gap: .6rem; align-items: center; background: rgba(255,255,255,.03); }
+ .item-nombre { font-weight: 700; color: #ddd; }
+ .item-meta { color: #aaa; font-size: .85rem; }
+ .item-actions { display: flex; gap: .5rem; }
+ .switch { display: inline-flex; align-items: center; gap: .5rem; color: #bbb; }
+ .switch input { width: 18px; height: 18px; }

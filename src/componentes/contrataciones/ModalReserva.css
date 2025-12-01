@@ -11,19 +11,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 0.5rem;
     animation: fadeIn 0.3s ease;
 }
 
 .modal-reserva-contenido {
     background: #ffffff;
-    border-radius: 16px;
+    border-radius: 14px;
     padding: 0;
-    max-width: 420px;
+    max-width: 400px;
     width: 100%;
     position: relative;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
-    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.16);
+    animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
 }
 
@@ -57,7 +57,7 @@
 
 .modal-reserva-header {
     background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
-    padding: 1.5rem;
+    padding: 1.1rem;
     text-align: center;
     position: relative;
 }
@@ -82,20 +82,20 @@
 }
 
 .modal-reserva-titulo {
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: #ffffff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
 }
 
 .modal-reserva-atencion {
     background: #ffffff;
     border-radius: 12px;
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    gap: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .modal-reserva-avatar {
@@ -154,7 +154,7 @@
    ======================================== */
 
 .modal-reserva-contacto {
-    padding: 1.5rem 1.5rem 0.5rem;
+    padding: 1rem 1rem 0.25rem;
     background: #f0f2f5;
 }
 
@@ -171,11 +171,11 @@
    ======================================== */
 
 .modal-reserva-formulario {
-    padding: 1.5rem;
+    padding: 1.1rem;
     background: #f0f2f5;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.9rem;
 }
 
 .modal-reserva-row {
@@ -194,7 +194,7 @@
     background: #ffffff;
     border: 1px solid #d1d7db;
     border-radius: 8px;
-    padding: 0.9rem 1rem;
+    padding: 0.75rem 0.9rem;
     color: #111b21;
     font-size: 0.95rem;
     transition: all 0.2s ease;
@@ -218,7 +218,7 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667781' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
-    padding-right: 2.5rem;
+    padding-right: 3rem;
 }
 
 .modal-reserva-select option {
@@ -240,7 +240,7 @@
     background: #ffffff;
     border: 1px solid #d1d7db;
     border-radius: 8px;
-    padding: 0.9rem 0.8rem;
+    padding: 0.75rem 0.7rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -261,7 +261,7 @@
     background: #ffffff;
     border: 1px solid #d1d7db;
     border-radius: 8px;
-    padding: 0.9rem 1rem;
+    padding: 0.75rem 0.9rem;
     color: #111b21;
     font-size: 0.95rem;
     transition: all 0.2s ease;
@@ -287,9 +287,9 @@
     color: #ffffff;
     border: none;
     border-radius: 8px;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
@@ -297,7 +297,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
 }
 
 .modal-reserva-boton:hover:not(:disabled) {
@@ -522,4 +522,22 @@
     .modal-reserva-exito {
         padding: 2rem 1.2rem;
     }
+}
+.modal-reserva-campo-fecha { position: relative; }
+.modal-reserva-fecha-label {
+    position: absolute;
+    right: 2.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #8696a0;
+    pointer-events: none;
+}
+
+
+.modal-reserva-ayuda {
+    margin-top: 0.25rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #667781;
 }

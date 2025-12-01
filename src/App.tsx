@@ -11,6 +11,7 @@ import Contacto from './paginas/contacto/Contacto';
 import Videos from './paginas/videos/Videos';
 import LinkEnBio from './paginas/link-in-bio/LinkEnBio';
 import Contrataciones from './paginas/contrataciones/Contrataciones';
+import EtiquetasAdmin from './paginas/admin/EtiquetasAdmin';
 
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
 
                         {/* Contrataciones (Landing principal) */}
                         <Route path="/contrataciones" element={<Contrataciones onAbrirModal={abrirModal} />} />
+
+                        {/* Admin Etiquetas */}
+                        <Route path="/admin/etiquetas" element={<EtiquetasAdmin />} />
 
                         {/* Redirect de ruta antigua */}
                         <Route path="/jesus-gonzalez" element={<Navigate to="/contrataciones" replace />} />
