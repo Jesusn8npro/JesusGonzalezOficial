@@ -95,7 +95,7 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
 
         try {
             const numeroCompleto = `+57${numeroWhatsapp}`;
-            const respuesta = await fetch('https://velostrategix-n8n.lnrubg.easypanel.host/webhook-test/whatsapp', {
+            const respuesta = await fetch('https://velostrategix-n8n.lnrubg.easypanel.host/webhook/whatsapp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -111,13 +111,16 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
             });
 
             // Construir mensaje organizado para WhatsApp
-            const mensajeWhatsApp = `Solicitud de Reserva\n\n` +
-                `Nombre: ${nombreCompleto}\n` +
-                `WhatsApp: ${numeroCompleto}\n` +
-                `Tipo de evento: ${tipoEvento}\n` +
-                `Fecha del evento: ${fechaEvento}\n` +
-                `Ciudad: ${ciudadEvento}\n\n` +
-                `¿Podemos confirmar disponibilidad y enviar cotización?`;
+            const formatearFechaHumana = (iso: string) => {
+                const [y, m, d] = iso.split('-').map(Number);
+                const fecha = new Date(y, (m || 1) - 1, d || 1);
+                return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+            };
+            const fechaHumana = formatearFechaHumana(fechaEvento);
+            const mensajeWhatsApp = `Hola, mi nombre es ${nombreCompleto}. ` +
+                `Estoy interesado en un servicio musical para ${tipoEvento} en ${ciudadEvento} ` +
+                `el ${fechaHumana}. ` +
+                `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
 
             // Abrir WhatsApp con mensaje prellenado al número principal
             window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
@@ -141,14 +144,16 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
         } catch (err) {
             setError('Error de conexión. Por favor verifica tu internet e intenta de nuevo.');
             // Fallback: abrir WhatsApp aunque falle el webhook
-            const numeroCompleto = `+57${numeroWhatsapp}`;
-            const mensajeWhatsApp = `Solicitud de Reserva\n\n` +
-                `Nombre: ${nombreCompleto}\n` +
-                `WhatsApp: ${numeroCompleto}\n` +
-                `Tipo de evento: ${tipoEvento}\n` +
-                `Fecha del evento: ${fechaEvento}\n` +
-                `Ciudad: ${ciudadEvento}\n\n` +
-                `¿Podemos confirmar disponibilidad y enviar cotización?`;
+            const formatearFechaHumana = (iso: string) => {
+                const [y, m, d] = iso.split('-').map(Number);
+                const fecha = new Date(y, (m || 1) - 1, d || 1);
+                return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+            };
+            const fechaHumana = formatearFechaHumana(fechaEvento);
+            const mensajeWhatsApp = `Hola, mi nombre es ${nombreCompleto}. ` +
+                `Estoy interesado en un servicio musical para ${tipoEvento} en ${ciudadEvento} ` +
+                `el ${fechaHumana}. ` +
+                `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
             window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
         } finally {
             setEnviando(false);
@@ -223,37 +228,39 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
                                 />
                             </div>
 
-                            <div className="modal-reserva-campo">
-                                <select
-                                    id="tipoEvento"
-                                    className="modal-reserva-select"
-                                    value={tipoEvento}
-                                    onChange={(e) => setTipoEvento(e.target.value)}
-                                    required
-                                >
-                                    <option value="">Tipo de Evento *</option>
-                                    {tiposDeEvento.map((tipo) => (
-                                        <option key={tipo} value={tipo}>
-                                            {tipo}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
+                            <div className="modal-reserva-row">
+                                <div className="modal-reserva-campo">
+                                    <select
+                                        id="tipoEvento"
+                                        className="modal-reserva-select"
+                                        value={tipoEvento}
+                                        onChange={(e) => setTipoEvento(e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Tipo de Evento *</option>
+                                        {tiposDeEvento.map((tipo) => (
+                                            <option key={tipo} value={tipo}>
+                                                {tipo}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                            <div className="modal-reserva-campo">
-                                <select
-                                    id="ciudadEvento"
-                                    className="modal-reserva-select"
-                                    value={ciudadEvento}
-                                    onChange={(e) => setCiudadEvento(e.target.value)}
-                                    required
-                                >
-                                    {ciudadesCercanas.map((ciudad) => (
-                                        <option key={ciudad} value={ciudad}>
-                                            {ciudad}
-                                        </option>
-                                    ))}
-                                </select>
+                                <div className="modal-reserva-campo">
+                                    <select
+                                        id="ciudadEvento"
+                                        className="modal-reserva-select"
+                                        value={ciudadEvento}
+                                        onChange={(e) => setCiudadEvento(e.target.value)}
+                                        required
+                                    >
+                                        {ciudadesCercanas.map((ciudad) => (
+                                            <option key={ciudad} value={ciudad}>
+                                                {ciudad}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
 
                             <div className="modal-reserva-campo-whatsapp">

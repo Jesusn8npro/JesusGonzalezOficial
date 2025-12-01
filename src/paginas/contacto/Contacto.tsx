@@ -12,10 +12,49 @@ const Contacto: React.FC = () => {
         mensaje: ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const manejarCambioWhatsapp = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valor = e.target.value.replace(/\D/g, '');
+        if (valor.length <= 10) {
+            setFormData({ ...formData, telefono: valor });
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const mensaje = `Hola! Me llamo ${formData.nombre}. Quiero contratar para ${formData.tipoEvento} en ${formData.ciudad} el ${formData.fecha}. ${formData.mensaje}`;
-        window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
+
+        const numeroSanitizado = formData.telefono.replace(/\D/g, '');
+        const numeroCompleto = `+57${numeroSanitizado}`;
+
+        const fechaHumana = (() => {
+            const fecha = new Date(formData.fecha);
+            return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+        })();
+
+        const mensajeWhatsApp = `Hola, mi nombre es ${formData.nombre}. ` +
+            `Estoy interesado en un servicio musical para ${formData.tipoEvento} en ${formData.ciudad} ` +
+            `el ${fechaHumana}. ` +
+            (formData.mensaje ? `Detalles: ${formData.mensaje}. ` : '') +
+            `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
+
+        try {
+            await fetch('https://velostrategix-n8n.lnrubg.easypanel.host/webhook/whatsapp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombreCompleto: formData.nombre,
+                    numeroWhatsapp: numeroCompleto,
+                    tipoEvento: formData.tipoEvento,
+                    fechaEvento: formData.fecha,
+                    ciudadEvento: formData.ciudad,
+                    mensaje: formData.mensaje,
+                    fechaRegistro: new Date().toISOString(),
+                }),
+            });
+        } catch (err) {
+            // En caso de fallo en webhook, seguimos con WhatsApp
+        }
+
+        window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
     };
 
     return (
@@ -60,8 +99,9 @@ const Contacto: React.FC = () => {
                                 id="telefono"
                                 required
                                 value={formData.telefono}
-                                onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                                placeholder="+57 300 123 4567"
+                                onChange={manejarCambioWhatsapp}
+                                maxLength={10}
+                                placeholder="3001234567"
                             />
                         </div>
 
