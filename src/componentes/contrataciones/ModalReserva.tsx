@@ -122,6 +122,8 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
                 `el ${fechaHumana}. ` +
                 `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
 
+            // Conversion Google Ads: formulario WhatsApp completado
+            (window as any).gtag_report_conversion?.();
             // Abrir WhatsApp con mensaje prellenado al número principal
             window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
 
@@ -143,7 +145,8 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
             }
         } catch (err) {
             setError('Error de conexión. Por favor verifica tu internet e intenta de nuevo.');
-            // Fallback: abrir WhatsApp aunque falle el webhook
+            // Conversion Google Ads (fallback) y abrir WhatsApp aunque falle el webhook
+            (window as any).gtag_report_conversion?.();
             const formatearFechaHumana = (iso: string) => {
                 const [y, m, d] = iso.split('-').map(Number);
                 const fecha = new Date(y, (m || 1) - 1, d || 1);

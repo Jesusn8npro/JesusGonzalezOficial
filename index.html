@@ -15,6 +15,22 @@
 
         gtag('config', 'G-HX4CNELDGR');
       </script>
+      <script>
+        function gtag_report_conversion(url) {
+          var callback = function () {
+            if (typeof(url) != 'undefined') {
+              window.location = url;
+            }
+          };
+          gtag('event', 'conversion', {
+            'send_to': 'AW-17235584981/BRKXCPmspcobENXPyJpA',
+            'value': 30000.0,
+            'currency': 'COP',
+            'event_callback': callback
+          });
+          return false;
+        }
+      </script>
   </head>
   <body>
     <div id="root"></div>
