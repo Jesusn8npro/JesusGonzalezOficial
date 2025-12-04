@@ -33,7 +33,7 @@ const Contrataciones: React.FC<ContratacionesProps> = ({ onAbrirModal }) => {
     return (
         <>
             <BannerUrgencia onAbrirModal={onAbrirModal} />
-            <Hero onAbrirModal={onAbrirModal} />
+            <Hero />
             <Servicios onAbrirModal={onAbrirModal} />
             <Beneficios />
             <ProcesoContratacion />

@@ -9,7 +9,6 @@ interface HeroProps {
     descripcion?: string;
     beneficios?: string[];
     urlImagen?: string;
-    onAbrirModal?: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -23,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({
         "🔊 Sonido y montaje impecable, repertorio curado"
     ],
     urlImagen = "/Imagenes/Jesus Fondo Blanco.png",
-    onAbrirModal
+    
 }) => {
     const abrirWhatsApp = () => {
         trackConversion('Hero_WhatsApp_Click', 'WhatsApp');
