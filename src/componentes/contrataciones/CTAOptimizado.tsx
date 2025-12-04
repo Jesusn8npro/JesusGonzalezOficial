@@ -48,9 +48,9 @@ const CTAOptimizado: React.FC<CTAOptimizadoProps> = ({ onAbrirModal }) => {
                     </div>
 
                     <div className="info-adicional">
-                        <p className="texto-info">📞 <strong>Respuesta en menos de 5 minutos</strong></p>
-                        <p className="texto-info">💳 <strong>Reserva con solo 50% de anticipo</strong></p>
-                        <p className="texto-info">🎯 <strong>Garantía de satisfacción 100%</strong></p>
+                        <p className="texto-info">📞 <strong>Respuesta en 5–15 minutos</strong></p>
+                        <p className="texto-info">💳 <strong>Reserva con 50% de anticipo</strong></p>
+                        <p className="texto-info">🎯 <strong>Cumplimiento y dirección artística profesional</strong></p>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ interface BannerUrgenciaProps {
 }
 
 const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
-    const [tiempoRestante, setTiempoRestante] = useState(60 * 60 * 2); // 2 horas
+    const [tiempoRestante, setTiempoRestante] = useState(60 * 60 * 1); // 1 hora
 
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -39,11 +39,11 @@ const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
                 <div className="banner-urgencia__info">
                     <span className="banner-urgencia__icon" aria-label="Agenda casi llena">⏰</span>
                     <span className="banner-urgencia__mensaje">
-                        <b>¡Agenda casi llena!</b> Solo quedan <span style={{ color: '#bfa14a', fontWeight: 700 }}>
-                            {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
+                        <b>¡Cupos limitados!</b> Agenda casi llena • Tiempo restante <span style={{ color: '#bfa14a', fontWeight: 700 }}>
+                        {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
                         </span>
                     </span>
-                    <span className="banner-urgencia__sub">No te quedes sin tu show, ¡mereces lo mejor en tu evento!</span>
+                    <span className="banner-urgencia__sub">Aparta tu fecha ahora. Atención inmediata por WhatsApp.</span>
                 </div>
                 <button onClick={manejarClick} className="banner-urgencia__boton animacion-pulso">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ marginRight: '0.7rem' }}>

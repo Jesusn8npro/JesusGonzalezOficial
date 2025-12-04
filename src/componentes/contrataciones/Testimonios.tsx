@@ -70,7 +70,7 @@ const Testimonios: React.FC = () => {
             <div className="contenedor-testimonios">
                 <div className="header-testimonios">
                     <h2 className="titulo-testimonios">Lo que dicen nuestros clientes</h2>
-                    <p className="subtitulo-testimonios">Más de 200 eventos exitosos nos respaldan</p>
+                    <p className="subtitulo-testimonios">Experiencias reales en bodas, corporativos y celebraciones</p>
                 </div>
 
                 <div className="testimonio-principal">
@@ -134,20 +134,7 @@ const Testimonios: React.FC = () => {
                     </button>
                 </div>
 
-                <div className="estadisticas-testimonios">
-                    <div className="estadistica">
-                        <span className="numero-estadistica">200+</span>
-                        <span className="texto-estadistica">Eventos realizados</span>
-                    </div>
-                    <div className="estadistica">
-                        <span className="numero-estadistica">5.0</span>
-                        <span className="texto-estadistica">Calificación promedio</span>
-                    </div>
-                    <div className="estadistica">
-                        <span className="numero-estadistica">98%</span>
-                        <span className="texto-estadistica">Clientes satisfechos</span>
-                    </div>
-                </div>
+                <div className="estadisticas-testimonios"></div>
             </div>
         </section>
     );

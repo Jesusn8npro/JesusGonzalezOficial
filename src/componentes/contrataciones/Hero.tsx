@@ -1,5 +1,6 @@
 import React from 'react';
 import { trackConversion } from '../../utilidades/tracking';
+import { config } from '../../utilidades/configuracion';
 import './Hero.css';
 
 interface HeroProps {
@@ -12,23 +13,24 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({
-    eventos = "+200 eventos realizados",
-    titulo = "Jesús González | Maestro del Acordeón Vallenato",
-    descripcion = "Acordeonista profesional con +15 años de experiencia internacional. Ha compartido escenario con los más grandes del vallenato: Poncho Zuleta, Jorge Celedón, Felipe Peláez y Orlando Acosta. Shows de primer nivel para eventos exclusivos.",
+    eventos = "Experiencia comprobada en innumerables eventos",
+    titulo = "Shows Vallenatos Premium • Jesús González",
+    descripcion = "Acordeonista profesional con más de 15 años. Ha tocado con Poncho Zuleta, Jean Carlos Centeno, Elder Dayán Díaz y Rafael Santos, y ha grabado con Felipe Peláez. Shows de lujo para bodas, corporativos y celebraciones exclusivas.",
     beneficios = [
-        "🪗 Jesús González - Maestro del acordeón con +15 años",
-        "🌍 Giras mundiales con artistas de renombre",
-        "🏆 Grabaciones con Felipe Peláez y grandes estrellas",
-        "💎 Shows profesionales con puesta en escena VIP"
+        "💎 Show de lujo para bodas, corporativos y celebraciones",
+        "🪗 Dirección artística liderada por Jesús González",
+        "👥 Formato profesional (6–9 músicos en acción)",
+        "🔊 Sonido y montaje impecable, repertorio curado"
     ],
     urlImagen = "/Imagenes/Jesus Fondo Blanco.png",
     onAbrirModal
 }) => {
-    const abrirModalConTracking = () => {
-        trackConversion('Hero_Button_Click', 'Modal_Reserva');
-        if (onAbrirModal) {
-            onAbrirModal();
-        }
+    const abrirWhatsApp = () => {
+        trackConversion('Hero_WhatsApp_Click', 'WhatsApp');
+        const numero = config.whatsappNumber;
+        const texto = encodeURIComponent('Hola, quiero cotizar un show vallenato premium para mi evento. Fecha, ciudad y tipo de evento:');
+        (window as any).gtag_report_conversion?.();
+        window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
     };
 
     return (
@@ -44,25 +46,25 @@ const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 <div className="cta-metricas">
-                    <button className="btn-reserva-hero" onClick={abrirModalConTracking}>
+                    <button className="btn-reserva-hero" onClick={abrirWhatsApp}>
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                             <rect width="24" height="24" rx="6" fill="#25d366" />
                             <path d="M7 13l3 3 7-7" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        ¡Reserva tu show ahora!
+                        Cotizar por WhatsApp ahora
                     </button>
                     <div className="metricas-hero">
                         <div className="metrica">
-                            <span className="metrica-num">100+</span>
-                            <span className="metrica-label">Shows Realizados</span>
+                            <span className="metrica-num">PREMIUM</span>
+                            <span className="metrica-label">Formato 6–9 músicos</span>
                         </div>
                         <div className="metrica">
-                            <span className="metrica-num">#1</span>
-                            <span className="metrica-label">Agrupación 2025</span>
+                            <span className="metrica-num">ARTISTAS</span>
+                            <span className="metrica-label">Poncho • Felipe • Jean Carlos</span>
                         </div>
                         <div className="metrica">
-                            <span className="metrica-num">100%</span>
-                            <span className="metrica-label">Éxito Garantizado</span>
+                            <span className="metrica-num">INMEDIATA</span>
+                            <span className="metrica-label">Respuesta por WhatsApp</span>
                         </div>
                     </div>
                 </div>

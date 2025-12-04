@@ -15,12 +15,12 @@ const imagenesSlider = [
 ];
 
 const beneficios: Beneficio[] = [
-    { icon: '🏆', titulo: '+10 años de experiencia', desc: 'Trayectoria sólida y profesional en eventos de todo tipo.' },
-    { icon: '🎤', titulo: 'Shows con grandes estrellas', desc: 'Hemos compartido escenario con los mejores del género.' },
-    { icon: '💯', titulo: '100% clientes satisfechos', desc: 'Valoraciones perfectas y recomendaciones reales.' },
-    { icon: '🎵', titulo: 'Repertorio personalizado', desc: 'Nos adaptamos a cada evento y público.' },
-    { icon: '💎', titulo: 'Calidad y lujo', desc: 'Sonido profesional y atención VIP en cada show.' },
-    { icon: '🔥', titulo: 'Versatilidad y energía', desc: 'Shows dinámicos para cualquier tipo de evento.' }
+    { icon: '🏆', titulo: '+15 años de experiencia', desc: 'Dirección artística liderada por Jesús González.' },
+    { icon: '🎤', titulo: 'Trayectoria junto a grandes artistas', desc: 'Presentaciones con Poncho Zuleta, Jean Carlos Centeno, Elder Dayán Díaz y Rafael Santos; grabación con Felipe Peláez.' },
+    { icon: '🎛️', titulo: 'Sonido profesional', desc: 'Montaje limpio, equilibrio musical y estética cuidada.' },
+    { icon: '🎵', titulo: 'Repertorio personalizado', desc: 'Selección curada para bodas, corporativos y gala.' },
+    { icon: '💎', titulo: 'Formato de músicos de élite', desc: 'Presentación impecable y atención premium en cada show.' },
+    { icon: '🔥', titulo: 'Energía y elegancia', desc: 'Interacción medida y momentos memorables.' }
 ];
 
 const Beneficios: React.FC = () => {
@@ -37,10 +37,10 @@ const Beneficios: React.FC = () => {
     return (
         <section className="beneficios-section" id="beneficios">
             <div className="beneficios-header">
-                <h2 className="beneficios-title">¿Por qué elegirnos para tu evento?</h2>
+                <h2 className="beneficios-title">¿Por qué elegir a Jesús González?</h2>
                 <div className="beneficios-desc">
-                    Más que música: experiencia, profesionalismo y un historial de compartir escenario con los más grandes.
-                    Descubre por qué somos la opción #1 para eventos inolvidables.
+                    Más que música: experiencia, profesionalismo y un historial junto a artistas reconocidos.
+                    Descubre por qué nuestros shows son la elección para eventos de alta categoría.
                 </div>
             </div>
             <div className="beneficios-grid">
