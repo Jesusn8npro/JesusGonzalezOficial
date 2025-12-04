@@ -6,12 +6,13 @@ interface BannerUrgenciaProps {
 }
 
 const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
-    const [tiempoRestante, setTiempoRestante] = useState(60 * 45); // 45 minutos
+    const [tiempoRestante, setTiempoRestante] = useState(60 * 60 * 1); // 1 hora
 
     useEffect(() => {
         const intervalo = setInterval(() => {
             setTiempoRestante((prev) => (prev > 0 ? prev - 1 : 0));
         }, 1000);
+
         return () => clearInterval(intervalo);
     }, []);
 
@@ -26,26 +27,23 @@ const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
 
     const { h, m, s } = convertirSegundos(tiempoRestante);
 
-        const manejarClick = () => {
-            if (onAbrirModal) {
-                onAbrirModal();
-            }
-        };
+    const manejarClick = () => {
+        if (onAbrirModal) {
+            onAbrirModal();
+        }
+    };
 
     return (
         <section className="banner-urgencia">
             <div className="banner-urgencia__contenido">
                 <div className="banner-urgencia__info">
-                    <span className="banner-urgencia__icon" aria-label="Cupos limitados">⏳</span>
+                    <span className="banner-urgencia__icon" aria-label="Agenda casi llena">⏰</span>
                     <span className="banner-urgencia__mensaje">
-                        <b>Cupos limitados en diciembre</b>
-                    </span>
-                    <span className="banner-urgencia__sub">
-                        Reservas priorizadas para quien confirma con <b>50% de anticipo</b> • Ventana de atención en vivo cierra en
-                        <span style={{ color: '#bfa14a', fontWeight: 700, marginLeft: '6px' }}>
-                            {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
+                        <b>¡Cupos limitados!</b> Agenda casi llena • Tiempo restante <span style={{ color: '#bfa14a', fontWeight: 700 }}>
+                        {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
                         </span>
                     </span>
+                    <span className="banner-urgencia__sub">Aparta tu fecha ahora. Atención inmediata por WhatsApp.</span>
                 </div>
                 <button onClick={manejarClick} className="banner-urgencia__boton animacion-pulso">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ marginRight: '0.7rem' }}>

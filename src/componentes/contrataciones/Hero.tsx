@@ -21,8 +21,7 @@ const Hero: React.FC<HeroProps> = ({
         "👥 Formato profesional (6–9 músicos en acción)",
         "🔊 Sonido y montaje impecable, repertorio curado"
     ],
-    urlImagen = "/Imagenes/Jesus Fondo Blanco.png",
-    
+    urlImagen = "/Imagenes/Jesus Fondo Blanco.png"
 }) => {
     const abrirWhatsApp = () => {
         trackConversion('Hero_WhatsApp_Click', 'WhatsApp');
