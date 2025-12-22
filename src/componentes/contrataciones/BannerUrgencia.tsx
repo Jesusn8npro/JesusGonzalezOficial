@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
 import './BannerUrgencia.css';
 
-interface BannerUrgenciaProps {
-    onAbrirModal?: () => void;
-}
-
-const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
+const BannerUrgencia: React.FC = () => {
     const [tiempoRestante, setTiempoRestante] = useState(60 * 60 * 1); // 1 hora
 
     useEffect(() => {
@@ -28,9 +25,7 @@ const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
     const { h, m, s } = convertirSegundos(tiempoRestante);
 
     const manejarClick = () => {
-        if (onAbrirModal) {
-            onAbrirModal();
-        }
+        abrirWhatsApp(mensajesWhatsApp.urgencia, 'Banner_Urgencia_Click');
     };
 
     return (
@@ -40,7 +35,7 @@ const BannerUrgencia: React.FC<BannerUrgenciaProps> = ({ onAbrirModal }) => {
                     <span className="banner-urgencia__icon" aria-label="Agenda casi llena">⏰</span>
                     <span className="banner-urgencia__mensaje">
                         <b>¡Cupos limitados!</b> Agenda casi llena • Tiempo restante <span style={{ color: '#bfa14a', fontWeight: 700 }}>
-                        {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
+                            {formatearNumero(h)}:{formatearNumero(m)}:{formatearNumero(s)}
                         </span>
                     </span>
                     <span className="banner-urgencia__sub">Aparta tu fecha ahora. Atención inmediata por WhatsApp.</span>

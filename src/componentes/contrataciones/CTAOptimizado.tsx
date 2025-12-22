@@ -1,17 +1,10 @@
 import React from 'react';
-import { trackConversion } from '../../utilidades/tracking';
+import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
 import './CTAOptimizado.css';
 
-interface CTAOptimizadoProps {
-    onAbrirModal?: () => void;
-}
-
-const CTAOptimizado: React.FC<CTAOptimizadoProps> = ({ onAbrirModal }) => {
-    const abrirModalConTracking = () => {
-        trackConversion('CTA_Modal_Click', 'Modal_Reserva');
-        if (onAbrirModal) {
-            onAbrirModal();
-        }
+const CTAOptimizado: React.FC = () => {
+    const handleWhatsAppClick = () => {
+        abrirWhatsApp(mensajesWhatsApp.cta, 'CTA_WhatsApp_Click');
     };
 
     return (
@@ -39,7 +32,7 @@ const CTAOptimizado: React.FC<CTAOptimizadoProps> = ({ onAbrirModal }) => {
                     </div>
 
                     <div className="acciones-cta">
-                        <button className="btn-principal" onClick={abrirModalConTracking}>
+                        <button className="btn-principal" onClick={handleWhatsAppClick}>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>

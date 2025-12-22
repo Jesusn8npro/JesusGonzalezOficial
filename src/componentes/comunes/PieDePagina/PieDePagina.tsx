@@ -8,7 +8,13 @@ const PieDePagina: React.FC = () => {
         <footer className="pie-de-pagina">
             <div className="contenedor-footer">
                 <div className="seccion-footer">
-                    <h3 className="titulo-footer">Jesús González</h3>
+                    <div className="marca-footer">
+                        <img className="logo-footer" src="/Logo Jesus Gonzalez.png" alt="Logo Jesús González" />
+                        <div className="marca-textos">
+                            <h3 className="titulo-footer">Jesús González</h3>
+                            <div className="subtitulo-marca">Maestro del Acordeón Vallenato</div>
+                        </div>
+                    </div>
                     <p className="descripcion-footer">
                         Maestro del Acordeón Vallenato con más de 15 años de experiencia.
                         Llevando la música vallenata a los mejores escenarios del mundo.

@@ -1,6 +1,5 @@
 import React from 'react';
-import { trackConversion } from '../../utilidades/tracking';
-import { config } from '../../utilidades/configuracion';
+import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
 import './Hero.css';
 
 interface HeroProps {
@@ -23,12 +22,8 @@ const Hero: React.FC<HeroProps> = ({
     ],
     urlImagen = "/Imagenes/Jesus Fondo Blanco.png"
 }) => {
-    const abrirWhatsApp = () => {
-        trackConversion('Hero_WhatsApp_Click', 'WhatsApp');
-        const numero = config.whatsappNumber;
-        const texto = encodeURIComponent('Hola, quiero cotizar un show vallenato premium para mi evento. Fecha, ciudad y tipo de evento:');
-        (window as any).gtag_report_conversion?.();
-        window.open(`https://wa.me/${numero}?text=${texto}`, '_blank');
+    const handleWhatsAppClick = () => {
+        abrirWhatsApp(mensajesWhatsApp.hero, 'Hero_Button_Click');
     };
 
     return (
@@ -44,7 +39,7 @@ const Hero: React.FC<HeroProps> = ({
                 </div>
 
                 <div className="cta-metricas">
-                    <button className="btn-reserva-hero" onClick={abrirWhatsApp}>
+                    <button className="btn-reserva-hero" onClick={handleWhatsAppClick}>
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                             <rect width="24" height="24" rx="6" fill="#25d366" />
                             <path d="M7 13l3 3 7-7" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -105,3 +100,4 @@ const Hero: React.FC<HeroProps> = ({
 };
 
 export default Hero;
+

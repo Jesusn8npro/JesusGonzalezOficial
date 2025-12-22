@@ -7,39 +7,37 @@ import ProcesoContratacion from '../../componentes/contrataciones/ProcesoContrat
 import GaleriaVideos from '../../componentes/contrataciones/GaleriaVideos';
 import Testimonios from '../../componentes/contrataciones/Testimonios';
 import CTAOptimizado from '../../componentes/contrataciones/CTAOptimizado';
-// Widget y modal ahora se muestran globalmente desde App
 
-interface ContratacionesProps {
-    onAbrirModal?: () => void;
-}
+const Contrataciones: React.FC = () => {
 
-const Contrataciones: React.FC<ContratacionesProps> = ({ onAbrirModal }) => {
-
-    // Ocultar barra de navegación en esta página
+    // Ocultar barra de navegación y pie de página en esta página
     useEffect(() => {
         const navbar = document.querySelector('.barra-navegacion') as HTMLElement;
+        const footer = document.querySelector('.pie-de-pagina') as HTMLElement;
         if (navbar) {
             navbar.style.display = 'none';
+        }
+        if (footer) {
+            footer.style.display = 'none';
         }
 
         // Restaurar al salir de la página
         return () => {
-            if (navbar) {
-                navbar.style.display = '';
-            }
+            if (navbar) navbar.style.display = '';
+            if (footer) footer.style.display = '';
         };
     }, []);
 
     return (
         <>
-            <BannerUrgencia onAbrirModal={onAbrirModal} />
+            <BannerUrgencia />
             <Hero />
-            <Servicios onAbrirModal={onAbrirModal} />
+            <Servicios />
             <Beneficios />
             <ProcesoContratacion />
             <GaleriaVideos />
             <Testimonios />
-            <CTAOptimizado onAbrirModal={onAbrirModal} />
+            <CTAOptimizado />
         </>
     );
 };

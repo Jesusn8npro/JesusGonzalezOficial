@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
 import './ProcesoContratacion.css';
-import { config } from '../../utilidades/configuracion';
 
 interface Paso {
     titulo: string;
@@ -43,10 +43,6 @@ const pasos: Paso[] = [
 
 const ProcesoContratacion: React.FC = () => {
     const [pasoActivo, setPasoActivo] = useState(0);
-
-    const numeroWhatsapp = config.whatsappNumber;
-    const mensajeWhatsapp = encodeURIComponent('¡Hola! Me interesa reservar una fecha para un evento. ¿Me pueden ayudar?');
-    const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${mensajeWhatsapp}`;
 
     const siguientePaso = () => {
         if (pasoActivo < pasos.length - 1) {
@@ -93,7 +89,7 @@ const ProcesoContratacion: React.FC = () => {
                                             {pasoActivo < pasos.length - 1 ? (
                                                 <button className="bg-gray-800 text-white font-bold px-4 py-2 text-xs rounded-full shadow hover:bg-gray-900 transition-all animate-pop-in min-w-[100px]" onClick={siguientePaso}>Siguiente →</button>
                                             ) : (
-                                                <a href={urlWhatsapp} target="_blank" rel="noopener noreferrer" className="bg-yellow-500 text-black font-bold px-4 py-2 text-xs rounded-full shadow hover:bg-yellow-400 transition-all animate-pop-in min-w-[120px] text-center">¡Reservar por WhatsApp!</a>
+                                                <button onClick={() => abrirWhatsApp(mensajesWhatsApp.proceso, 'Proceso_WhatsApp_Click')} className="bg-yellow-500 text-black font-bold px-4 py-2 text-xs rounded-full shadow hover:bg-yellow-400 transition-all animate-pop-in min-w-[120px] text-center">¡Reservar por WhatsApp!</button>
                                             )}
                                         </div>
                                     </div>

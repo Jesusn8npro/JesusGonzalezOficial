@@ -111,21 +111,17 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
             });
 
             // Construir mensaje organizado para WhatsApp
-            const formatearFechaHumana = (iso: string) => {
-                const [y, m, d] = iso.split('-').map(Number);
-                const fecha = new Date(y, (m || 1) - 1, d || 1);
-                return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
-            };
-            const fechaHumana = formatearFechaHumana(fechaEvento);
-            const mensajeWhatsApp = `Hola, mi nombre es ${nombreCompleto}. ` +
-                `Estoy interesado en un servicio musical para ${tipoEvento} en ${ciudadEvento} ` +
-                `el ${fechaHumana}. ` +
-                `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
+            // const formatearFechaHumana = (iso: string) => {
+            //     const [y, m, d] = iso.split('-').map(Number);
+            //     const fecha = new Date(y, (m || 1) - 1, d || 1);
+            //     return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
+            // };
+            // const fechaHumana = formatearFechaHumana(fechaEvento);
 
-            // Conversion Google Ads: formulario WhatsApp completado
+            // Conversion Google Ads y WhatsApp con mensaje estándar
             (window as any).gtag_report_conversion?.();
-            // Abrir WhatsApp con mensaje prellenado al número principal
-            window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
+            const mensajeEstandar = '¡Hola! Me interesa reservar una fecha para un evento. ¿Me pueden ayudar?';
+            window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeEstandar)}`, '_blank');
 
             if (respuesta.ok) {
                 setEnviado(true);
@@ -145,19 +141,10 @@ const ModalReserva: React.FC<ModalReservaProps> = ({ abierto, alCerrar }) => {
             }
         } catch (err) {
             setError('Error de conexión. Por favor verifica tu internet e intenta de nuevo.');
-            // Conversion Google Ads (fallback) y abrir WhatsApp aunque falle el webhook
+            // Conversion Google Ads (fallback) y abrir WhatsApp con mensaje estándar
             (window as any).gtag_report_conversion?.();
-            const formatearFechaHumana = (iso: string) => {
-                const [y, m, d] = iso.split('-').map(Number);
-                const fecha = new Date(y, (m || 1) - 1, d || 1);
-                return fecha.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
-            };
-            const fechaHumana = formatearFechaHumana(fechaEvento);
-            const mensajeWhatsApp = `Hola, mi nombre es ${nombreCompleto}. ` +
-                `Estoy interesado en un servicio musical para ${tipoEvento} en ${ciudadEvento} ` +
-                `el ${fechaHumana}. ` +
-                `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
-            window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
+            const mensajeEstandar2 = '¡Hola! Me interesa reservar una fecha para un evento. ¿Me pueden ayudar?';
+            window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeEstandar2)}`, '_blank');
         } finally {
             setEnviando(false);
         }

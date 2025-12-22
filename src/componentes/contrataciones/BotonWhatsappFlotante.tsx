@@ -1,23 +1,18 @@
 import React from 'react';
+import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
 import './BotonWhatsappFlotante.css';
 
-interface BotonWhatsappFlotanteProps {
-    onAbrirModal?: () => void;
-}
-
-const BotonWhatsappFlotante: React.FC<BotonWhatsappFlotanteProps> = ({ onAbrirModal }) => {
-    const abrirModal = () => {
-        if (onAbrirModal) {
-            onAbrirModal();
-        }
+const BotonWhatsappFlotante: React.FC = () => {
+    const handleClick = () => {
+        abrirWhatsApp(mensajesWhatsApp.general, 'Floating_WhatsApp_Button');
     };
 
     return (
         <div
             className="whatsapp-flotante"
-            onClick={abrirModal}
+            onClick={handleClick}
             tabIndex={0}
-            aria-label="Abrir formulario de reserva"
+            aria-label="Contactar por WhatsApp"
         >
             <svg className="whatsapp-icon" viewBox="0 0 32 32" fill="none">
                 <circle cx="16" cy="16" r="16" fill="#25d366" />
