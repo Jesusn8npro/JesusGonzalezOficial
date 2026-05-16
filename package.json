@@ -10,7 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "start": "next start -H 0.0.0.0"
+    "start": "next start -H 0.0.0.0",
+    "preview": "next start -H 0.0.0.0"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",
