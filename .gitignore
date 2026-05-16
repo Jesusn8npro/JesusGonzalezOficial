@@ -33,3 +33,9 @@ _agents/
 
 # Cache incremental de TypeScript
 *.tsbuildinfo
+
+# Variables de entorno con datos reales (NUNCA subir).
+# Solo .env.example (plantilla sin secretos) se versiona.
+.env
+.env.*
+!.env.example

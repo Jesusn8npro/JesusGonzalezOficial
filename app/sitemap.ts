@@ -44,6 +44,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    {
+      url: `${SITIO}/repertorio`,
+      lastModified: ahora,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITIO}/press`,
+      lastModified: ahora,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${SITIO}/preguntas-frecuentes`,
+      lastModified: ahora,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
   ];
 
   const blog: MetadataRoute.Sitemap = ARTICULOS.map((a) => ({

@@ -1,16 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { CalendarDays, MapPin, MessageSquareText, Clock } from 'lucide-react';
 import Revelar from '../../componentes/ui/Revelar';
 import BotonWhatsapp from '../../componentes/ui/BotonWhatsapp';
 import { config } from '../../utilidades/configuracion';
+import { enviarLead } from '../../utilidades/leads';
 
 interface ContactoProps {
     onAbrirModal?: () => void;
 }
 
 const Contacto: React.FC<ContactoProps> = () => {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         nombre: '',
         telefono: '',
@@ -44,28 +47,23 @@ const Contacto: React.FC<ContactoProps> = () => {
             (formData.mensaje ? `Detalles: ${formData.mensaje}. ` : '') +
             `¿Me confirmas disponibilidad y me compartes la cotización, por favor?`;
 
-        try {
-            await fetch('https://velostrategix-n8n.lnrubg.easypanel.host/webhook/whatsapp', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nombreCompleto: formData.nombre,
-                    numeroWhatsapp: numeroCompleto,
-                    tipoEvento: formData.tipoEvento,
-                    fechaEvento: formData.fecha,
-                    ciudadEvento: formData.ciudad,
-                    mensaje: formData.mensaje,
-                    fechaRegistro: new Date().toISOString(),
-                }),
-            });
-        } catch (err) {
-            // En caso de fallo en webhook, seguimos con WhatsApp
-        }
+        await enviarLead({
+            nombreCompleto: formData.nombre,
+            numeroWhatsapp: numeroCompleto,
+            tipoEvento: formData.tipoEvento,
+            fechaEvento: formData.fecha,
+            ciudadEvento: formData.ciudad,
+            mensaje: formData.mensaje,
+            origen: 'formulario_contacto',
+        });
 
+        // Abrimos WhatsApp (vía rápida) y, en paralelo, llevamos al usuario
+        // a /gracias como confirmación clara dentro del sitio.
         window.open(
             `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`,
             '_blank',
         );
+        router.push('/gracias');
     };
 
     const claseCampo =

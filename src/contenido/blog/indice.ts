@@ -6,6 +6,11 @@ import { articulo as repertorio } from './repertorio-vallenato-matrimonio';
 import { articulo as corporativo } from './grupo-vallenato-evento-corporativo';
 import { articulo as parranda } from './parranda-vallenata-guia';
 import { articulo as momentos } from './momentos-clave-boda-vallenato';
+import { articulo as costoParranda } from './cuanto-cuesta-parranda-vallenata-profesional';
+import { articulo as profesionalVsAficionado } from './grupo-vallenato-profesional-vs-aficionado';
+import { articulo as parrandaEmpresarial } from './parranda-vallenata-empresarial';
+import { articulo as parrandaPasoAPaso } from './como-es-parranda-vallenata-profesional-paso-a-paso';
+import { articulo as checklistContratar } from './checklist-contratar-grupo-vallenato';
 
 /** Todos los artículos, del más reciente al más antiguo. */
 export const ARTICULOS: Articulo[] = [
@@ -14,6 +19,11 @@ export const ARTICULOS: Articulo[] = [
   corporativo,
   repertorio,
   cuantoCuesta,
+  costoParranda,
+  profesionalVsAficionado,
+  parrandaEmpresarial,
+  parrandaPasoAPaso,
+  checklistContratar,
 ].sort((a, b) => (a.fecha < b.fecha ? 1 : -1));
 
 export function buscarArticulo(slug: string): Articulo | undefined {

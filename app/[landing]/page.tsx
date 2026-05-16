@@ -16,7 +16,8 @@ import {
   breadcrumbSchema,
 } from '../../src/componentes/seo/esquemas';
 
-// Prerender estático: solo los 15 slugs definidos, nada de fallback dinámico.
+// Prerender estático: solo los 25 slugs definidos (5 servicios × 5 ciudades),
+// sin fallback dinámico.
 export const dynamicParams = false;
 
 export function generateStaticParams() {

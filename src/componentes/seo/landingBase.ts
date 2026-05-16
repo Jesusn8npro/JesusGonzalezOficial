@@ -4,7 +4,9 @@
 export type ServicioId =
   | 'acordeonista-para-bodas'
   | 'vallenato-para-eventos-corporativos'
-  | 'parranda-vallenata';
+  | 'parranda-vallenata'
+  | 'grupo-vallenato-profesional'
+  | 'parranda-vallenata-profesional';
 
 export type CiudadId =
   | 'bogota'

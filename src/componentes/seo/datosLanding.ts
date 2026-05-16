@@ -6,6 +6,8 @@ import type { ServicioId, CiudadId, Contenido } from './landingBase';
 import { CONTENIDO_BODAS } from './contenidoBodas';
 import { CONTENIDO_CORPORATIVOS } from './contenidoCorporativos';
 import { CONTENIDO_PARRANDA } from './contenidoParranda';
+import { CONTENIDO_GRUPO_PROFESIONAL } from './contenidoGrupoProfesional';
+import { CONTENIDO_PARRANDA_PROFESIONAL } from './contenidoParrandaProfesional';
 
 export type { ServicioId, CiudadId, QA } from './landingBase';
 
@@ -41,6 +43,18 @@ export const SERVICIOS: Record<ServicioId, Servicio> = {
     h1Tipo: 'Parranda vallenata',
     trackingBase: 'parranda',
   },
+  'grupo-vallenato-profesional': {
+    id: 'grupo-vallenato-profesional',
+    etiqueta: 'Grupo vallenato profesional',
+    h1Tipo: 'Grupo vallenato profesional',
+    trackingBase: 'grupo_pro',
+  },
+  'parranda-vallenata-profesional': {
+    id: 'parranda-vallenata-profesional',
+    etiqueta: 'Parranda vallenata profesional',
+    h1Tipo: 'Parranda vallenata profesional',
+    trackingBase: 'parranda_pro',
+  },
 };
 
 export const CIUDADES: Record<CiudadId, Ciudad> = {
@@ -65,7 +79,7 @@ export interface LandingDef {
   ciudad: CiudadId;
 }
 
-// Exactamente 15 slugs: 3 servicios × 5 ciudades.
+// Exactamente 25 slugs: 5 servicios × 5 ciudades.
 export const LANDINGS: LandingDef[] = (
   Object.keys(SERVICIOS) as ServicioId[]
 ).flatMap((s) =>
@@ -85,6 +99,8 @@ const CONTENIDO: Record<string, Contenido> = {
   ...CONTENIDO_BODAS,
   ...CONTENIDO_CORPORATIVOS,
   ...CONTENIDO_PARRANDA,
+  ...CONTENIDO_GRUPO_PROFESIONAL,
+  ...CONTENIDO_PARRANDA_PROFESIONAL,
 };
 
 export function obtenerContenido(
