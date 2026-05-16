@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
-import './BotonWhatsappFlotante.css';
 
 const BotonWhatsappFlotante: React.FC = () => {
     const handleClick = () => {
@@ -8,19 +9,21 @@ const BotonWhatsappFlotante: React.FC = () => {
     };
 
     return (
-        <div
-            className="whatsapp-flotante"
+        <button
+            type="button"
             onClick={handleClick}
-            tabIndex={0}
-            aria-label="Contactar por WhatsApp"
+            aria-label="Escríbeme por WhatsApp"
+            className="group fixed bottom-5 right-5 z-[110] flex items-center gap-0 overflow-hidden rounded-full bg-whatsapp text-[#04210f] shadow-[0_18px_44px_-18px_rgba(37,211,102,0.7)] transition-[gap,padding,background-color] duration-400 ease-[var(--ease-salida)] hover:gap-2.5 hover:bg-[color:var(--color-whatsapp-hondo)] hover:pr-5 hover:text-hueso md:bottom-7 md:right-7"
         >
-            <svg className="whatsapp-icon" viewBox="0 0 32 32" fill="none">
-                <circle cx="16" cy="16" r="16" fill="#25d366" />
-                <path d="M16 6C10.477 6 6 10.477 6 16c0 1.44.38 2.79 1.04 3.97L6 26l6.19-1.02A9.944 9.944 0 0016 26c5.523 0 10-4.477 10-10S21.523 6 16 6z" fill="#fff" />
-                <path d="M23.44 20.12c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16-.21.32-.82 1.04-1.01 1.26-.19.21-.37.24-.69.08-.32-.16-1.35-.5-2.58-1.59-.95-.85-1.59-1.9-1.77-2.22-.18-.32-.02-.49.14-.65.15-.15.32-.4.48-.6.16-.21.21-.37.32-.61.11-.24.05-.45-.03-.61-.08-.16-.71-1.71-.98-2.34-.26-.63-.53-.54-.71-.55-.18-.01-.39-.02-.6-.02-.21 0-.56.08-.85.37-.29.29-1.11 1.08-1.11 2.64 0 1.56 1.13 3.07 1.29 3.29.16.21 2.23 3.41 5.41 4.65.76.3 1.36.48 1.82.61.76.19 1.45.16 2 .1.61-.07 1.89-.77 2.16-1.52.27-.75.27-1.4.19-1.52-.08-.12-.29-.19-.61-.35z" fill="#25d366" />
-            </svg>
-            <span className="whatsapp-tooltip">¡Reserva tu show ahora!</span>
-        </div>
+            <span className="pulso-oro flex h-14 w-14 shrink-0 items-center justify-center rounded-full">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.82 9.82 0 0 1 6.988 2.898 9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" />
+                </svg>
+            </span>
+            <span className="max-w-0 whitespace-nowrap text-sm font-semibold opacity-0 transition-[max-width,opacity] duration-400 ease-[var(--ease-salida)] group-hover:max-w-[220px] group-hover:pr-1 group-hover:opacity-100">
+                Escríbeme por WhatsApp
+            </span>
+        </button>
     );
 };
 

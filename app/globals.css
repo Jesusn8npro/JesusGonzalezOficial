@@ -1,0 +1,251 @@
+/* ========================================
+   ENTRADA GLOBAL DE ESTILOS (Next.js App Router)
+   El estilado vive en utilidades Tailwind v4 + el
+   sistema de diseño de abajo. TODO el CSS propio va
+   dentro de @layer (base/components) para que las
+   utilidades de Tailwind SIEMPRE puedan ganar.
+   ======================================== */
+
+@import 'tailwindcss';
+
+/* Solo variables heredadas (custom props) que aún usa el panel /admin.
+   No contienen reglas, así que no compiten con las utilidades. */
+@import '../src/estilos/variables.css';
+
+/* CSS del panel admin metido en la capa 'components' para que sus
+   reglas nunca ganen sobre las utilidades de Tailwind. */
+@import '../src/paginas/admin/EtiquetasAdmin.css' layer(components);
+
+/* ============================================================
+   SISTEMA DE DISEÑO — "Editorial de lujo cinematográfico"
+   Única fuente de verdad. NO duplicar paletas/tipos en componentes.
+   Uso: clases Tailwind (bg-tinta, text-oro, font-display...) o
+   variables CSS (var(--oro), var(--linea)...).
+   ============================================================ */
+
+@theme {
+  /* Tipografía (next/font expone --fuente-display / --fuente-sans) */
+  --font-display: var(--fuente-display), 'Georgia', serif;
+  --font-sans: var(--fuente-sans), system-ui, -apple-system, sans-serif;
+
+  /* Paleta — negros cálidos + oro + brasa vallenata */
+  --color-tinta: #0e0b08;
+  --color-tinta-2: #17120c;
+  --color-tinta-3: #221a10;
+  --color-hueso: #f5efe3;
+  --color-hueso-tenue: #b8b0a0;
+  --color-crema: #f2ebdd;
+  --color-oro: #c9a84c;
+  --color-oro-claro: #e7c766;
+  --color-oro-hondo: #8a6d2a;
+  --color-brasa: #7a2e1e;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hondo: #128c45;
+
+  /* Radios — sobrios, nada de pill por defecto */
+  --radius-sello: 4px;
+  --radius-tarjeta: 14px;
+  --radius-grande: 24px;
+
+  /* Sombras cálidas */
+  --shadow-suave: 0 1px 0 rgba(245, 239, 227, 0.04), 0 20px 44px -26px rgba(0, 0, 0, 0.75);
+  --shadow-oro: 0 24px 64px -30px rgba(201, 168, 76, 0.5);
+
+  /* Easing / duración */
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --linea: rgba(245, 239, 227, 0.12);
+  --linea-fuerte: rgba(245, 239, 227, 0.22);
+  --vidrio: rgba(23, 18, 12, 0.62);
+  --dur-rapida: 200ms;
+  --dur-media: 420ms;
+  --dur-lenta: 760ms;
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Aliases planos para CSS a mano */
+  --oro: #c9a84c;
+  --oro-claro: #e7c766;
+  --oro-hondo: #8a6d2a;
+  --tinta: #0e0b08;
+  --tinta-2: #17120c;
+  --tinta-3: #221a10;
+  --hueso: #f5efe3;
+  --hueso-tenue: #b8b0a0;
+  --brasa: #7a2e1e;
+  --crema: #f2ebdd;
+}
+
+/* ---------- MODO CLARO — marfil cálido editorial (no un invertido) ----------
+   Activado por <html data-tema="claro">. Reescribe los MISMOS tokens
+   (los de @theme que alimentan utilidades + los alias a mano), así TODA
+   página/componente cambia sin tocar su código. */
+html[data-tema='claro'] {
+  /* Tokens que alimentan utilidades Tailwind (@theme) */
+  --color-tinta: #f6f1e7;
+  --color-tinta-2: #efe7d7;
+  --color-tinta-3: #e8dcc4;
+  --color-hueso: #241c12;
+  --color-hueso-tenue: #6b5d49;
+  --color-crema: #fbf7ee;
+  --color-oro: #9c7c1f;
+  --color-oro-claro: #b8902c;
+  --color-oro-hondo: #7a5f16;
+  --color-brasa: #7a2e1e;
+  --shadow-suave: 0 1px 0 rgba(0, 0, 0, 0.03), 0 20px 44px -26px rgba(60, 40, 15, 0.22);
+  --shadow-oro: 0 24px 64px -30px rgba(156, 124, 31, 0.4);
+
+  /* Alias planos para CSS a mano */
+  --oro: #9c7c1f;
+  --oro-claro: #b8902c;
+  --oro-hondo: #7a5f16;
+  --tinta: #f6f1e7;
+  --tinta-2: #efe7d7;
+  --tinta-3: #e8dcc4;
+  --hueso: #241c12;
+  --hueso-tenue: #6b5d49;
+  --brasa: #7a2e1e;
+  --crema: #fbf7ee;
+  --linea: rgba(36, 28, 18, 0.14);
+  --linea-fuerte: rgba(36, 28, 18, 0.26);
+  --vidrio: rgba(246, 241, 231, 0.72);
+}
+
+html[data-tema='claro'] ::selection {
+  background: var(--oro);
+  color: #1a140b;
+}
+
+/* ---------- Capa base (las utilidades de Tailwind la sobrescriben) ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--tinta);
+    color: var(--hueso);
+    font-family: var(--font-sans);
+    transition: background-color var(--dur-media) ease, color var(--dur-media) ease;
+    font-feature-settings: 'ss01', 'cv01';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip; /* mata el scroll horizontal sin romper position:sticky */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.018em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Shell de la app (reemplaza lo único útil del antiguo globales.css) */
+  .app-container {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 1 auto;
+  }
+
+  ::selection {
+    background: var(--oro);
+    color: var(--tinta);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--oro);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--tinta); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--oro-hondo);
+    border-radius: 99px;
+    border: 3px solid var(--tinta);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--oro); }
+}
+
+/* ---------- Helpers/primitivas (capa components: utilidades aún ganan) ---------- */
+@layer components {
+  /* Kicker / eyebrow editorial reutilizable */
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--oro);
+  }
+
+  /* Grano sutil para dar textura "humana" sobre fondos oscuros */
+  .grano::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  }
+
+  /* Primitivas de motion */
+  [data-revelar] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity var(--dur-lenta) var(--ease-salida),
+      transform var(--dur-lenta) var(--ease-salida);
+    transition-delay: var(--rv-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  [data-revelar='zoom'] { transform: scale(0.94); }
+  [data-revelar='lado'] { transform: translateX(-32px); }
+  [data-revelar][data-visible='true'] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .flotar { animation: flotar 7s var(--ease-suave) infinite; }
+  .pulso-oro { animation: pulso-oro 2.6s ease-out infinite; }
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes brillo-barrido {
+  0% { background-position: -160% 0; }
+  100% { background-position: 260% 0; }
+}
+@keyframes pulso-oro {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
+  50% { box-shadow: 0 0 0 14px rgba(201, 168, 76, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-revelar],
+  .flotar,
+  .pulso-oro {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

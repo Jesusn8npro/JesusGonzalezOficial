@@ -1,103 +1,131 @@
+'use client';
+
 import React from 'react';
-import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
-import './Hero.css';
+import Image from 'next/image';
+import { Users } from 'lucide-react';
+import { mensajesWhatsApp } from '../../utilidades/whatsapp';
+import BotonWhatsapp from '../ui/BotonWhatsapp';
+import Revelar from '../ui/Revelar';
+import TarjetaTilt from '../ui/TarjetaTilt';
+import { Contador, ParallaxSuave } from './Movimiento';
 
-interface HeroProps {
-    eventos?: string;
-    titulo?: string;
-    descripcion?: string;
-    beneficios?: string[];
-    urlImagen?: string;
-}
-
-const Hero: React.FC<HeroProps> = ({
-    eventos = "Experiencia comprobada en innumerables eventos",
-    titulo = "Shows Vallenatos Premium • Jesús González",
-    descripcion = "Acordeonista profesional con más de 15 años. Ha tocado con Poncho Zuleta, Jean Carlos Centeno, Elder Dayán Díaz y Rafael Santos, y ha grabado con Felipe Peláez. Shows de lujo para bodas, corporativos y celebraciones exclusivas.",
-    beneficios = [
-        "💎 Show de lujo para bodas, corporativos y celebraciones",
-        "🪗 Dirección artística liderada por Jesús González",
-        "👥 Formato profesional (6–9 músicos en acción)",
-        "🔊 Sonido y montaje impecable, repertorio curado"
-    ],
-    urlImagen = "/Imagenes/Jesus Fondo Blanco.png"
-}) => {
-    const handleWhatsAppClick = () => {
-        abrirWhatsApp(mensajesWhatsApp.hero, 'Hero_Button_Click');
-    };
-
+const Hero: React.FC = () => {
     return (
-        <section className="hero">
-            <div className="contenido">
-                <div className="estrellas">⭐⭐⭐⭐⭐ {eventos}</div>
-                <h1 className="titulo">🏆 {titulo}</h1>
-                <div className="descripcion">{descripcion}</div>
-                <div className="beneficios">
-                    {beneficios.map((beneficio, index) => (
-                        <span key={index} className="beneficio">{beneficio}</span>
-                    ))}
+        <section className="grano relative isolate overflow-hidden bg-tinta px-5 pb-20 pt-16 md:px-10 md:pb-28 md:pt-24">
+            {/* Resplandor cálido de fondo */}
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-40 top-0 h-[620px] w-[620px] rounded-full opacity-60 blur-[120px]"
+                style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.22), transparent 65%)' }}
+            />
+
+            <div className="relative mx-auto grid max-w-[1240px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+                <div className="order-2 lg:order-1">
+                    <Revelar as="p" className="kicker mb-6">
+                        Acordeón vallenato · Eventos premium en Colombia
+                    </Revelar>
+
+                    <Revelar as="h1" retardo={0.05}>
+                        <span className="block font-display text-[2.6rem] leading-[1.02] text-hueso sm:text-6xl lg:text-[4.4rem]">
+                            El acordeón que vuelve
+                            <span className="block text-oro"> inolvidable tu evento.</span>
+                        </span>
+                    </Revelar>
+
+                    <Revelar as="p" retardo={0.12} className="mt-7 max-w-xl text-lg leading-relaxed text-hueso-tenue">
+                        Soy <strong className="font-semibold text-hueso">Jesús González</strong>. Más de 15 años
+                        llevando el vallenato de verdad a bodas, eventos corporativos y galas. He compartido
+                        escenario y grabación con artistas de talla nacional. Si tu celebración merece música
+                        que la gente recuerde, hablemos.
+                    </Revelar>
+
+                    <Revelar
+                        retardo={0.16}
+                        className="mt-6 inline-flex items-center gap-3 rounded-[var(--radius-sello)] border border-oro/40 bg-oro/[0.06] px-4 py-3"
+                    >
+                        <Users size={20} strokeWidth={1.7} className="shrink-0 text-oro" aria-hidden="true" />
+                        <p className="text-[0.95rem] leading-snug text-hueso">
+                            No voy solo: llego con{' '}
+                            <strong className="font-semibold text-oro">banda profesional completa</strong>{' '}
+                            <span className="text-hueso-tenue">(formato de 6 a 9 músicos)</span>.
+                        </p>
+                    </Revelar>
+
+                    <Revelar retardo={0.2} className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                        <BotonWhatsapp
+                            mensaje={mensajesWhatsApp.hero}
+                            evento="Hero_Button_Click"
+                            variante="whatsapp"
+                            tamano="lg"
+                        >
+                            Cotizar mi evento por WhatsApp
+                        </BotonWhatsapp>
+                        <span className="text-sm text-hueso-tenue">
+                            Te respondo personalmente, sin intermediarios.
+                        </span>
+                    </Revelar>
+
+                    <Revelar
+                        retardo={0.28}
+                        className="mt-12 grid max-w-lg grid-cols-3 gap-px overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea)] bg-[color:var(--linea)]"
+                    >
+                        {[
+                            { valor: 15, prefijo: '+', sufijo: '', label: 'Años en tarima' },
+                            { valor: 9, prefijo: '6–', sufijo: '', label: 'Músicos en banda' },
+                            { valor: 100, prefijo: '', sufijo: '%', label: 'Dirección propia' },
+                        ].map((m) => (
+                            <div key={m.label} className="bg-tinta-2 px-4 py-5 text-center">
+                                <Contador
+                                    valor={m.valor}
+                                    prefijo={m.prefijo}
+                                    sufijo={m.sufijo}
+                                    className="block font-display text-2xl text-oro"
+                                />
+                                <div className="mt-1 text-[0.72rem] uppercase tracking-[0.14em] text-hueso-tenue">
+                                    {m.label}
+                                </div>
+                            </div>
+                        ))}
+                    </Revelar>
                 </div>
 
-                <div className="cta-metricas">
-                    <button className="btn-reserva-hero" onClick={handleWhatsAppClick}>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                            <rect width="24" height="24" rx="6" fill="#25d366" />
-                            <path d="M7 13l3 3 7-7" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        Cotizar por WhatsApp ahora
-                    </button>
-                    <div className="metricas-hero">
-                        <div className="metrica">
-                            <span className="metrica-num">PREMIUM</span>
-                            <span className="metrica-label">Formato 6–9 músicos</span>
-                        </div>
-                        <div className="metrica">
-                            <span className="metrica-num">ARTISTAS</span>
-                            <span className="metrica-label">Poncho • Felipe • Jean Carlos</span>
-                        </div>
-                        <div className="metrica">
-                            <span className="metrica-num">INMEDIATA</span>
-                            <span className="metrica-label">Respuesta por WhatsApp</span>
-                        </div>
-                    </div>
+                <div className="order-1 lg:order-2">
+                    <Revelar variante="zoom" className="mx-auto max-w-md lg:max-w-none">
+                      <ParallaxSuave intensidad={22}>
+                        <TarjetaTilt
+                            className="relative overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea-fuerte)]"
+                            intensidad={5}
+                        >
+                            <Image
+                                src="/Imagenes/Foto de perfil para JESUS GONZALEZ.jpg"
+                                alt="Jesús González, acordeonista vallenato profesional"
+                                width={620}
+                                height={760}
+                                priority
+                                sizes="(min-width: 1024px) 46vw, (min-width: 640px) 28rem, 100vw"
+                                className="block h-full w-full object-cover"
+                            />
+                            <div
+                                aria-hidden="true"
+                                className="pointer-events-none absolute inset-0"
+                                style={{
+                                    background:
+                                        'linear-gradient(180deg, transparent 45%, rgba(14,11,8,0.82) 100%)',
+                                }}
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 p-6">
+                                <p className="font-display text-xl text-hueso">Jesús González</p>
+                                <p className="mt-1 text-sm text-oro-claro">
+                                    Maestro del acordeón vallenato
+                                </p>
+                            </div>
+                        </TarjetaTilt>
+                      </ParallaxSuave>
+                    </Revelar>
                 </div>
-            </div>
-
-            <div className="artista-wrapper">
-                <div className="decoracion-circulo" aria-hidden="true">
-                    <svg className="circulo-bg" width="370" height="370" viewBox="0 0 370 370" fill="none">
-                        <circle cx="185" cy="185" r="160" fill="#ffe08222" filter="url(#glow)" />
-                        <defs>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="18" result="blur" />
-                                <feMerge>
-                                    <feMergeNode in="blur" />
-                                    <feMergeNode in="SourceGraphic" />
-                                </feMerge>
-                            </filter>
-                        </defs>
-                        <g className="estrellas-circulo">
-                            <polygon points="185,55 191,75 212,75 195,87 201,107 185,95 169,107 175,87 158,75 179,75" fill="#ffe082" />
-                            <polygon points="265,145 268,153 277,153 270,158 273,166 265,161 258,166 261,158 254,153 263,153" fill="#ffe082" />
-                            <polygon points="115,145 118,153 127,153 120,158 123,166 115,161 108,166 111,158 104,153 113,153" fill="#ffe082" />
-                            <polygon points="215,245 218,253 227,253 220,258 223,266 215,261 208,266 211,258 204,253 213,253" fill="#ffe082" />
-                            <polygon points="155,245 158,253 167,253 160,258 163,266 155,261 148,266 151,258 144,253 153,253" fill="#ffe082" />
-                        </g>
-                    </svg>
-                </div>
-                <img
-                    loading="lazy"
-                    width="450"
-                    height="450"
-                    className="foto-artista-png"
-                    src={urlImagen}
-                    alt="Jesús González - Maestro del Acordeón Vallenato Profesional"
-                    decoding="async"
-                />
             </div>
         </section>
     );
 };
 
 export default Hero;
-

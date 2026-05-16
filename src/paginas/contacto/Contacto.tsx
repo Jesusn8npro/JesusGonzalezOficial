@@ -1,17 +1,23 @@
+'use client';
+
 import React, { useState } from 'react';
-import './Contacto.css';
+import { CalendarDays, MapPin, MessageSquareText, Clock } from 'lucide-react';
+import Revelar from '../../componentes/ui/Revelar';
+import BotonWhatsapp from '../../componentes/ui/BotonWhatsapp';
 import { config } from '../../utilidades/configuracion';
 
-interface ContactoProps { onAbrirModal?: () => void }
+interface ContactoProps {
+    onAbrirModal?: () => void;
+}
 
-const Contacto: React.FC<ContactoProps> = ({ onAbrirModal }) => {
+const Contacto: React.FC<ContactoProps> = () => {
     const [formData, setFormData] = useState({
         nombre: '',
         telefono: '',
         ciudad: '',
         tipoEvento: '',
         fecha: '',
-        mensaje: ''
+        mensaje: '',
     });
 
     const manejarCambioWhatsapp = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,113 +62,188 @@ const Contacto: React.FC<ContactoProps> = ({ onAbrirModal }) => {
             // En caso de fallo en webhook, seguimos con WhatsApp
         }
 
-        window.open(`https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`, '_blank');
+        window.open(
+            `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(mensajeWhatsApp)}`,
+            '_blank',
+        );
     };
 
+    const claseCampo =
+        'w-full rounded-[var(--radius-sello)] border border-[color:var(--linea)] bg-[color:var(--color-tinta)]/60 px-4 py-3 text-[0.95rem] text-hueso placeholder:text-hueso-tenue/70 transition-colors duration-300 focus:border-oro focus:outline-none';
+    const claseLabel =
+        'mb-2 block text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-hueso-tenue';
+
     return (
-        <div className="pagina-contacto">
-            <section className="hero-contacto">
-                <div className="contenedor-hero-contacto">
-                    <h1 className="titulo-contacto">Contacto • Shows Vallenatos Premium</h1>
-                    <p className="subtitulo-contacto">Bodas, corporativos y celebraciones elegantes. Dirección artística liderada por Jesús González. Respuesta inmediata.</p>
-                    <button className="boton-whatsapp-rapido" onClick={() => onAbrirModal?.()}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884Z" />
-                        </svg>
-                        Cotizar por WhatsApp
-                    </button>
+        <div className="grano relative bg-tinta text-hueso">
+            {/* HERO */}
+            <section className="relative overflow-hidden border-b border-[color:var(--linea)]">
+                <div
+                    className="pointer-events-none absolute inset-0 opacity-70"
+                    style={{
+                        background:
+                            'radial-gradient(70% 90% at 50% 0%, rgba(201,168,76,0.13), transparent 70%)',
+                    }}
+                    aria-hidden="true"
+                />
+                <div className="relative mx-auto max-w-3xl px-6 py-20 text-center sm:py-28">
+                    <Revelar>
+                        <p className="kicker">Respuesta inmediata</p>
+                        <h1 className="mt-5 font-display text-[2.4rem] font-semibold leading-[1.05] text-hueso sm:text-[3.2rem]">
+                            Shows vallenatos <span className="text-oro">premium</span>
+                        </h1>
+                        <p className="mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-hueso-tenue">
+                            Bodas, eventos corporativos y celebraciones elegantes con la
+                            dirección artística de Jesús González. Escríbenos y coordinamos
+                            tu fecha hoy mismo.
+                        </p>
+                    </Revelar>
+
+                    <Revelar retardo={0.1}>
+                        <div className="mt-9 flex flex-col items-center gap-4">
+                            <BotonWhatsapp
+                                mensaje="¡Hola! Vi el sitio de Jesús González y quiero cotizar un show para mi evento. ¿Podemos hablar?"
+                                evento="contacto_hero_whatsapp"
+                                variante="whatsapp"
+                                tamano="lg"
+                            >
+                                Cotizar ahora por WhatsApp
+                            </BotonWhatsapp>
+                            <p className="text-[0.82rem] text-hueso-tenue">
+                                Vía rápida · o completa el formulario detallado abajo
+                            </p>
+                        </div>
+                    </Revelar>
                 </div>
             </section>
 
-            <section className="seccion-formulario">
-                <div className="contenedor-formulario">
-                    {/* CTA superior eliminado para evitar duplicidad; usamos el del hero */}
-
-                    <form onSubmit={handleSubmit} className="formulario-contacto">
-                        <h2 className="titulo-formulario">Solicita tu Cotización</h2>
-
-                        <div className="campo-formulario">
-                            <label htmlFor="nombre">Nombre Completo</label>
-                            <input
-                                type="text"
-                                id="nombre"
-                                required
-                                value={formData.nombre}
-                                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                                placeholder="Tu nombre"
-                            />
+            {/* FORMULARIO */}
+            <section className="mx-auto max-w-2xl px-6 py-20">
+                <Revelar>
+                    <div className="rounded-[var(--radius-grande)] border border-[color:var(--linea)] bg-tinta-2 p-7 shadow-[var(--shadow-suave)] sm:p-10">
+                        <div className="mb-8 text-center">
+                            <h2 className="font-display text-[1.7rem] font-semibold text-hueso">
+                                Solicita tu cotización
+                            </h2>
+                            <p className="mt-2 text-[0.92rem] text-hueso-tenue">
+                                Cuéntanos los detalles y te respondemos con la propuesta.
+                            </p>
                         </div>
 
-                        <div className="campo-formulario">
-                            <label htmlFor="telefono">Teléfono</label>
-                            <input
-                                type="tel"
-                                id="telefono"
-                                required
-                                value={formData.telefono}
-                                onChange={manejarCambioWhatsapp}
-                                maxLength={10}
-                                placeholder="3001234567"
-                            />
-                        </div>
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                            <div>
+                                <label htmlFor="nombre" className={claseLabel}>
+                                    Nombre completo
+                                </label>
+                                <input
+                                    type="text"
+                                    id="nombre"
+                                    required
+                                    value={formData.nombre}
+                                    onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                                    placeholder="Tu nombre"
+                                    className={claseCampo}
+                                />
+                            </div>
 
-                        <div className="campo-formulario">
-                            <label htmlFor="ciudad">Ciudad</label>
-                            <input
-                                type="text"
-                                id="ciudad"
-                                required
-                                value={formData.ciudad}
-                                onChange={(e) => setFormData({ ...formData, ciudad: e.target.value })}
-                                placeholder="Ciudad del evento"
-                            />
-                        </div>
+                            <div className="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label htmlFor="telefono" className={claseLabel}>
+                                        Teléfono
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        id="telefono"
+                                        required
+                                        value={formData.telefono}
+                                        onChange={manejarCambioWhatsapp}
+                                        maxLength={10}
+                                        placeholder="3001234567"
+                                        className={claseCampo}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="ciudad" className={claseLabel}>
+                                        <MapPin size={13} className="mr-1.5 inline text-oro" />
+                                        Ciudad
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="ciudad"
+                                        required
+                                        value={formData.ciudad}
+                                        onChange={(e) => setFormData({ ...formData, ciudad: e.target.value })}
+                                        placeholder="Ciudad del evento"
+                                        className={claseCampo}
+                                    />
+                                </div>
+                            </div>
 
-                        <div className="campo-formulario">
-                            <label htmlFor="tipoEvento">Tipo de Evento</label>
-                            <select
-                                id="tipoEvento"
-                                required
-                                value={formData.tipoEvento}
-                                onChange={(e) => setFormData({ ...formData, tipoEvento: e.target.value })}
+                            <div className="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label htmlFor="tipoEvento" className={claseLabel}>
+                                        <MessageSquareText size={13} className="mr-1.5 inline text-oro" />
+                                        Tipo de evento
+                                    </label>
+                                    <select
+                                        id="tipoEvento"
+                                        required
+                                        value={formData.tipoEvento}
+                                        onChange={(e) => setFormData({ ...formData, tipoEvento: e.target.value })}
+                                        className={`${claseCampo} appearance-none`}
+                                    >
+                                        <option value="">Selecciona...</option>
+                                        <option value="Boda">Boda</option>
+                                        <option value="Cumpleaños">Cumpleaños</option>
+                                        <option value="Evento Corporativo">Evento Corporativo</option>
+                                        <option value="Parranda">Parranda</option>
+                                        <option value="Concierto">Concierto</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="fecha" className={claseLabel}>
+                                        <CalendarDays size={13} className="mr-1.5 inline text-oro" />
+                                        Fecha tentativa
+                                    </label>
+                                    <input
+                                        type="date"
+                                        id="fecha"
+                                        required
+                                        value={formData.fecha}
+                                        onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
+                                        className={`${claseCampo} [color-scheme:dark]`}
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label htmlFor="mensaje" className={claseLabel}>
+                                    Mensaje
+                                </label>
+                                <textarea
+                                    id="mensaje"
+                                    rows={4}
+                                    value={formData.mensaje}
+                                    onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
+                                    placeholder="Cuéntanos más sobre tu evento..."
+                                    className={`${claseCampo} resize-none`}
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="mt-2 inline-flex w-full items-center justify-center gap-2.5 rounded-[var(--radius-sello)] bg-oro px-8 py-4 text-[1.02rem] font-semibold tracking-tight text-tinta shadow-[var(--shadow-oro)] transition-[transform,background-color] duration-300 ease-[var(--ease-salida)] hover:bg-oro-claro active:scale-[0.985]"
                             >
-                                <option value="">Selecciona...</option>
-                                <option value="Boda">Boda</option>
-                                <option value="Cumpleaños">Cumpleaños</option>
-                                <option value="Evento Corporativo">Evento Corporativo</option>
-                                <option value="Parranda">Parranda</option>
-                                <option value="Concierto">Concierto</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
+                                Enviar solicitud
+                            </button>
 
-                        <div className="campo-formulario">
-                            <label htmlFor="fecha">Fecha Tentativa</label>
-                            <input
-                                type="date"
-                                id="fecha"
-                                required
-                                value={formData.fecha}
-                                onChange={(e) => setFormData({ ...formData, fecha: e.target.value })}
-                            />
-                        </div>
-
-                        <div className="campo-formulario">
-                            <label htmlFor="mensaje">Mensaje</label>
-                            <textarea
-                                id="mensaje"
-                                rows={4}
-                                value={formData.mensaje}
-                                onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
-                                placeholder="Cuéntanos más sobre tu evento..."
-                            />
-                        </div>
-
-                        <button type="submit" className="boton-enviar-formulario">
-                            Enviar Solicitud
-                        </button>
-                    </form>
-                </div>
+                            <p className="flex items-center justify-center gap-2 text-center text-[0.8rem] text-hueso-tenue">
+                                <Clock size={14} className="text-oro" />
+                                Te contactamos por WhatsApp en minutos
+                            </p>
+                        </form>
+                    </div>
+                </Revelar>
             </section>
         </div>
     );

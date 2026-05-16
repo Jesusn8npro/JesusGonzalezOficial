@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Carpeta de trabajo de agentes (no es código del sitio)
+_agents/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

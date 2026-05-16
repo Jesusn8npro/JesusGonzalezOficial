@@ -1,51 +1,68 @@
+'use client';
+
 import React from 'react';
-import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
-import './CTAOptimizado.css';
+import { Music4, MessageCircle, ShieldCheck } from 'lucide-react';
+import { mensajesWhatsApp } from '../../utilidades/whatsapp';
+import BotonWhatsapp from '../ui/BotonWhatsapp';
+import Revelar from '../ui/Revelar';
+
+const garantias = [
+    { Icono: Music4, texto: 'Repertorio armado contigo, a la medida de tu evento' },
+    { Icono: MessageCircle, texto: 'Hablas directo conmigo por WhatsApp, sin intermediarios' },
+    { Icono: ShieldCheck, texto: 'Cumplimiento y dirección artística profesional' },
+];
 
 const CTAOptimizado: React.FC = () => {
-    const handleWhatsAppClick = () => {
-        abrirWhatsApp(mensajesWhatsApp.cta, 'CTA_WhatsApp_Click');
-    };
-
     return (
-        <section className="seccion-cta" id="contacto">
-            <div className="contenedor-cta">
-                <div className="contenido-cta">
-                    <div className="header-cta">
-                        <h2 className="titulo-cta">¿Listo para hacer tu evento inolvidable?</h2>
-                        <p className="subtitulo-cta">Jesús González está disponible para tu próxima celebración</p>
-                    </div>
+        <section
+            id="contacto"
+            className="grano relative overflow-hidden border-t border-[color:var(--linea)] bg-tinta-2 px-5 py-24 md:px-10 md:py-32"
+        >
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 rounded-full opacity-50 blur-[130px]"
+                style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.22), transparent 65%)' }}
+            />
 
-                    <div className="beneficios-cta">
-                        <div className="beneficio-cta">
-                            <span className="icono-beneficio">🎵</span>
-                            <span className="texto-beneficio">Repertorio personalizado para tu evento</span>
-                        </div>
-                        <div className="beneficio-cta">
-                            <span className="icono-beneficio">⏰</span>
-                            <span className="texto-beneficio">Respuesta inmediata por WhatsApp</span>
-                        </div>
-                        <div className="beneficio-cta">
-                            <span className="icono-beneficio">💎</span>
-                            <span className="texto-beneficio">Calidad profesional garantizada</span>
-                        </div>
-                    </div>
+            <div className="relative mx-auto max-w-3xl text-center">
+                <Revelar as="p" className="kicker">
+                    Tu fecha te está esperando
+                </Revelar>
+                <Revelar as="h2" retardo={0.05} className="mt-5 font-display text-4xl text-hueso md:text-[3.4rem] md:leading-[1.05]">
+                    Hagamos de tu evento algo que la gente recuerde
+                </Revelar>
+                <Revelar as="p" retardo={0.1} className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-hueso-tenue">
+                    Cuéntame tu fecha y tu idea. Te respondo personalmente y armamos juntos la propuesta
+                    perfecta para tu celebración.
+                </Revelar>
 
-                    <div className="acciones-cta">
-                        <button className="btn-principal" onClick={handleWhatsAppClick}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                            ¡Reserva tu fecha ahora!
-                        </button>
-                    </div>
+                <Revelar retardo={0.18} className="mt-10 flex justify-center">
+                    <BotonWhatsapp
+                        mensaje={mensajesWhatsApp.cta}
+                        evento="CTA_WhatsApp_Click"
+                        variante="whatsapp"
+                        tamano="lg"
+                    >
+                        Reservar mi fecha por WhatsApp
+                    </BotonWhatsapp>
+                </Revelar>
 
-                    <div className="info-adicional">
-                        <p className="texto-info">📞 <strong>Respuesta en 5–15 minutos</strong></p>
-                        <p className="texto-info">💳 <strong>Reserva con 50% de anticipo</strong></p>
-                        <p className="texto-info">🎯 <strong>Cumplimiento y dirección artística profesional</strong></p>
-                    </div>
-                </div>
+                <Revelar
+                    retardo={0.26}
+                    className="mx-auto mt-14 grid max-w-2xl gap-px overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea)] bg-[color:var(--linea)] sm:grid-cols-3"
+                >
+                    {garantias.map(({ Icono, texto }) => (
+                        <div
+                            key={texto}
+                            className="flex flex-col items-center gap-3 bg-tinta-2 px-5 py-7 text-center"
+                        >
+                            <span className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-sello)] border border-[color:var(--linea)] text-oro">
+                                <Icono size={20} strokeWidth={1.6} aria-hidden="true" />
+                            </span>
+                            <span className="text-sm leading-relaxed text-hueso-tenue">{texto}</span>
+                        </div>
+                    ))}
+                </Revelar>
             </div>
         </section>
     );

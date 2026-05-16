@@ -1,281 +1,281 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { abrirWhatsApp, mensajesWhatsApp } from '../../utilidades/whatsapp';
-import './Servicios.css';
+import Image from 'next/image';
+import { mensajesWhatsApp } from '../../utilidades/whatsapp';
+import BotonWhatsapp from '../ui/BotonWhatsapp';
+import Revelar from '../ui/Revelar';
+
+type TipoServicio = 'premium' | 'vip' | 'gala';
 
 interface Service {
     nombre: string;
-    subtituloColor: string;
-    textoColor: string;
+    gancho: string;
     imagen: string;
     descripcion: string;
-    duracion: string;
-    capacidad: string;
-    animacionClase: string;
-    color: string;
-    bg: string;
-    boton: string;
+    formato: string;
+    ideal: string;
+    incluye: string[];
     videoUrl: string;
-    tipoServicio: 'premium' | 'vip' | 'gala';
+    tipoServicio: TipoServicio;
 }
 
 const servicios: Service[] = [
     {
         nombre: 'Parranda Vallenata Premium',
-        subtituloColor: '#d4af37',
-        textoColor: '#3d2f00',
-        imagen: '/Imagenes/Jesus Gonzalez en concierto.jpg',
-        descripcion: '6 músicos en acción liderados por Jesús González. Sonido incluido para ambientes privados y celebraciones premium.',
-        duracion: 'Hasta 2 horas',
-        capacidad: 'Privados / salones',
-        animacionClase: 'premium-animation',
-        color: 'linear-gradient(145deg, #1a1a1a 0%, #2b2100 100%)',
-        bg: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=cover&w=800&q=60',
-        boton: 'Ver detalles del show',
+        gancho: 'Lo íntimo, hecho memorable',
+        imagen: '/Imagenes/Parrandas Vallenatas.jpg',
+        descripcion:
+            '6 músicos en acción liderados por mí. Sonido incluido. Para reuniones privadas y celebraciones donde quieres vallenato del bueno, de cerca.',
+        formato: '6 músicos · hasta 2 h',
+        ideal: 'Privados y salones',
+        incluye: ['Dirección artística propia', 'Sonido incluido', 'Repertorio a tu gusto'],
         videoUrl: 'Ll5rSyCDM78',
-        tipoServicio: 'premium'
+        tipoServicio: 'premium',
     },
     {
         nombre: 'Show Semicompleto VIP',
-        subtituloColor: '#9333ea',
-        textoColor: '#e9d5ff',
-        imagen: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
-        descripcion: '8 músicos + 1 asistente. Ideal para bodas y corporativos. Sonido del venue u opción de sonido propio con costo adicional.',
-        duracion: 'Hasta 2 horas',
-        capacidad: 'Salones grandes',
-        animacionClase: 'vip-animation',
-        color: 'linear-gradient(145deg, #1a1a1a 0%, #2a004b 100%)',
-        bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=cover&w=800&q=60',
-        boton: 'Ver detalles del show',
+        gancho: 'El equilibrio perfecto',
+        imagen: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+        descripcion:
+            '8 músicos + 1 asistente. Mi formato más solicitado para bodas y eventos corporativos. Sonido del venue u opción de sonido propio.',
+        formato: '8 músicos + asistente',
+        ideal: 'Bodas y corporativos',
+        incluye: ['Puesta en escena ampliada', 'Coordinación con tu venue', 'Repertorio curado'],
         videoUrl: 'oPoqVKg30Cg',
-        tipoServicio: 'vip'
+        tipoServicio: 'vip',
     },
     {
         nombre: 'Show Completo de Gala',
-        subtituloColor: '#e11d48',
-        textoColor: '#ffd5dd',
-        imagen: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
-        descripcion: 'Producción ampliada según venue y logística. Puesta en escena completa para experiencias de gala y eventos masivos.',
-        duracion: 'Hasta 2 horas',
-        capacidad: 'Masivos / gala',
-        animacionClase: 'gala-animation',
-        color: 'linear-gradient(145deg, #1a1a1a 0%, #4b0011 100%)',
-        bg: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=cover&w=800&0',
-        boton: 'Ver detalles del show',
+        gancho: 'Producción a gran escala',
+        imagen: '/Imagenes/Jesus Gonzalez en concierto.jpg',
+        descripcion:
+            'Producción ampliada según venue y logística. Puesta en escena completa para galas y eventos masivos donde la música es protagonista.',
+        formato: 'Formato ampliado a medida',
+        ideal: 'Galas y eventos masivos',
+        incluye: ['Producción a medida', 'Logística completa', 'Experiencia de gala'],
         videoUrl: 'vgDABDveFn0',
-        tipoServicio: 'gala'
-    }
+        tipoServicio: 'gala',
+    },
 ];
 
-interface ServiceModalContentProps {
+interface ModalProps {
     service: Service;
     closeModal: () => void;
 }
 
-const ServiceModalContent: React.FC<ServiceModalContentProps> = ({ service, closeModal }) => {
+const ServiceModalContent: React.FC<ModalProps> = ({ service, closeModal }) => {
     const [videoActivo, setVideoActivo] = useState(false);
 
-    const handleWhatsAppClick = () => {
-        const mensaje = mensajesWhatsApp.servicios[service.tipoServicio];
-        closeModal(); // Cerrar el modal
-        abrirWhatsApp(mensaje, `Service_${service.tipoServicio}_WhatsApp`);
-    };
-
     return (
-        <div className="modal-servicio-premium">
-            <button className="modal-servicio-cerrar" onClick={closeModal} aria-label="Cerrar">
+        <div className="grano relative max-h-[90vh] w-full overflow-y-auto rounded-[var(--radius-grande)] border border-[color:var(--linea-fuerte)] bg-tinta-2 p-7 md:p-10">
+            <button
+                type="button"
+                onClick={closeModal}
+                aria-label="Cerrar"
+                className="absolute right-5 top-5 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-[color:var(--linea)] text-hueso-tenue transition-colors hover:border-oro hover:text-oro"
+            >
                 ✕
             </button>
 
-            <div className="modal-servicio-header">
-                <h2 className="modal-servicio-titulo">{service.nombre}</h2>
-                <p className="modal-servicio-descripcion">{service.descripcion}</p>
-            </div>
+            <p className="kicker">{service.gancho}</p>
+            <h2 className="mt-3 font-display text-3xl text-hueso md:text-4xl">{service.nombre}</h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-hueso-tenue">
+                {service.descripcion}
+            </p>
 
-            <div className="modal-servicio-contenido">
-                {/* Beneficios */}
-                <div className="modal-servicio-beneficios">
-                    <h3 className="modal-servicio-subtitulo">✨ Lo que incluye:</h3>
-                    <div className="modal-servicio-grid">
-                        <div className="modal-servicio-item">
-                            <span className="modal-servicio-icono">🪗</span>
-                            <div className="modal-servicio-texto">
-                                <strong>Jesús González</strong>
-                                <span>Maestro del acordeón</span>
-                            </div>
-                        </div>
-                        <div className="modal-servicio-item">
-                            <span className="modal-servicio-icono">🎤</span>
-                            <div className="modal-servicio-texto">
-                                <strong>Show en vivo</strong>
-                                <span>Experiencia profesional</span>
-                            </div>
-                        </div>
-                        <div className="modal-servicio-item">
-                            <span className="modal-servicio-icono">🎵</span>
-                            <div className="modal-servicio-texto">
-                                <strong>Repertorio</strong>
-                                <span>Personalizado</span>
-                            </div>
-                        </div>
-                        <div className="modal-servicio-item">
-                            <span className="modal-servicio-icono">⭐</span>
-                            <div className="modal-servicio-texto">
-                                <strong>Calidad</strong>
-                                <span>Garantizada</span>
-                            </div>
-                        </div>
-                    </div>
+            <div className="mt-8 grid gap-7 md:grid-cols-2">
+                <div>
+                    <h3 className="font-display text-lg text-oro">Qué incluye</h3>
+                    <ul className="mt-4 space-y-3">
+                        {service.incluye.map((item) => (
+                            <li key={item} className="flex items-start gap-3 text-hueso">
+                                <span aria-hidden="true" className="mt-1 text-oro">
+                                    ◆
+                                </span>
+                                <span>{item}</span>
+                            </li>
+                        ))}
+                        <li className="flex items-start gap-3 text-hueso">
+                            <span aria-hidden="true" className="mt-1 text-oro">
+                                ◆
+                            </span>
+                            <span>{service.formato}</span>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Video */}
-                <div className="modal-servicio-video">
+                <div className="relative overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea)]">
                     {!videoActivo ? (
-                        <div className="modal-servicio-preview" onClick={() => setVideoActivo(true)}>
-                            <img src={service.imagen} alt={`Preview de ${service.nombre}`} />
-                            <div className="modal-servicio-play">
-                                <svg width="60" height="60" viewBox="0 0 60 60">
-                                    <circle cx="30" cy="30" r="30" fill="rgba(37, 211, 102, 0.95)" />
-                                    <polygon points="24,18 24,42 42,30" fill="white" />
-                                </svg>
-                            </div>
-                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setVideoActivo(true)}
+                            className="group relative block h-full w-full"
+                            aria-label={`Reproducir video de ${service.nombre}`}
+                        >
+                            <Image
+                                src={service.imagen}
+                                alt={`Show ${service.nombre}`}
+                                width={560}
+                                height={360}
+                                sizes="(min-width: 768px) 50vw, 100vw"
+                                className="aspect-video w-full object-cover"
+                            />
+                            <span className="absolute inset-0 flex items-center justify-center bg-tinta/40 transition-colors group-hover:bg-tinta/25">
+                                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-oro text-tinta transition-transform group-hover:scale-110">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </button>
                     ) : (
-                        <div className="modal-servicio-iframe">
+                        <div className="relative aspect-video w-full">
                             <iframe
                                 src={`https://www.youtube.com/embed/${service.videoUrl}?rel=0&showinfo=0&autoplay=1&controls=1`}
                                 title={`Video de ${service.nombre}`}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
-                                frameBorder="0"
-                            ></iframe>
-                            <button className="modal-servicio-volver" onClick={() => setVideoActivo(false)}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M19 12H5M12 19l-7-7 7-7" />
-                                </svg>
-                                Volver
-                            </button>
+                                className="absolute inset-0 h-full w-full"
+                            />
                         </div>
                     )}
                 </div>
             </div>
 
-            <div className="modal-servicio-cta">
-                <p className="modal-servicio-mensaje">Jesús González lidera personalmente cada presentación.</p>
-                <button className="modal-servicio-boton" onClick={handleWhatsAppClick}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                    Reservar por WhatsApp
-                </button>
-                <p className="modal-servicio-garantia">🛡️ Cumplimiento y dirección artística profesional</p>
+            <div className="mt-9 flex flex-col items-start gap-4 border-t border-[color:var(--linea)] pt-7 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <p className="font-display text-lg text-hueso">Cotización personalizada</p>
+                    <p className="mt-1 text-sm text-hueso-tenue">
+                        Cada evento es distinto. Te paso una propuesta a tu medida por WhatsApp.
+                    </p>
+                </div>
+                <BotonWhatsapp
+                    mensaje={mensajesWhatsApp.servicios[service.tipoServicio]}
+                    evento={`Service_${service.tipoServicio}_WhatsApp`}
+                    variante="whatsapp"
+                    tamano="md"
+                    className="shrink-0"
+                >
+                    Pedir cotización
+                </BotonWhatsapp>
             </div>
         </div>
     );
 };
 
 const Servicios: React.FC = () => {
-    const [modalAbierto, setModalAbierto] = useState(false);
     const [servicioSeleccionado, setServicioSeleccionado] = useState<Service | null>(null);
 
-    const handleOpenModal = (servicio: Service) => {
-        setServicioSeleccionado(servicio);
-        setModalAbierto(true);
+    const abrir = (s: Service) => {
+        setServicioSeleccionado(s);
         document.body.style.overflow = 'hidden';
     };
 
-    const handleCloseModal = () => {
-        setModalAbierto(false);
+    const cerrar = () => {
         setServicioSeleccionado(null);
         document.body.style.overflow = '';
     };
 
-    // Cerrar modal con tecla ESC
     useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && modalAbierto) {
-                handleCloseModal();
-            }
+        const onEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') cerrar();
         };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
-    }, [modalAbierto]);
+        window.addEventListener('keydown', onEsc);
+        return () => window.removeEventListener('keydown', onEsc);
+    }, []);
 
     return (
         <>
-            <section className="servicios-section" id="servicios">
-                <h2 className="servicios-titulo-principal">Contrata el Show Perfecto Para Tu Evento</h2>
-                <div className="subtitulo">
-                    Desde parrandas íntimas hasta conciertos completos. Más de 100 eventos exitosos nos respaldan.
-                </div>
-                <div className="tarjetas">
-                    {servicios.map((servicio) => (
-                        <div
-                            key={servicio.nombre}
-                            className={`tarjeta-profesional ${servicio.animacionClase}`}
-                            style={{
-                                // @ts-ignore
-                                '--accent-color': servicio.subtituloColor,
-                                background: servicio.color
-                            }}
-                            onClick={() => handleOpenModal(servicio)}
-                            role="button"
-                            tabIndex={0}
-                        >
-                            <div className="tarjeta-glow"></div>
-                            <div className="tarjeta-contenido">
-                                <div className="tarjeta-header">
-                                    <div className="icono-container">
-                                        <img className="tarjeta-icono" src={servicio.imagen} alt={`Icono de ${servicio.nombre}`} />
-                                        <div className="icono-glow"></div>
-                                    </div>
-                                    <h3 className="tarjeta-titulo">{servicio.nombre}</h3>
-                                </div>
+            <section id="servicios" className="bg-tinta px-5 py-20 md:px-10 md:py-28">
+                <div className="mx-auto max-w-[1240px]">
+                    <Revelar className="max-w-2xl">
+                        <p className="kicker">Tres formas de vivir el show</p>
+                        <h2 className="mt-4 font-display text-4xl text-hueso md:text-[3rem]">
+                            Elige el formato a la medida de tu evento
+                        </h2>
+                        <p className="mt-5 text-lg text-hueso-tenue">
+                            Sin precios de catálogo: cada propuesta se arma según tu fecha, venue y logística.
+                            La cotización es personalizada y la hablamos directo por WhatsApp.
+                        </p>
+                    </Revelar>
 
-                                <p className="tarjeta-descripcion">{servicio.descripcion}</p>
-
-                                <div className="info-pills">
-                                    <div className="pill">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                            <circle cx="12" cy="12" r="10" />
-                                            <polyline points="12,6 12,12 16,14" />
-                                        </svg>
-                                        <span>{servicio.duracion}</span>
+                    <div className="mt-14 grid gap-6 md:grid-cols-3">
+                        {servicios.map((s, i) => (
+                            <Revelar key={s.nombre} retardo={i * 0.09}>
+                                <article
+                                    onClick={() => abrir(s)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            abrir(s);
+                                        }
+                                    }}
+                                    className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea)] bg-tinta-2 transition-[border-color,transform] duration-500 ease-[var(--ease-salida)] hover:-translate-y-1 hover:border-[color:var(--oro)]"
+                                >
+                                    <div className="relative overflow-hidden">
+                                        <Image
+                                            src={s.imagen}
+                                            alt={`Show ${s.nombre}`}
+                                            width={420}
+                                            height={300}
+                                            sizes="(min-width: 768px) 33vw, 100vw"
+                                            className="aspect-[7/5] w-full object-cover transition-transform duration-700 ease-[var(--ease-salida)] group-hover:scale-[1.06]"
+                                        />
+                                        <div
+                                            aria-hidden="true"
+                                            className="pointer-events-none absolute inset-0"
+                                            style={{
+                                                background:
+                                                    'linear-gradient(180deg, transparent 50%, rgba(14,11,8,0.78) 100%)',
+                                            }}
+                                        />
+                                        <span className="absolute left-4 top-4 rounded-[var(--radius-sello)] bg-tinta/70 px-3 py-1 text-[0.7rem] uppercase tracking-[0.16em] text-oro-claro backdrop-blur-sm">
+                                            {s.gancho}
+                                        </span>
                                     </div>
-                                    <div className="pill">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                                            <circle cx="9" cy="7" r="4" />
-                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                        </svg>
-                                        <span>{servicio.capacidad}</span>
-                                    </div>
-                                </div>
 
-                                <button className="tarjeta-boton" onClick={(e) => { e.stopPropagation(); handleOpenModal(servicio); }}>
-                                    <span className="boton-texto">{servicio.boton}</span>
-                                    <span className="boton-arrow">→</span>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                                    <div className="flex flex-1 flex-col p-6">
+                                        <h3 className="font-display text-2xl text-hueso">{s.nombre}</h3>
+                                        <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-hueso-tenue">
+                                            {s.descripcion}
+                                        </p>
+
+                                        <div className="mt-5 flex flex-wrap gap-2">
+                                            <span className="rounded-[var(--radius-sello)] border border-[color:var(--linea)] px-3 py-1.5 text-xs text-hueso-tenue">
+                                                {s.formato}
+                                            </span>
+                                            <span className="rounded-[var(--radius-sello)] border border-[color:var(--linea)] px-3 py-1.5 text-xs text-hueso-tenue">
+                                                {s.ideal}
+                                            </span>
+                                        </div>
+
+                                        <span className="mt-6 inline-flex items-center gap-2 font-sans text-sm font-semibold text-oro transition-transform group-hover:gap-3">
+                                            Ver detalles del show
+                                            <span aria-hidden="true">→</span>
+                                        </span>
+                                    </div>
+                                </article>
+                            </Revelar>
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Modal de Servicio - Renderizado directamente aquí */}
-            {modalAbierto && servicioSeleccionado && (
+            {servicioSeleccionado && (
                 <div
-                    className="modal-overlay-servicios"
-                    onClick={handleCloseModal}
+                    className="fixed inset-0 z-[120] flex items-center justify-center bg-tinta/85 p-4 backdrop-blur-sm md:p-8"
+                    onClick={cerrar}
+                    role="dialog"
+                    aria-modal="true"
                 >
                     <div
-                        className="modal-contenedor-servicios"
+                        className="w-full max-w-3xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <ServiceModalContent
-                            service={servicioSeleccionado}
-                            closeModal={handleCloseModal}
-                        />
+                        <ServiceModalContent service={servicioSeleccionado} closeModal={cerrar} />
                     </div>
                 </div>
             )}

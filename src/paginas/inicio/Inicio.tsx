@@ -1,147 +1,149 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Inicio.css';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowUpRight, Users } from 'lucide-react';
+import Revelar from '../../componentes/ui/Revelar';
+import TarjetaTilt from '../../componentes/ui/TarjetaTilt';
+import BotonWhatsapp from '../../componentes/ui/BotonWhatsapp';
+import { mensajesWhatsApp } from '../../utilidades/whatsapp';
+import { Contador, ParallaxSuave } from '../../componentes/contrataciones/Movimiento';
+import InicioSecciones from './InicioSecciones';
 
 const Inicio: React.FC = () => {
-    const artistas = [
-        { nombre: 'Jorge Celedón', imagen: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg' },
-        { nombre: 'Poncho Zuleta', imagen: '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg' },
-        { nombre: 'Felipe Peláez', imagen: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg' }
-    ];
-
     return (
-        <div className="pagina-inicio-premium">
-            {/* Hero Premium */}
-            <section className="hero-premium">
-                <div className="hero-fondo">
-                    <img
-                        src="/Imagenes/Jesus Gonzalez en concierto.jpg"
-                        alt="Jesús González en concierto"
-                        className="hero-imagen-fondo"
-                    />
-                    <div className="hero-overlay"></div>
-                </div>
+        <div className="bg-tinta text-hueso">
+            {/* ===== HERO ===== */}
+            <section className="relative grano overflow-hidden border-b border-[color:var(--linea)]">
+                <div
+                    className="pointer-events-none absolute inset-0 -z-10 opacity-[0.18]"
+                    aria-hidden="true"
+                    style={{
+                        backgroundImage:
+                            'radial-gradient(60% 50% at 75% 18%, rgba(201,168,76,0.22), transparent 60%)',
+                    }}
+                />
+                <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+                    <div>
+                        <Revelar as="p" className="kicker mb-6">
+                            Acordeón vallenato · Colombia
+                        </Revelar>
+                        <Revelar
+                            as="h1"
+                            retardo={0.05}
+                            className="font-display text-[clamp(2.8rem,7vw,5.4rem)] leading-[0.98] text-hueso"
+                        >
+                            Jesús González
+                            <span className="mt-3 block text-[clamp(1.1rem,2.4vw,1.7rem)] font-normal italic text-oro">
+                                Maestro del acordeón vallenato
+                            </span>
+                        </Revelar>
+                        <Revelar
+                            as="p"
+                            retardo={0.12}
+                            className="mt-8 max-w-xl text-[1.05rem] leading-relaxed text-hueso-tenue"
+                        >
+                            Más de 15 años llevando el vallenato a escenarios junto a las
+                            leyendas del género. Cada presentación es un acordeón que cuenta
+                            historias y enciende cualquier celebración.
+                        </Revelar>
 
-                <div className="hero-contenido">
-                    <div className="badge-premium">
-                        <span className="estrella-badge">⭐</span>
-                        <span>Artista Profesional</span>
-                    </div>
+                        <Revelar
+                            retardo={0.16}
+                            className="mt-6 inline-flex items-center gap-3 rounded-[var(--radius-sello)] border border-oro/40 bg-oro/[0.06] px-4 py-3"
+                        >
+                            <Users size={20} strokeWidth={1.7} className="shrink-0 text-oro" aria-hidden="true" />
+                            <p className="text-[0.95rem] leading-snug text-hueso">
+                                Llego con{' '}
+                                <strong className="font-semibold text-oro">banda profesional completa</strong>{' '}
+                                <span className="text-hueso-tenue">(6 a 9 músicos)</span> para llevar tu evento al siguiente nivel.
+                            </p>
+                        </Revelar>
 
-                    <h1 className="hero-titulo-premium">
-                        Jesús González
-                        <span className="hero-subtitulo-premium">Maestro del Acordeón Vallenato</span>
-                    </h1>
+                        <Revelar
+                            retardo={0.2}
+                            className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center"
+                        >
+                            <BotonWhatsapp
+                                mensaje={mensajesWhatsApp.hero}
+                                evento="inicio_hero_whatsapp"
+                                variante="whatsapp"
+                                tamano="lg"
+                            >
+                                Cotizar mi evento
+                            </BotonWhatsapp>
+                            <Link
+                                href="/videos"
+                                className="group inline-flex items-center justify-center gap-2 rounded-[var(--radius-sello)] border border-[color:var(--linea-fuerte)] px-8 py-4 text-[1.05rem] font-semibold text-hueso transition-colors duration-300 hover:border-oro hover:text-oro"
+                            >
+                                Ver presentaciones
+                                <ArrowUpRight
+                                    size={18}
+                                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                />
+                            </Link>
+                        </Revelar>
 
-                    <p className="hero-descripcion-premium">
-                        +15 años compartiendo escenario con las leyendas del vallenato.<br />
-                        Llevando la música colombiana a los mejores eventos del mundo.
-                    </p>
-
-                    <div className="hero-ctas">
-                        <Link to="/contrataciones" className="btn-principal-hero">
-                            <span className="btn-icono">🎵</span>
-                            Contratar Show
-                        </Link>
-                        <Link to="/videos" className="btn-secundario-hero">
-                            <span className="btn-icono">▶️</span>
-                            Ver Videos
-                        </Link>
-                    </div>
-
-                    <div className="hero-stats">
-                        <div className="stat-item">
-                            <span className="stat-numero">200+</span>
-                            <span className="stat-texto">Shows Realizados</span>
-                        </div>
-                        <div className="stat-divider"></div>
-                        <div className="stat-item">
-                            <span className="stat-numero">15+</span>
-                            <span className="stat-texto">Años de Experiencia</span>
-                        </div>
-                        <div className="stat-divider"></div>
-                        <div className="stat-item">
-                            <span className="stat-numero">100%</span>
-                            <span className="stat-texto">Satisfacción</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="scroll-indicator">
-                    <div className="scroll-arrow"></div>
-                </div>
-            </section>
-
-            {/* Credenciales - Artistas */}
-            <section className="seccion-credenciales">
-                <div className="contenedor-credenciales">
-                    <h2 className="titulo-seccion-premium">Ha Compartido Escenario Con</h2>
-                    <p className="subtitulo-seccion-premium">Las leyendas del vallenato confían en su talento</p>
-
-                    <div className="grid-artistas">
-                        {artistas.map((artista, idx) => (
-                            <div key={idx} className="tarjeta-artista" style={{ animationDelay: `${idx * 0.15}s` }}>
-                                <div className="imagen-artista-container">
-                                    <img src={artista.imagen} alt={artista.nombre} className="imagen-artista" loading="lazy" />
-                                    <div className="overlay-artista">
-                                        <span className="nombre-artista">{artista.nombre}</span>
+                        <Revelar
+                            retardo={0.28}
+                            className="mt-14 flex flex-wrap gap-x-12 gap-y-6 border-t border-[color:var(--linea)] pt-8"
+                        >
+                            {[
+                                { valor: 15, prefijo: '', sufijo: '+', t: 'Años en tarima' },
+                                { valor: 200, prefijo: '', sufijo: '+', t: 'Shows realizados' },
+                                { valor: 9, prefijo: '6–', sufijo: '', t: 'Músicos en banda' },
+                            ].map((s) => (
+                                <div key={s.t}>
+                                    <Contador
+                                        valor={s.valor}
+                                        prefijo={s.prefijo}
+                                        sufijo={s.sufijo}
+                                        className="block font-display text-3xl text-oro"
+                                    />
+                                    <div className="mt-1 text-sm tracking-wide text-hueso-tenue">
+                                        {s.t}
                                     </div>
                                 </div>
+                            ))}
+                        </Revelar>
+                    </div>
+
+                    <Revelar variante="zoom" retardo={0.15} className="lg:justify-self-end">
+                      <ParallaxSuave intensidad={22}>
+                        <TarjetaTilt
+                            className="relative w-full max-w-md overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea-fuerte)] shadow-[var(--shadow-oro)]"
+                            intensidad={6}
+                        >
+                            <Image
+                                src="/Imagenes/Jesus Gonzalez en concierto.jpg"
+                                alt="Jesús González tocando el acordeón en concierto"
+                                width={1000}
+                                height={1000}
+                                priority
+                                sizes="(min-width: 1024px) 45vw, (min-width: 640px) 28rem, 100vw"
+                                className="aspect-square w-full object-cover"
+                            />
+                            <div
+                                className="pointer-events-none absolute inset-0"
+                                style={{
+                                    background:
+                                        'linear-gradient(180deg, transparent 45%, rgba(14,11,8,0.85) 100%)',
+                                }}
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 p-7">
+                                <p className="kicker">En vivo</p>
+                                <p className="mt-2 font-display text-xl text-hueso">
+                                    Acordeón que se siente, no solo se escucha
+                                </p>
                             </div>
-                        ))}
-                    </div>
+                        </TarjetaTilt>
+                      </ParallaxSuave>
+                    </Revelar>
                 </div>
             </section>
 
-            {/* Servicios Premium */}
-            <section className="seccion-servicios-premium">
-                <div className="contenedor-servicios-premium">
-                    <h2 className="titulo-seccion-premium">Servicios Profesionales</h2>
-                    <p className="subtitulo-seccion-premium-mejorado">Excelencia musical en cada presentación</p>
-
-                    <div className="grid-servicios-premium">
-                        <Link to="/contrataciones" className="servicio-card">
-                            <div className="servicio-icono">🎵</div>
-                            <h3 className="servicio-titulo">Shows & Eventos</h3>
-                            <p className="servicio-descripcion">
-                                Presentaciones profesionales para bodas, eventos corporativos y celebraciones exclusivas.
-                            </p>
-                            <span className="servicio-link">Contratar →</span>
-                        </Link>
-
-                        <a href="https://academiavallenataonline.com" target="_blank" rel="noopener" className="servicio-card">
-                            <div className="servicio-icono">🎓</div>
-                            <h3 className="servicio-titulo">Academia Online</h3>
-                            <p className="servicio-descripcion">
-                                Aprende acordeón vallenato con un maestro profesional. Clases personalizadas online.
-                            </p>
-                            <span className="servicio-link">Conocer más →</span>
-                        </a>
-
-                        <a href="https://ventadeacordeones.com" target="_blank" rel="noopener" className="servicio-card">
-                            <div className="servicio-icono">🪗</div>
-                            <h3 className="servicio-titulo">Tienda de Acordeones</h3>
-                            <p className="servicio-descripcion">
-                                Acordeones profesionales de la más alta calidad. Asesoría experta garantizada.
-                            </p>
-                            <span className="servicio-link">Ver tienda →</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA Final */}
-            <section className="seccion-cta-final">
-                <div className="contenedor-cta-final">
-                    <h2 className="titulo-cta-final">¿Listo para tu Próximo Evento?</h2>
-                    <p className="descripcion-cta-final">
-                        Contáctanos hoy y asegura una presentación musical de primer nivel
-                    </p>
-                    <Link to="/contacto" className="btn-cta-final">
-                        Solicitar Cotización
-                    </Link>
-                </div>
-            </section>
+            <InicioSecciones />
         </div>
     );
 };
