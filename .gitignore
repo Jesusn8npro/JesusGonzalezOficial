@@ -30,3 +30,6 @@ _agents/
 *.njsproj
 *.sln
 *.sw?
+
+# Cache incremental de TypeScript
+*.tsbuildinfo
