@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import JsonLd from '../../src/componentes/seo/JsonLd';
 import Revelar from '../../src/componentes/ui/Revelar';
 import {
-  ARTICULOS,
-  categorias,
-  populares,
-} from '../../src/contenido/blog/indice';
+  listarArticulos,
+  categoriasBlog,
+  articulosPopulares,
+} from '../../src/contenido/blog/fuente';
 import TarjetaArticulo from '../../src/componentes/blog/TarjetaArticulo';
 import NavCategorias from '../../src/componentes/blog/NavCategorias';
 import TarjetaAutor from '../../src/componentes/blog/TarjetaAutor';
@@ -39,9 +39,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const cats = categorias();
-  const destacados = populares(undefined, 4);
+export const revalidate = 600; // ISR: refresca desde Supabase sin redeploy
+
+export default async function BlogPage() {
+  const ARTICULOS = await listarArticulos();
+  const cats = await categoriasBlog();
+  const destacados = await articulosPopulares(undefined, 4);
 
   return (
     <>

@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import JsonLd from '../../../src/componentes/seo/JsonLd';
 import {
-  ARTICULOS,
-  buscarArticulo,
-  relacionados,
-} from '../../../src/contenido/blog/indice';
+  obtenerArticulo,
+  articulosRelacionados,
+  slugsEstaticos,
+} from '../../../src/contenido/blog/fuente';
 import BarraProgreso from '../../../src/componentes/blog/BarraProgreso';
 import EncabezadoArticulo from '../../../src/componentes/blog/EncabezadoArticulo';
 import CuerpoArticulo from '../../../src/componentes/blog/CuerpoArticulo';
@@ -18,11 +18,13 @@ import {
   breadcrumbBlogSchema,
 } from '../../../src/componentes/blog/esquemasBlog';
 
-// Prerender estático: solo los slugs definidos. Sin fallback dinámico.
-export const dynamicParams = false;
+// Prerender de los slugs estáticos garantizados; ISR para los nuevos
+// que se publiquen desde el admin (Supabase) sin redeploy.
+export const dynamicParams = true;
+export const revalidate = 600;
 
 export function generateStaticParams() {
-  return ARTICULOS.map((a) => ({ slug: a.slug }));
+  return slugsEstaticos();
 }
 
 interface Params {
@@ -33,7 +35,7 @@ export async function generateMetadata({
   params,
 }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const a = buscarArticulo(slug);
+  const a = await obtenerArticulo(slug);
   if (!a) return {};
   const url = `/blog/${a.slug}`;
   return {
@@ -61,10 +63,10 @@ export async function generateMetadata({
 
 export default async function ArticuloPage({ params }: Params) {
   const { slug } = await params;
-  const a = buscarArticulo(slug);
+  const a = await obtenerArticulo(slug);
   if (!a) notFound();
 
-  const relac = relacionados(a.slug, 3);
+  const relac = await articulosRelacionados(a.slug, 3);
 
   return (
     <>

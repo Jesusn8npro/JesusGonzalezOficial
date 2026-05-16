@@ -8,6 +8,7 @@ import { Youtube, Instagram, Facebook, Music2, MessageCircle } from 'lucide-reac
 const ENLACES = [
     { href: '/', etiqueta: 'Inicio' },
     { href: '/contrataciones', etiqueta: 'Contrataciones' },
+    { href: '/agenda', etiqueta: 'Agenda' },
     { href: '/repertorio', etiqueta: 'Repertorio' },
     { href: '/videos', etiqueta: 'Videos' },
     { href: '/blog', etiqueta: 'Blog' },

@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import {
     Home,
     Music2,
+    CalendarDays,
     Video,
     PenLine,
     Mail,
@@ -28,6 +29,7 @@ interface EnlaceNav {
 const ENLACES: EnlaceNav[] = [
     { href: '/', etiqueta: 'Inicio', Icono: Home },
     { href: '/contrataciones', etiqueta: 'Contrataciones', Icono: Music2, destacado: true },
+    { href: '/agenda', etiqueta: 'Agenda', Icono: CalendarDays },
     { href: '/videos', etiqueta: 'Videos', Icono: Video },
     { href: '/blog', etiqueta: 'Blog', Icono: PenLine },
     { href: '/contacto', etiqueta: 'Contacto', Icono: Mail },

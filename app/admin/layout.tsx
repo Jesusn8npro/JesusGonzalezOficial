@@ -1,6 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { LayoutDashboard, Tags } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Tags,
+  Inbox,
+  CalendarDays,
+  Newspaper,
+  BookOpen,
+} from 'lucide-react';
 import { crearClienteServidor } from '../../src/utilidades/supabase/servidor';
 import { supabaseConfigurado, ADMIN_EMAIL } from '../../src/utilidades/supabase/config';
 import BotonSalir from './BotonSalir';
@@ -12,6 +19,10 @@ export const metadata: Metadata = {
 
 const NAV = [
   { href: '/admin', etiqueta: 'Dashboard', Icono: LayoutDashboard },
+  { href: '/admin/leads', etiqueta: 'Leads', Icono: Inbox },
+  { href: '/admin/agenda', etiqueta: 'Agenda', Icono: CalendarDays },
+  { href: '/admin/novedades', etiqueta: 'Novedades', Icono: Newspaper },
+  { href: '/admin/blog', etiqueta: 'Blog', Icono: BookOpen },
   { href: '/admin/etiquetas', etiqueta: 'Etiquetas / Scripts', Icono: Tags },
 ];
 
