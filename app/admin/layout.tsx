@@ -92,12 +92,31 @@ export default async function AdminLayout({
           ))}
         </nav>
         <div className="mt-6 hidden lg:block">
-          <BotonSalir />
+          <div className="rounded-[var(--radius-sello)] border border-[color:var(--linea)] bg-[color:var(--color-tinta-2)] p-4">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[color:var(--color-whatsapp)]" />
+              <span className="text-xs font-semibold uppercase tracking-wide text-[color:var(--color-whatsapp)]">
+                Sesión activa
+              </span>
+            </div>
+            <p
+              className="mt-2 truncate text-sm text-hueso"
+              title={user.email ?? undefined}
+            >
+              {user.email}
+            </p>
+            <div className="mt-3">
+              <BotonSalir />
+            </div>
+          </div>
         </div>
       </aside>
       <main className="min-w-0 flex-1">
         <div className="mb-6 flex items-center justify-between gap-4">
-          <span className="text-sm text-hueso-tenue">{user.email}</span>
+          <span className="flex items-center gap-2 text-sm text-hueso-tenue">
+            <span className="h-2 w-2 rounded-full bg-[color:var(--color-whatsapp)]" />
+            {user.email}
+          </span>
           <div className="lg:hidden">
             <BotonSalir />
           </div>

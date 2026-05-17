@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Eye, EyeOff, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { Eye, EyeOff, Pencil, Trash2 } from 'lucide-react';
 import FormularioAccion from './FormularioAccion';
 import BotonAccion from './BotonAccion';
 import { Insignia, claseCampo } from './Primitivas';
@@ -85,17 +86,26 @@ export default function FilaArticulo({ a }: { a: Articulo }) {
         </FormularioAccion>
       </td>
       <td className="px-4 py-3 text-right">
-        <FormularioAccion accion={eliminarArticulo} className="inline">
-          <input type="hidden" name="slug" value={a.slug} />
-          <BotonAccion
-            variante="peligro"
-            className="!p-1.5"
-            confirmar={`¿Eliminar "${a.titulo}" de Supabase? El artículo estático no se borra.`}
-            aria-label="Eliminar artículo"
+        <div className="flex justify-end gap-2">
+          <Link
+            href={`/admin/blog/${a.slug}`}
+            aria-label="Editar artículo"
+            className="inline-flex rounded-[var(--radius-sello)] border border-[color:var(--linea)] p-1.5 text-hueso-tenue transition-colors hover:border-oro hover:text-oro"
           >
-            <Trash2 size={15} />
-          </BotonAccion>
-        </FormularioAccion>
+            <Pencil size={15} />
+          </Link>
+          <FormularioAccion accion={eliminarArticulo} className="inline">
+            <input type="hidden" name="slug" value={a.slug} />
+            <BotonAccion
+              variante="peligro"
+              className="!p-1.5"
+              confirmar={`¿Eliminar "${a.titulo}" de Supabase? El artículo estático no se borra.`}
+              aria-label="Eliminar artículo"
+            >
+              <Trash2 size={15} />
+            </BotonAccion>
+          </FormularioAccion>
+        </div>
       </td>
     </tr>
   );

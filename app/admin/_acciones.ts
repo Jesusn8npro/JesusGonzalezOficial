@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { crearClienteServidor } from '../../src/utilidades/supabase/servidor';
 import { ARTICULOS } from '../../src/contenido/blog/indice';
+import type { Articulo } from '../../src/contenido/blog/tipos';
 
 /* ============================================================
    Server Actions del panel admin. Todas usan el cliente de
@@ -247,6 +248,71 @@ export async function eliminarArticulo(fd: FormData): Promise<Resultado> {
   if (error) return fallo(error.message);
   revalidatePath('/admin/blog');
   return ok('Artículo eliminado.');
+}
+
+/**
+ * Edita el SEO y los metadatos clave de un artículo. El cuerpo y los
+ * relacionados se conservan tal cual (se gestionan en código). Mantiene
+ * sincronizadas las columnas espejo usadas por listados/consultas.
+ */
+export async function actualizarArticulo(fd: FormData): Promise<Resultado> {
+  const slug = texto(fd, 'slug');
+  if (!slug) return fallo('Falta el slug del artículo.');
+  const titulo = texto(fd, 'titulo');
+  const h1 = texto(fd, 'h1');
+  const fecha = texto(fd, 'fecha');
+  if (!titulo) return fallo('El título SEO es obligatorio.');
+  if (!h1) return fallo('El H1 es obligatorio.');
+  if (!fecha) return fallo('La fecha es obligatoria.');
+
+  const supabase = await crearClienteServidor();
+  const { data: actual, error: errLeer } = await supabase
+    .from('articulos')
+    .select('datos')
+    .eq('slug', slug)
+    .single();
+  if (errLeer || !actual) {
+    return fallo(errLeer?.message ?? 'No se encontró el artículo.');
+  }
+
+  const claves = texto(fd, 'claves')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const actualizado = texto(fd, 'actualizado') || undefined;
+
+  const datos: Articulo = {
+    ...(actual.datos as Articulo),
+    titulo,
+    h1,
+    descripcion: texto(fd, 'descripcion'),
+    resumen: texto(fd, 'resumen'),
+    categoria: texto(fd, 'categoria'),
+    fecha,
+    portada: texto(fd, 'portada'),
+    portadaAlt: texto(fd, 'portadaAlt'),
+    claves,
+    ...(actualizado ? { actualizado } : {}),
+  };
+
+  const { error } = await supabase
+    .from('articulos')
+    .update({
+      titulo,
+      categoria: texto(fd, 'categoria') || null,
+      fecha,
+      actualizado: actualizado ?? fecha,
+      datos,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('slug', slug);
+  if (error) return fallo(error.message);
+
+  revalidatePath('/admin/blog');
+  revalidatePath(`/admin/blog/${slug}`);
+  revalidatePath('/blog');
+  revalidatePath(`/blog/${slug}`);
+  return ok('Artículo actualizado.');
 }
 
 /**
