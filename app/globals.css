@@ -29,11 +29,11 @@
   --font-sans: var(--fuente-sans), system-ui, -apple-system, sans-serif;
 
   /* Paleta — negros cálidos + oro + brasa vallenata */
-  --color-tinta: #0e0b08;
-  --color-tinta-2: #17120c;
-  --color-tinta-3: #221a10;
+  --color-tinta: #131009;
+  --color-tinta-2: #1c1611;
+  --color-tinta-3: #2a2014;
   --color-hueso: #f5efe3;
-  --color-hueso-tenue: #b8b0a0;
+  --color-hueso-tenue: #c2baa9;
   --color-crema: #f2ebdd;
   --color-oro: #c9a84c;
   --color-oro-claro: #e7c766;
@@ -69,11 +69,11 @@
   --oro: #c9a84c;
   --oro-claro: #e7c766;
   --oro-hondo: #8a6d2a;
-  --tinta: #0e0b08;
-  --tinta-2: #17120c;
-  --tinta-3: #221a10;
+  --tinta: #131009;
+  --tinta-2: #1c1611;
+  --tinta-3: #2a2014;
   --hueso: #f5efe3;
-  --hueso-tenue: #b8b0a0;
+  --hueso-tenue: #c2baa9;
   --brasa: #7a2e1e;
   --crema: #f2ebdd;
 }
