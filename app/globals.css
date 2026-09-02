@@ -249,3 +249,63 @@ html[data-tema='claro'] ::selection {
     transition: none !important;
   }
 }
+
+/* ============================================================
+   EFECTOS CINEMATOGRÁFICOS — hero y tarjetas premium
+   ============================================================ */
+@layer components {
+  /* Titular con oro vivo: gradiente que respira */
+  @keyframes oro-vivo-desliz {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .texto-oro-vivo {
+    background: linear-gradient(100deg, var(--oro-hondo), var(--oro-claro) 38%, #fff3d0 50%, var(--oro-claro) 62%, var(--oro-hondo));
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: oro-vivo-desliz 6s ease-in-out infinite;
+  }
+
+  /* Auroras doradas flotantes de fondo */
+  @keyframes aurora-flotar {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    33% { transform: translate3d(4%, -6%, 0) scale(1.08); }
+    66% { transform: translate3d(-5%, 4%, 0) scale(0.95); }
+  }
+  .aurora {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(70px);
+    pointer-events: none;
+    animation: aurora-flotar 14s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Destello que barre la tarjeta al pasar el mouse */
+  .tarjeta-destello { position: relative; overflow: hidden; }
+  .tarjeta-destello::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(105deg, transparent 40%, color-mix(in srgb, var(--oro-claro) 22%, transparent) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.9s var(--ease-salida);
+    pointer-events: none;
+  }
+  .tarjeta-destello:hover::before { transform: translateX(120%); }
+
+  /* Flotación suave para fotos del collage */
+  @keyframes flotar-suave {
+    0%, 100% { transform: translateY(0) rotate(var(--rotacion, 0deg)); }
+    50% { transform: translateY(-10px) rotate(var(--rotacion, 0deg)); }
+  }
+  .flota-suave { animation: flotar-suave 7s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .texto-oro-vivo, .aurora, .flota-suave { animation: none !important; }
+    .tarjeta-destello::before { display: none; }
+  }
+}

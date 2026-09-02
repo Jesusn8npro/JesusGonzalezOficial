@@ -48,7 +48,7 @@ const testimonios: Testimonio[] = [
         comentario:
             'Excelente servicio y calidad musical. Jesús González es un verdadero maestro del acordeón. Nuestros clientes quedaron encantados con la presentación.',
         calificacion: 5,
-        imagen: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+        imagen: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
         fecha: 'Septiembre 2024',
     },
 ];

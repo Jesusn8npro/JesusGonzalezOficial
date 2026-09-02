@@ -35,7 +35,7 @@ export const IMG = {
   concierto: '/Imagenes/Jesus Gonzalez en concierto.jpg',
   poncho: '/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg',
   celedon: '/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg',
-  exclusivo: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+  exclusivo: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
   parranda: '/Imagenes/Parrandas Vallenatas.jpg',
   pollo: '/Imagenes/El pollo irra y Jesus Gonzalez.jpg',
   perfil: '/Imagenes/Foto de perfil para JESUS GONZALEZ.jpg',

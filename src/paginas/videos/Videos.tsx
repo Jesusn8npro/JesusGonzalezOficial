@@ -91,7 +91,7 @@ const Videos: React.FC = () => {
             {/* ===== HERO ===== */}
             <section className="relative grano overflow-hidden border-b border-[color:var(--linea)]">
                 <Image
-                    src="/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg"
+                    src="/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg"
                     alt=""
                     aria-hidden="true"
                     fill

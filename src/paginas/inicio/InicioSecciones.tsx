@@ -39,7 +39,7 @@ const SERVICIOS = [
     {
         titulo: 'Shows & Eventos',
         descripcion:
-            'Bodas, fiestas privadas y eventos corporativos con banda profesional completa (6 a 9 músicos) bajo mi dirección. Repertorio a la medida de tu celebración.',
+            'Espectáculos de otro nivel para bodas, galas, corporativos y festivales: banda profesional completa (6 a 9 músicos), producción y dirección artística propia. Repertorio a la medida.',
         accion: 'Cotizar mi evento',
         href: '/contrataciones',
         externo: false,
@@ -131,7 +131,7 @@ const Credibilidad: React.FC = () => (
                     <Revelar
                         key={a.nombre}
                         retardo={i * 0.08}
-                        className="group relative overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea)]"
+                        className="group tarjeta-destello relative overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea)] transition-[border-color,box-shadow] duration-500 hover:border-[color:var(--oro)]/50 hover:shadow-[var(--shadow-oro)]"
                     >
                         <Image
                             src={a.imagen}
@@ -206,7 +206,7 @@ const Servicios: React.FC = () => (
                         </>
                     );
                     const clases =
-                        'group flex h-full flex-col bg-tinta p-9 transition-colors duration-300 hover:bg-tinta-2';
+                        'group tarjeta-destello flex h-full flex-col bg-tinta p-9 transition-[background-color,box-shadow] duration-300 hover:bg-tinta-2 hover:shadow-[var(--shadow-oro)]';
                     return (
                         <Revelar key={s.titulo} retardo={i * 0.08}>
                             {s.externo ? (

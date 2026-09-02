@@ -10,7 +10,7 @@ export const articulo: Articulo = {
     'Te explico, con la transparencia de alguien que ha dirigido parrandas por todo el país, qué hace que una parranda profesional valga lo que vale y por qué no se compara con contratar “un grupito”.',
   categoria: 'Parrandas',
   fecha: '2026-05-14',
-  portada: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+  portada: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
   portadaAlt:
     'Jesús González dirigiendo una parranda vallenata profesional de gala',
   claves: [

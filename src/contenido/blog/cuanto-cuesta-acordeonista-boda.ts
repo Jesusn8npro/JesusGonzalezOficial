@@ -11,7 +11,7 @@ export const articulo: Articulo = {
   categoria: 'Bodas',
   fecha: '2026-02-10',
   actualizado: '2026-05-12',
-  portada: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+  portada: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
   portadaAlt:
     'Jesús González con su acordeón en un evento exclusivo de bodas',
   claves: [

@@ -36,7 +36,7 @@ const servicios: Service[] = [
     {
         nombre: 'Show Semicompleto VIP',
         gancho: 'El equilibrio perfecto',
-        imagen: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+        imagen: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
         descripcion:
             '8 músicos + 1 asistente. Mi formato más solicitado para bodas y eventos corporativos. Sonido del venue u opción de sonido propio.',
         formato: '8 músicos + asistente',
@@ -213,7 +213,7 @@ const Servicios: React.FC = () => {
                                             abrir(s);
                                         }
                                     }}
-                                    className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea)] bg-tinta-2 transition-[border-color,transform] duration-500 ease-[var(--ease-salida)] hover:-translate-y-1 hover:border-[color:var(--oro)]"
+                                    className="group tarjeta-destello flex h-full cursor-pointer flex-col overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea)] bg-tinta-2 transition-[border-color,transform,box-shadow] duration-500 ease-[var(--ease-salida)] hover:-translate-y-1 hover:border-[color:var(--oro)] hover:shadow-[var(--shadow-oro)]"
                                 >
                                     <div className="relative overflow-hidden">
                                         <Image

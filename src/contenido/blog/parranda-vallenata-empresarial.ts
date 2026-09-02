@@ -62,7 +62,7 @@ export const articulo: Articulo = {
     },
     {
       tipo: 'imagen',
-      src: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+      src: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
       alt: 'Banda vallenata profesional en un evento corporativo de gala',
       pie: 'Lo corporativo exige estándar: contrato, factura, cronograma y una banda que encaja sin fricción.',
     },

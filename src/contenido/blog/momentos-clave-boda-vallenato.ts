@@ -46,7 +46,7 @@ export const articulo: Articulo = {
     },
     {
       tipo: 'imagen',
-      src: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+      src: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
       alt: 'Acordeón sorpresa al cierre de una ceremonia de matrimonio',
       pie: 'La llegada sorpresa al cierre de la ceremonia cambia la energía en segundos.',
     },

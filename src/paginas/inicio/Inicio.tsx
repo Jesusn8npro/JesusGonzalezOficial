@@ -14,20 +14,45 @@ import InicioSecciones from './InicioSecciones';
 const Inicio: React.FC = () => {
     return (
         <div className="bg-tinta text-hueso">
-            {/* ===== HERO ===== */}
+            {/* ===== HERO CINEMATOGRÁFICO ===== */}
             <section className="relative grano overflow-hidden border-b border-[color:var(--linea)]">
-                <div
-                    className="pointer-events-none absolute inset-0 -z-10 opacity-[0.18]"
-                    aria-hidden="true"
-                    style={{
-                        backgroundImage:
-                            'radial-gradient(60% 50% at 75% 18%, rgba(201,168,76,0.22), transparent 60%)',
-                    }}
-                />
+                {/* Fondo: foto de concierto a sangre + velo de tinta */}
+                <div className="pointer-events-none absolute inset-0 -z-20" aria-hidden="true">
+                    <Image
+                        src="/Imagenes/Jesus Gonzalez en concierto.jpg"
+                        alt=""
+                        fill
+                        priority
+                        sizes="100vw"
+                        className="object-cover object-[70%_20%] opacity-[0.16] saturate-[0.85]"
+                    />
+                    <div
+                        className="absolute inset-0"
+                        style={{
+                            background:
+                                'linear-gradient(105deg, var(--tinta) 30%, color-mix(in srgb, var(--tinta) 72%, transparent) 62%, color-mix(in srgb, var(--tinta) 88%, transparent) 100%)',
+                        }}
+                    />
+                    <div
+                        className="absolute inset-x-0 bottom-0 h-40"
+                        style={{ background: 'linear-gradient(180deg, transparent, var(--tinta))' }}
+                    />
+                </div>
+                {/* Auroras doradas en movimiento */}
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+                    <div
+                        className="aurora"
+                        style={{ top: '-12%', right: '8%', width: '42vw', height: '42vw', background: 'color-mix(in srgb, var(--oro) 16%, transparent)' }}
+                    />
+                    <div
+                        className="aurora"
+                        style={{ bottom: '-18%', left: '-6%', width: '34vw', height: '34vw', background: 'color-mix(in srgb, var(--oro-hondo) 20%, transparent)', animationDelay: '-7s' }}
+                    />
+                </div>
                 <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
                     <div>
                         <Revelar as="p" className="kicker mb-6">
-                            Acordeón vallenato · Colombia
+                            Artista vallenato · Shows de talla nacional
                         </Revelar>
                         <Revelar
                             as="h1"
@@ -35,7 +60,7 @@ const Inicio: React.FC = () => {
                             className="font-display text-[clamp(2.8rem,7vw,5.4rem)] leading-[0.98] text-hueso"
                         >
                             Jesús González
-                            <span className="mt-3 block text-[clamp(1.1rem,2.4vw,1.7rem)] font-normal italic text-oro">
+                            <span className="texto-oro-vivo mt-3 block text-[clamp(1.1rem,2.4vw,1.7rem)] font-normal italic">
                                 Maestro del acordeón vallenato
                             </span>
                         </Revelar>
@@ -44,9 +69,10 @@ const Inicio: React.FC = () => {
                             retardo={0.12}
                             className="mt-8 max-w-xl text-[1.05rem] leading-relaxed text-hueso-tenue"
                         >
-                            Más de 15 años llevando el vallenato a escenarios junto a las
-                            leyendas del género. Cada presentación es un acordeón que cuenta
-                            historias y enciende cualquier celebración.
+                            Una marca musical con más de 15 años en tarima junto a las
+                            leyendas del género. Espectáculos en vivo de otro nivel para
+                            bodas, galas, eventos corporativos y grandes celebraciones —
+                            producción, dirección artística y una banda que se siente.
                         </Revelar>
 
                         <Revelar
@@ -111,33 +137,69 @@ const Inicio: React.FC = () => {
 
                     <Revelar variante="zoom" retardo={0.15} className="lg:justify-self-end">
                       <ParallaxSuave intensidad={22}>
-                        <TarjetaTilt
-                            className="relative w-full max-w-md overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea-fuerte)] shadow-[var(--shadow-oro)]"
-                            intensidad={6}
-                        >
-                            <Image
-                                src="/Imagenes/Jesus Gonzalez en concierto.jpg"
-                                alt="Jesús González tocando el acordeón en concierto"
-                                width={1000}
-                                height={1000}
-                                priority
-                                sizes="(min-width: 1024px) 45vw, (min-width: 640px) 28rem, 100vw"
-                                className="aspect-square w-full object-cover"
-                            />
+                        <div className="relative w-full max-w-md">
+                            <TarjetaTilt
+                                className="tarjeta-destello relative w-full overflow-hidden rounded-[var(--radius-grande)] border border-[color:var(--linea-fuerte)] shadow-[var(--shadow-oro)]"
+                                intensidad={6}
+                            >
+                                <Image
+                                    src="/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg"
+                                    alt="Jesús González tocando el acordeón en concierto"
+                                    width={1000}
+                                    height={1000}
+                                    priority
+                                    sizes="(min-width: 1024px) 45vw, (min-width: 640px) 28rem, 100vw"
+                                    className="aspect-square w-full object-cover"
+                                />
+                                <div
+                                    className="pointer-events-none absolute inset-0"
+                                    style={{
+                                        background:
+                                            'linear-gradient(180deg, transparent 45%, rgba(14,11,8,0.85) 100%)',
+                                    }}
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 p-7">
+                                    <p className="kicker">En vivo</p>
+                                    <p className="mt-2 font-display text-xl text-hueso">
+                                        Acordeón que se siente, no solo se escucha
+                                    </p>
+                                </div>
+                            </TarjetaTilt>
+
+                            {/* Fotos con las leyendas, flotando sobre el marco */}
                             <div
-                                className="pointer-events-none absolute inset-0"
-                                style={{
-                                    background:
-                                        'linear-gradient(180deg, transparent 45%, rgba(14,11,8,0.85) 100%)',
-                                }}
-                            />
-                            <div className="absolute bottom-0 left-0 right-0 p-7">
-                                <p className="kicker">En vivo</p>
-                                <p className="mt-2 font-display text-xl text-hueso">
-                                    Acordeón que se siente, no solo se escucha
+                                className="flota-suave absolute -left-14 -top-8 hidden w-36 overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea-fuerte)] shadow-[var(--shadow-suave)] lg:block"
+                                style={{ '--rotacion': '-5deg' } as React.CSSProperties}
+                            >
+                                <Image
+                                    src="/Imagenes/Jorge Celedon y Jesus Gonzalez.jpg"
+                                    alt="Jesús González junto a Jorge Celedón"
+                                    width={288}
+                                    height={288}
+                                    sizes="9rem"
+                                    className="aspect-square w-full object-cover"
+                                />
+                                <p className="absolute bottom-0 left-0 right-0 bg-tinta/75 px-2 py-1 text-center text-[0.6rem] uppercase tracking-[0.14em] text-oro-claro backdrop-blur-sm">
+                                    Con Jorge Celedón
                                 </p>
                             </div>
-                        </TarjetaTilt>
+                            <div
+                                className="flota-suave absolute -bottom-10 -right-10 hidden w-40 overflow-hidden rounded-[var(--radius-tarjeta)] border border-[color:var(--linea-fuerte)] shadow-[var(--shadow-suave)] lg:block"
+                                style={{ '--rotacion': '4deg', animationDelay: '-3.5s' } as React.CSSProperties}
+                            >
+                                <Image
+                                    src="/Imagenes/Jesus Gonzalez y Poncho Zuleta.jpg"
+                                    alt="Jesús González junto a Poncho Zuleta"
+                                    width={320}
+                                    height={320}
+                                    sizes="10rem"
+                                    className="aspect-square w-full object-cover"
+                                />
+                                <p className="absolute bottom-0 left-0 right-0 bg-tinta/75 px-2 py-1 text-center text-[0.6rem] uppercase tracking-[0.14em] text-oro-claro backdrop-blur-sm">
+                                    Con Poncho Zuleta
+                                </p>
+                            </div>
+                        </div>
                       </ParallaxSuave>
                     </Revelar>
                 </div>

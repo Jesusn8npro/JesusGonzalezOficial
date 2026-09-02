@@ -64,7 +64,7 @@ export const datosPress: DatosPress = {
   ubicacion: 'Colombia · Cobertura nacional',
 
   fotoHero: {
-    src: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+    src: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
     alt: 'Jesús González, acordeonista y director artístico vallenato, en presentación en vivo',
   },
 
@@ -146,7 +146,7 @@ export const datosPress: DatosPress = {
       alt: 'Jorge Celedón y Jesús González compartiendo escenario',
     },
     {
-      src: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+      src: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
       alt: 'Jesús González en presentación de vallenato exclusivo',
     },
     {

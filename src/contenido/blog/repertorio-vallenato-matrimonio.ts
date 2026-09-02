@@ -56,7 +56,7 @@ export const articulo: Articulo = {
     },
     {
       tipo: 'imagen',
-      src: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+      src: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
       alt: 'Jesús González interpretando un vallenato romántico en una boda',
       pie: 'La entrada se trabaja con vallenato romántico: emoción antes que baile.',
     },

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description:
       'Tres formatos de show de vallenato en vivo para bodas, eventos corporativos y galas en Colombia. Cotización personalizada por WhatsApp.',
     url: '/contrataciones',
-    images: ['/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg'],
+    images: ['/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg'],
   },
 };
 

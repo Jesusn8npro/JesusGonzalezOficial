@@ -62,8 +62,8 @@ export const mediaItems: MediaItem[] = [
         titulo: 'Vallenato Exclusivo',
         tipo: 'imagen',
         categoria: 'Conciertos',
-        thumbnail: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
-        imagenUrl: '/Imagenes/Jesus Gonzalez, Vallenato Exclusivo.jpg',
+        thumbnail: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
+        imagenUrl: '/Imagenes/Jesus-Gonzalez-Vallenato-Exclusivo.jpg',
         descripcion: 'Momento especial en concierto exclusivo'
     },
     {
