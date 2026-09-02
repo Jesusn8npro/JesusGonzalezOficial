@@ -27,7 +27,7 @@ const Contrataciones: React.FC = () => {
     }, []);
 
     return (
-        <main className="relative bg-tinta text-hueso">
+        <main className="pagina-conectada relative bg-tinta text-hueso">
             <BannerUrgencia />
             <Hero />
             <Credibilidad />

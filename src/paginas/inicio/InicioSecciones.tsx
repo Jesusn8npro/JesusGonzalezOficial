@@ -115,9 +115,9 @@ const Credibilidad: React.FC = () => (
                 >
                     <Users size={20} strokeWidth={1.7} className="shrink-0 text-oro" aria-hidden="true" />
                     <p className="text-[0.95rem] leading-snug text-hueso">
-                        Y nunca toca solo: llega con{' '}
-                        <strong className="font-semibold text-oro">banda profesional</strong>{' '}
-                        <span className="text-hueso-tenue">(6 a 9 músicos)</span>.
+                        Cada presentación es una{' '}
+                        <strong className="font-semibold text-oro">producción de concierto</strong>
+                        : orquesta en tarima, sonido cuidado y dirección artística propia.
                     </p>
                 </Revelar>
             </div>

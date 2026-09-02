@@ -13,7 +13,7 @@ import InicioSecciones from './InicioSecciones';
 
 const Inicio: React.FC = () => {
     return (
-        <div className="bg-tinta text-hueso">
+        <div className="pagina-conectada bg-tinta text-hueso">
             {/* ===== HERO CINEMATOGRÁFICO ===== */}
             <section className="relative grano overflow-hidden border-b border-[color:var(--linea)]">
                 {/* Fondo: foto de concierto a sangre + velo de tinta */}
@@ -24,7 +24,7 @@ const Inicio: React.FC = () => {
                         fill
                         priority
                         sizes="100vw"
-                        className="object-cover object-[70%_20%] opacity-[0.16] saturate-[0.85]"
+                        className="fondo-hero-foto object-cover object-[70%_20%] opacity-[0.16] saturate-[0.85]"
                     />
                     <div
                         className="absolute inset-0"
@@ -81,9 +81,8 @@ const Inicio: React.FC = () => {
                         >
                             <Users size={20} strokeWidth={1.7} className="shrink-0 text-oro" aria-hidden="true" />
                             <p className="text-[0.95rem] leading-snug text-hueso">
-                                Llego con{' '}
-                                <strong className="font-semibold text-oro">banda profesional completa</strong>{' '}
-                                <span className="text-hueso-tenue">(6 a 9 músicos)</span> para llevar tu evento al siguiente nivel.
+                                <strong className="font-semibold text-oro">Producción completa en vivo</strong>
+                                : orquesta profesional en tarima bajo la dirección artística de Jesús González.
                             </p>
                         </Revelar>
 

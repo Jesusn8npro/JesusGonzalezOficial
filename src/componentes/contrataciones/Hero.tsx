@@ -45,9 +45,8 @@ const Hero: React.FC = () => {
                     >
                         <Users size={20} strokeWidth={1.7} className="shrink-0 text-oro" aria-hidden="true" />
                         <p className="text-[0.95rem] leading-snug text-hueso">
-                            No voy solo: llego con{' '}
-                            <strong className="font-semibold text-oro">banda profesional completa</strong>{' '}
-                            <span className="text-hueso-tenue">(formato de 6 a 9 músicos)</span>.
+                            <strong className="font-semibold text-oro">Producción de concierto completa</strong>
+                            : orquesta profesional en tarima, dirigida por Jesús en cada show.
                         </p>
                     </Revelar>
 

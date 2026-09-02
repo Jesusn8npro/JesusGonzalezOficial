@@ -9,7 +9,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
+    minimumCacheTTL: 2678400,
     // Anchos típicos del layout: móvil colombiano dominante + breakpoints
     // del diseño (max-w-md/lg, grids de 2-4 columnas, hero a pantalla).
     deviceSizes: [360, 414, 640, 768, 1024, 1240, 1536, 1920],

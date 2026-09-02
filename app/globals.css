@@ -84,12 +84,12 @@
    página/componente cambia sin tocar su código. */
 html[data-tema='claro'] {
   /* Tokens que alimentan utilidades Tailwind (@theme) */
-  --color-tinta: #f6f1e7;
-  --color-tinta-2: #efe7d7;
-  --color-tinta-3: #e8dcc4;
+  --color-tinta: #efe6d3;
+  --color-tinta-2: #e7dcc5;
+  --color-tinta-3: #ddceae;
   --color-hueso: #241c12;
   --color-hueso-tenue: #6b5d49;
-  --color-crema: #fbf7ee;
+  --color-crema: #f4ecdc;
   --color-oro: #9c7c1f;
   --color-oro-claro: #b8902c;
   --color-oro-hondo: #7a5f16;
@@ -101,13 +101,13 @@ html[data-tema='claro'] {
   --oro: #9c7c1f;
   --oro-claro: #b8902c;
   --oro-hondo: #7a5f16;
-  --tinta: #f6f1e7;
-  --tinta-2: #efe7d7;
-  --tinta-3: #e8dcc4;
+  --tinta: #efe6d3;
+  --tinta-2: #e7dcc5;
+  --tinta-3: #ddceae;
   --hueso: #241c12;
   --hueso-tenue: #6b5d49;
   --brasa: #7a2e1e;
-  --crema: #fbf7ee;
+  --crema: #f4ecdc;
   --linea: rgba(36, 28, 18, 0.14);
   --linea-fuerte: rgba(36, 28, 18, 0.26);
   --vidrio: rgba(246, 241, 231, 0.72);
@@ -308,4 +308,27 @@ html[data-tema='claro'] ::selection {
     .texto-oro-vivo, .aurora, .flota-suave { animation: none !important; }
     .tarjeta-destello::before { display: none; }
   }
+}
+
+/* ============================================================
+   CONEXIÓN ENTRE SECCIONES — gradientes que hilan la página
+   ============================================================ */
+@layer components {
+  .pagina-conectada section { position: relative; }
+  .pagina-conectada section::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 200px;
+    z-index: 0;
+    background:
+      radial-gradient(58% 130px at 50% 0%, color-mix(in srgb, var(--oro) 10%, transparent), transparent 75%),
+      linear-gradient(180deg, color-mix(in srgb, var(--tinta-2) 55%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Modo claro: la foto del hero baja de intensidad para no ensuciar el fondo */
+  html[data-tema='claro'] .fondo-hero-foto { opacity: 0.07; }
+  html[data-tema='claro'] .aurora { opacity: 0.55; }
 }
