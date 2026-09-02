@@ -5,7 +5,7 @@ import { config } from '../../utilidades/configuracion';
 import { datosPress } from './datosPress';
 
 const URL = config.siteUrl; // https://jesusgonzalez.com.co
-const TELEFONO = '+573144096187';
+const TELEFONO = '+573222312413';
 const PRESS_URL = `${URL}/press`;
 const IMG = `${URL}${datosPress.fotoHero.src}`;
 const LOGO = `${URL}/Imagenes/Logo Jesus Gonzalez.png`;

@@ -74,8 +74,8 @@ const SECCIONES: Seccion[] = [
             },
             {
                 titulo: 'WhatsApp · Vehículos',
-                sub: '+57 314 409 6187 · Consulta disponibilidad',
-                href: 'https://wa.me/573144096187?text=Hola%20quiero%20información%20sobre%20vehículos',
+                sub: '+57 322 231 2413 · Consulta disponibilidad',
+                href: 'https://wa.me/573222312413?text=Hola%20quiero%20información%20para%20contratar%20a%20Jesús%20González',
                 Icono: MessageCircle,
             },
         ],

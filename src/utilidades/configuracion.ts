@@ -3,7 +3,7 @@
 export const config = {
     siteName: 'Jesús González - Maestro del Acordeón Vallenato',
     siteUrl: 'https://jesusgonzalez.com.co',
-    whatsappNumber: '573144096187',
+    whatsappNumber: '573222312413',
     email: 'contacto@jesusgonzalez.com.co',
     socialMedia: {
         youtube: 'https://www.youtube.com/@JesusGonzalezTV',

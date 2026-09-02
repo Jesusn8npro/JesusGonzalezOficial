@@ -3,7 +3,7 @@
 import { config } from '../../utilidades/configuracion';
 
 const URL = config.siteUrl; // https://jesusgonzalez.com.co
-const TELEFONO = '+573144096187';
+const TELEFONO = '+573222312413';
 const IMG_PRINCIPAL = `${URL}/Imagenes/Jesus Gonzalez en concierto.jpg`;
 const LOGO = `${URL}/Imagenes/Logo Jesus Gonzalez.png`;
 
