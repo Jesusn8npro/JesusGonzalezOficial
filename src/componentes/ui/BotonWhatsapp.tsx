@@ -4,7 +4,7 @@ import React from 'react';
 import { abrirWhatsApp } from '../../utilidades/whatsapp';
 
 type Variante = 'whatsapp' | 'oro' | 'contorno';
-type Tamano = 'md' | 'lg';
+type Tamano = 'sm' | 'md' | 'lg';
 
 interface BotonWhatsappProps {
   /** Mensaje prellenado del chat. */
@@ -36,6 +36,7 @@ const VARIANTES: Record<Variante, string> = {
 };
 
 const TAMANOS: Record<Tamano, string> = {
+  sm: 'text-[0.82rem] px-4 py-1.5',
   md: 'text-[0.95rem] px-6 py-3',
   lg: 'text-[1.05rem] px-8 py-4',
 };

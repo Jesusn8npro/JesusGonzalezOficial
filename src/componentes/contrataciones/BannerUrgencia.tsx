@@ -1,45 +1,69 @@
 'use client';
 
-import React from 'react';
-import { CalendarCheck } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { CalendarCheck, X } from 'lucide-react';
 import { mensajesWhatsApp } from '../../utilidades/whatsapp';
 import BotonWhatsapp from '../ui/BotonWhatsapp';
 
+const CLAVE_CIERRE = 'banner-urgencia-cerrado';
+
 /**
- * Franja de escasez honesta — sin cuentas regresivas falsas. Limpia,
- * legible y premium en oscuro y claro, desktop y móvil. Los tokens se
- * auto-cambian con el tema; nada hardcodeado.
+ * Franja de escasez honesta — compacta, con botón de cierre. El cierre
+ * se recuerda por sesión (vuelve a aparecer en una visita nueva).
  */
 const BannerUrgencia: React.FC = () => {
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        try {
+            setVisible(sessionStorage.getItem(CLAVE_CIERRE) !== '1');
+        } catch {
+            setVisible(true);
+        }
+    }, []);
+
+    const cerrar = () => {
+        setVisible(false);
+        try {
+            sessionStorage.setItem(CLAVE_CIERRE, '1');
+        } catch {
+            /* sin storage, solo se oculta en esta vista */
+        }
+    };
+
+    if (!visible) return null;
+
     return (
         <section className="sticky top-0 z-[100] border-b border-[color:var(--linea-fuerte)] bg-tinta-3/95 backdrop-blur-md">
-            <div className="mx-auto flex max-w-[1240px] flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:px-10">
-                <div className="flex items-center gap-3.5">
-                    <span
-                        aria-hidden="true"
-                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-oro/40 text-oro"
-                    >
-                        <CalendarCheck size={18} strokeWidth={1.8} />
-                    </span>
-                    <p className="text-[0.9rem] leading-snug text-hueso md:text-[0.95rem]">
-                        <span className="font-semibold text-oro">Agenda limitada.</span>{' '}
-                        Temporada <span className="font-semibold">nov–ene</span> se
-                        reserva con meses de anticipación.
-                        <span className="hidden text-hueso-tenue sm:inline">
-                            {' '}Confirma tu fecha antes de que se ocupe.
-                        </span>
-                    </p>
-                </div>
-
+            <div className="mx-auto flex max-w-[1240px] items-center gap-3 px-4 py-2 md:px-10">
+                <CalendarCheck
+                    size={16}
+                    strokeWidth={1.8}
+                    className="shrink-0 text-oro"
+                    aria-hidden="true"
+                />
+                <p className="min-w-0 flex-1 truncate text-[0.82rem] leading-snug text-hueso md:text-[0.9rem]">
+                    <span className="font-semibold text-oro">Agenda limitada:</span>{' '}
+                    la temporada <span className="font-semibold">nov–ene</span> se reserva
+                    con meses de anticipación.
+                </p>
                 <BotonWhatsapp
                     mensaje={mensajesWhatsApp.urgencia}
                     evento="Banner_Urgencia_Click"
                     variante="oro"
-                    tamano="md"
-                    className="shrink-0 max-sm:w-full"
+                    tamano="sm"
+                    className="shrink-0 whitespace-nowrap max-sm:hidden"
                 >
                     Consultar mi fecha
                 </BotonWhatsapp>
+                <button
+                    type="button"
+                    onClick={cerrar}
+                    aria-label="Cerrar aviso"
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-hueso-tenue transition-colors hover:bg-tinta-2 hover:text-oro"
+                >
+                    <X size={15} strokeWidth={2} />
+                </button>
             </div>
         </section>
     );

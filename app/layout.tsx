@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Fraunces, Hanken_Grotesk } from 'next/font/google';
+import { Fraunces, Poppins } from 'next/font/google';
 import './globals.css';
 
 const fuenteDisplay = Fraunces({
@@ -11,7 +11,7 @@ const fuenteDisplay = Fraunces({
   display: 'swap',
 });
 
-const fuenteSans = Hanken_Grotesk({
+const fuenteSans = Poppins({
   subsets: ['latin', 'latin-ext'],
   weight: ['400', '500', '600', '700'],
   variable: '--fuente-sans',
